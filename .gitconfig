@@ -1,0 +1,20 @@
+[user]
+	name = Geoff Catlin
+	email = gcatlin@gmail.com
+[alias]
+	co = checkout
+[color]
+	diff = auto
+	status = auto
+	branch = auto
+[core]
+	excludesfile = /Users/gcatlin/.gitignore
+	editor = mate -w
+	autocrlf = input
+[apply]
+	whitespace = nowarn
+[format]
+	pretty = %C(yellow)%h%Creset %s %C(red)(%an, %cr)%Creset
+[github]
+	user = gcatlin
+	token = c49f467170498ecf398ef977cf9b0951
