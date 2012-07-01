@@ -188,3 +188,7 @@ if [[ -s "/Users/gcatlin/.rvm/scripts/rvm" ]] ; then
 	source "/Users/gcatlin/.rvm/scripts/rvm"
 	# rvm use
 fi
+
+if [[ -f $bp/etc/grc.bashrc ]] ; then
+	source $bp/etc/grc.bashrc
+fi
