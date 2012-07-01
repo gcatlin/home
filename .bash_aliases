@@ -12,7 +12,7 @@ if [[ -z $LS ]] ; then
 fi
 
 alias ls=$LS
-alias l.="$LS -d .*'   # hidden files only
+alias l.="$LS -d .*"   # hidden files only
 alias ll="$LS -l"      # long listing
 alias la="$LS -lA"     # show hidden files
 alias lk="$LS -lSr"    # sort by size, biggest last
