@@ -23,7 +23,7 @@ set backspace=indent,eol,start   " Set for maximum backspace smartness
 set grepprg=ack   " Use ack for grepping
 set history=700   " Number of ":" commands and search patterns to remember
 "set hlsearch      "
-set ignorecase    " 
+set ignorecase    "
 set incsearch     "
 set number        "
 set magic         "
@@ -111,6 +111,18 @@ endif
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Automcommands
+"
+" When editing a file, always jump to the last known cursor position.
+" Don't do it when the position is invalid or when inside an event handler
+" (happens when dropping a file on gvim).
+autocmd BufReadPost *
+  \ if line("'\"") > 0 && line("'\"") <= line("$") |
+  \   exe "normal g`\"" |
+  \ endif
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Key mappings
 "
 
@@ -122,7 +134,7 @@ let g:mapleader=","
 nnoremap ; :
 
 " Toggles invisible characters
-nmap <leader>i :set list!<CR> 
+nmap <leader>i :set list!<CR>
 
 " Edit .vimrc and re-source on save
 map <leader>. :e! ~/.vimrc<cr>
@@ -135,21 +147,27 @@ nmap <leader>w :w!<cr>
 " Sudo to write
 cmap w!! w !sudo tee % >/dev/null
 
+" Don't use Ex mode, use Q for formatting
+map Q gq
+
 " Make Y behave like other capitals.
 map Y y$
 
 " Duplicate a selection
 vmap D y`>p
 
-" Prevent 'x' from copying
+" Prevent 'x' from adding to register
 noremap x "_x
 
 " Overwrite Visual mode selection
 vnoremap p "_dP
 
-" Prevent highlight being lost on (de)indent.
+" Prevent highlight being lost on (de)indent
 vnoremap < <gv
 vnoremap > >gv
+
+"This unsets the "last search pattern" register by hitting return
+nnoremap <CR> :nohlsearch<CR><CR>
 
 " Show syntax highlighting groups for word under cursor
 nmap <C-S-P> :call <SID>SynStack()<CR>
@@ -159,9 +177,3 @@ function! <SID>SynStack()
   endif
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Powerline Bundle
-"
-let g:Powerline_symbols = 'compatible'
-
