@@ -134,34 +134,37 @@ autocmd BufReadPost *
 let mapleader=","
 let g:mapleader=","
 
+" Sudo to write
+cnoremap w!! w !sudo tee % >/dev/null
+
 " Semi-colon enables command-line mode
 nnoremap ; :
 
 " Toggles invisible characters
-nmap <leader>i :set list!<CR>
+nnoremap <leader>i :set list!<CR>
 
 " Edit .vimrc and re-source on save
-map <leader>. :e! ~/.vimrc<cr>
+nnoremap <leader>. :e! ~/.vimrc<CR>
 autocmd BufWritePost .vimrc source $MYVIMRC
 autocmd BufWritePost .vimrc call Pl#Load()
 
-" Fast saving
-nmap <leader>w :w!<cr>
+" Open file in vertically split window
+nnoremap <leader>o :Sexplore!<CR>
 
-" Sudo to write
-cmap w!! w !sudo tee % >/dev/null
+" Fast saving
+nnoremap <leader>w :w!<CR>
 
 " Don't use Ex mode, use Q for formatting
-map Q gq
+nnoremap Q gq
 
 " Make Y behave like other capitals.
-map Y y$
-
-" Duplicate a selection
-vmap D y`>p
+nnoremap Y y$
 
 " Prevent 'x' from adding to register
-noremap x "_x
+nnoremap x "_x
+
+" Duplicate a selection
+vnoremap D y`>p
 
 " Overwrite Visual mode selection
 vnoremap p "_dP
@@ -174,7 +177,7 @@ vnoremap > >gv
 nnoremap <CR> :nohlsearch<CR><CR>
 
 " Show syntax highlighting groups for word under cursor
-nmap <C-S-P> :call <SID>SynStack()<CR>
+nnoremap <C-S-P> :call <SID>SynStack()<CR>
 function! <SID>SynStack()
   if !exists("*synstack")
     return
