@@ -1,0 +1,31 @@
+# $HOME/.inputrc
+# See readline(3readline) and `info rluserman' for more information.
+
+# Be 8 bit clean.
+set input-meta on
+set output-meta on
+
+# To allow the use of 8bit-characters like the german umlauts, comment out
+# the line below. However this makes the meta key not work as a meta key,
+# which is annoying to those which don't need to type in 8-bit characters.
+set convert-meta off
+
+# do not bell on tab-completion
+set bell-style none
+
+# tilde expansion is performed when Readline attempts word completion
+set expand-tilde on
+
+# a character denoting a file's type is appended to the filename when listing 
+# possible completions.
+set visible-stats on
+
+# case insensitive completion
+set completion-ignore-case on
+
+# display all completion choices by hitting the tab key only once
+set show-all-if-ambiguous on
+
+# ask before displaying more than 200 completions
+set completion-query-item 200
+
