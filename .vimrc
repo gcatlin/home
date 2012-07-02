@@ -37,7 +37,10 @@ set smartindent   "
 set laststatus=2
 set encoding=utf-8
 set numberwidth=5
-set colorcolumn=80
+
+if v:version >= 730
+	set colorcolumn=80
+endif
 
 " Visual settings
 set guicursor=n-v-c:block-Cursor
