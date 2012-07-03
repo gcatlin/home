@@ -3,11 +3,6 @@ if has("autocmd")
     autocmd!
 end
 
-" Install with:
-"    mkdir -p ~/.vim/bundle && git clone http://github.com/gmarik/vundle.git ~/.vim/bundle/vundle && vim -c ':BundleInstall' -c ':qa!''
-" Update with:
-"    vim -c ':BundleInstall!' -c ':BundleClean' -c ':qa!'
-
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Settings
@@ -23,7 +18,7 @@ set backspace=indent,eol,start   " Set for maximum backspace smartness
 set grepprg=ack   " Use ack for grepping
 set history=700   " Number of ":" commands and search patterns to remember
 "set hlsearch      "
-set ignorecase    " 
+set ignorecase    "
 set incsearch     "
 set number        "
 set magic         "
@@ -37,7 +32,10 @@ set smartindent   "
 set laststatus=2
 set encoding=utf-8
 set numberwidth=5
-set colorcolumn=80
+
+if v:version >= 730
+	set colorcolumn=80
+endif
 
 " Visual settings
 set guicursor=n-v-c:block-Cursor
@@ -53,6 +51,12 @@ endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vundle, the plug-in manager for Vim
 "
+" Install with
+"    mkdir -p ~/.vim/bundle && git clone http://github.com/gmarik/vundle.git \
+"    ~/.vim/bundle/vundle && vim -c ':BundleInstall' -c ':qa!'
+" Update with:
+"    vim -c ':BundleInstall!' -c ':BundleClean' -c ':qa!'
+
 
 " Required!
 filetype off
@@ -111,6 +115,18 @@ endif
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Automcommands
+"
+" When editing a file, always jump to the last known cursor position.
+" Don't do it when the position is invalid or when inside an event handler
+" (happens when dropping a file on gvim).
+autocmd BufReadPost *
+  \ if line("'\"") > 0 && line("'\"") <= line("$") |
+  \   exe "normal g`\"" |
+  \ endif
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Key mappings
 "
 
@@ -118,50 +134,53 @@ endif
 let mapleader=","
 let g:mapleader=","
 
+" Sudo to write
+cnoremap w!! w !sudo tee % >/dev/null
+
 " Semi-colon enables command-line mode
 nnoremap ; :
 
 " Toggles invisible characters
-nmap <leader>i :set list!<CR> 
+nnoremap <leader>i :set list!<CR>
 
 " Edit .vimrc and re-source on save
-map <leader>. :e! ~/.vimrc<cr>
+nnoremap <leader>. :e! ~/.vimrc<CR>
 autocmd BufWritePost .vimrc source $MYVIMRC
 autocmd BufWritePost .vimrc call Pl#Load()
 
-" Fast saving
-nmap <leader>w :w!<cr>
+" Open file in vertically split window
+nnoremap <leader>o :Sexplore!<CR>
 
-" Sudo to write
-cmap w!! w !sudo tee % >/dev/null
+" Fast saving
+nnoremap <leader>w :w!<CR>
+
+" Don't use Ex mode, use Q for formatting
+nnoremap Q gq
 
 " Make Y behave like other capitals.
-map Y y$
+nnoremap Y y$
+
+" Prevent 'x' from adding to register
+nnoremap x "_x
 
 " Duplicate a selection
-vmap D y`>p
-
-" Prevent 'x' from copying
-noremap x "_x
+vnoremap D y`>p
 
 " Overwrite Visual mode selection
 vnoremap p "_dP
 
-" Prevent highlight being lost on (de)indent.
+" Prevent highlight being lost on (de)indent
 vnoremap < <gv
 vnoremap > >gv
 
+"This unsets the "last search pattern" register by hitting return
+nnoremap <CR> :nohlsearch<CR><CR>
+
 " Show syntax highlighting groups for word under cursor
-nmap <C-S-P> :call <SID>SynStack()<CR>
+nnoremap <C-S-P> :call <SID>SynStack()<CR>
 function! <SID>SynStack()
   if !exists("*synstack")
     return
   endif
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Powerline Bundle
-"
-let g:Powerline_symbols = 'compatible'
-

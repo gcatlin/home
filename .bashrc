@@ -16,7 +16,7 @@ function command_exists () { hash "$1" 2>&- ; }
 # Set PATH
 #-------------------------------------------------------------
 PATH=.:~/bin:~/.rvm/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin
-CDPATH=.:~:~/Source
+#CDPATH=.:~:~/Code
 
 
 #-------------------------------------------------------------
@@ -66,7 +66,6 @@ fi
 #-------------------------------------------------------------
 # Colorful command output
 #-------------------------------------------------------------
-# d=$HOME/.dircolors-solarized
 if [[ $USE_COLOR ]] ; then
 	# Enable colored file listings
 	if command_exists gdircolors ; then
@@ -87,7 +86,7 @@ fi
 #-------------------------------------------------------------
 # Tweak 'less'
 #-------------------------------------------------------------
-export LESS='-F -i -M -R -W -X -z-2'
+export LESS='-FiRMWX -z-2'
 export LESSCHARSET='UTF-8'
 if [[ -s "/usr/local/bin/lesspipe.sh" ]] ; then
 	export LESSOPEN='|/usr/local/bin/lesspipe.sh %s 2>&-'
@@ -159,9 +158,9 @@ export FIGNORE=.svn
 if command_exists brew ; then
 	bp=$(brew --prefix)
 
-	# if [ -f $bp/etc/bash_completion ]; then
-	# 	. $bp/etc/bash_completion
-	# fi
+	if [ -f $bp/etc/bash_completion ]; then
+		. $bp/etc/bash_completion
+	fi
 
 	if [[ -f $bp/Library/Contributions/brew_bash_completion.sh ]] ; then
 		. $bp/Library/Contributions/brew_bash_completion.sh
@@ -184,11 +183,22 @@ stty stop ''
 
 
 # Load RVM into a shell session *as a function*
-if [[ -s "/Users/gcatlin/.rvm/scripts/rvm" ]] ; then
-	source "/Users/gcatlin/.rvm/scripts/rvm"
+if [[ -f ~/.rvm/scripts/rvm ]] ; then
+	source ~/.rvm/scripts/rvm
 	# rvm use
 fi
 
+# virtualenvwrapper
+if [[ -f $bp/bin/virtualenvwrapper.sh ]] ; then
+	export WORKON_HOME=~/.virtualenvs
+	export PROJECT_HOME=~/Code
+	export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python
+	source $bp/bin/virtualenvwrapper.sh
+	export PIP_VIRTUALENV_BASE=$WORKON_HOME
+	export PIP_RESPECT_VIRTUALENV=true
+fi
+
+# Generic colourizer
 if [[ -f $bp/etc/grc.bashrc ]] ; then
 	source $bp/etc/grc.bashrc
 fi

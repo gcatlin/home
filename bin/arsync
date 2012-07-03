@@ -1,5 +1,9 @@
 #!/usr/bin/env ruby
 
+# TODO
+# - support arbitrary rsync commands, especially dry-run
+# - verbosity
+
 require 'rb-fsevent'
 require 'open3'
 
@@ -36,3 +40,4 @@ fsevent.watch src do |dirs|
 	end
 end
 fsevent.run
+
