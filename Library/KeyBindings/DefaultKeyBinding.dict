@@ -1,60 +1,69 @@
 /* ~/Library/KeyBindings/DefaultKeyBinding.dict
 
+The goal of these bindings is to reasonably approximate readline's behavior.
+
+See also:
+http://tiswww.case.edu/php/chet/readline/readline.html#SEC52
+https://developer.apple.com/library/mac/#documentation/Cocoa/Reference/ApplicationKit/Classes/nsresponder_Class/Reference/Reference.html
+http://www.hcs.harvard.edu/~jrus/Site/KeyBindings/Emacs%20Opt%20Bindings.dict
+http://lri.me/keybindings.html
+
 KEY MODIFIERS
 ^ : Ctrl
 $ : Shift
 ~ : Option (Alt)
 @ : Command (Apple)
-# : Numeric Keypad
-
-NON-PRINTABLE KEY CODES
-Up Arrow:     \UF700        Backspace:    \U0008        F1:           \UF704
-Down Arrow:   \UF701        Tab:          \U0009        F2:           \UF705
-Left Arrow:   \UF702        Escape:       \U001B        F3:           \UF706
-Right Arrow:  \UF703        Enter:        \U000A        ...
-Insert:       \UF727        Page Up:      \UF72C
-Delete:       \UF728        Page Down:    \UF72D
-Home:         \UF729        Print Screen: \UF72E
-End:          \UF72B        Scroll Lock:  \UF72F
-Break:        \UF732        Pause:        \UF730
-SysReq:       \UF731        Menu:         \UF735
 
 */
 {
-	/* home/end */
-	"\UF729"   = "moveToBeginningOfLine:";                       /* Home */
-	"@\UF729"  = "moveToBeginningOfDocument:";                   /* Command + Home */
-	"$\UF729"  = "moveToBeginningOfLineAndModifySelection:";     /* Shift + Home */
-	"@$\UF729" = "moveToBeginningOfDocumentAndModifySelection:"; /* Command + Shift + Home */
-	"\UF72B"   = "moveToEndOfLine:";                             /* End */
-	"@\UF72B"  = "moveToEndOfDocument:";                         /* Command + End */
-	"$\UF72B"  = "moveToEndOfLineAndModifySelection:";           /* Shift + End */
-	"@$\UF72B" = "moveToEndOfDocumentAndModifySelection:";       /* Command + Shift + End */
-
-	/* page up/down */
-	"\UF72C"  = "pageUp:";   /* PageUp */
-	"\UF72C"  = "pageUp:";   /* Shift + PageUp */
-	"\UF72D"  = "pageDown:"; /* PageDown */
-	"\UF72D"  = "pageDown:"; /* Shift + PageDown */
-
-	/* Ctrl shortcuts */
-	"^ " = "setMark:"; /* C-space */
-	"^/" = "undo:";    /* C-/ */
-	"^_" = "undo:";    /* C-_ */
-
-	"^t" = ("transpose:", "moveBackward:");
-	"^u" = "deleteToBeginningOfLine:";
-	"^w" = "deleteWordBackward:";
-
-	/* Meta shortcuts */
-	"~f" = "moveWordForward:";
+	"^a" = "moveToBeginningOfLine:";
+	"^b" = "moveBackward:";
 	"~b" = "moveWordBackward:";
+	"~c" = "capitalizeWork:";
+	"^d" = "deleteForward:";
+	"~d" = ("setMark:", "moveWordForward:", "deleteToMark:"); /* deleteWordForward: does not push onto the kill buffer */
+	"^e" = "moveToEndOfLine:";
+	"^f" = "moveForward:";
+	"~f" = "moveWordForward:";
+	"^g" = "cancel:";
+	"^h" = "deleteBackward:";
+	"^k" = "deleteToEndOfLine:";
+	"~l" = "lowercaseWord:";
+	"^n" = "moveDown:";
+	"^p" = "moveUp:";
+	"^t" = "transpose:";
+	"~t" = "transposeWords:";
+	"^u" = "deleteToBeginningOfLine:";
+	"~u" = "uppercaseWord:";
+	"^v" = "pageDown:";
+	"~v" = "pageUp:";
+	"^w" = ("setMark:", "moveWordBackword:", "deleteToMark:"); /* deleteWordBackword: does not push onto the kill buffer */
+	"^x" = {
+		"\010"  = "deleteToEndOfLine:"; /* C-x backspace */
+		"^u"    = "undo:";              /* C-x C-u */
+		"^x"    = "swapWithMark:";      /* C-x C-x */
+	};
+	"^y" = "yank:";
+
+	"^A" = "moveToBeginningOfLineAndModifySelection:";
+	"^B" = "moveBackwardAndModifySelection:";
+	"~B" = "moveWordBackwardAndModifySelection:";
+	"^E" = "moveToEndOfLineAndModifySelection:";
+	"^F" = "moveForwardAndModifySelection:";
+	"^N" = "moveDownAndModifySelection:";
+	"~F" = "moveWordForwardAndModifySelection:";
+	"^P" = "moveUpAndModifySelection:";
+	"^V" = "pageDownAndModifySelection:";
+	"~V" = "pageUpAndModifySelection:";
+
 	"~<" = "moveToBeginningOfDocument:";
 	"~>" = "moveToEndOfDocument:";
-	"~v" = "pageUp:";
-	"~d" = "deleteWordForward:";
-	"~^h" = "deleteWordBackward:";
+	"~?" = "complete:";
+	"^/" = "undo:";
+	"^_" = "undo:";
+	"^ " = "setMark:";
+	"^\@" = "setMark:";
 
-	"~\010" = "deleteWordBackward:";  /* Option-backspace */
-	"~\177" = "deleteWordBackward:";  /* Option-delete */
+	"^\010" = "deleteBackward:"; /* C-backspace */
+	"^\177" = "deleteBackward:"; /* C-delete (not del) */
 }
