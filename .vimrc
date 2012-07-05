@@ -139,9 +139,6 @@ let g:mapleader=","
 " Sudo to write
 cnoremap w!! w !sudo tee % >/dev/null
 
-" Semi-colon enables command-line mode
-nnoremap ; :
-
 " Toggles invisible characters
 nnoremap <leader>i :set list!<CR>
 
