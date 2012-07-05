@@ -82,6 +82,7 @@ function! LoadBundles()
     Bundle 'tpope/vim-surround'
     Bundle 'majutsushi/tagbar'
     "Bundle 'xolox/vim-easytags'
+    Bundle "pfdevilliers/Pretty-Vim-Python"
 
     " vim-scripts repos
     "Bundle 'L9'
