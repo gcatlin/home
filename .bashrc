@@ -132,9 +132,9 @@ fi
 #-------------------------------------------------------------
 shopt -s cmdhist histappend histreedit histverify
 export HISTIGNORE="&:[ ]*:bg:fg:ls:ll:la:h"
-
-# http://www.gnu.org/software/bash/manual/bashref.html#Command-Line-Editing
-# export INPUTRC=~/.inputrc
+export HISTFILESIZE=10000
+export HISTSIZE=10000
+export INPUTRC=~/.inputrc
 
 
 #-------------------------------------------------------------
