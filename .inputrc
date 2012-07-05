@@ -29,3 +29,6 @@ set show-all-if-ambiguous on
 # ask before displaying more than 200 completions
 set completion-query-item 200
 
+# ctrl-left/right arrow jumps words
+"\e[1;5D": backward-word
+"\e[1;5C": forward-word
