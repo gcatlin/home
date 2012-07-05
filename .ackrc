@@ -22,5 +22,3 @@
 
 # Ignore case distinctions in PATTERN, only if PATTERN contains no upper case
 --smart-case
-
---ignore-dir=.idea
