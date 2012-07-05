@@ -78,8 +78,10 @@ function! LoadBundles()
     "Bundle 'scrooloose/syntastic'
     "Bundle 'ervandew/supertab'
     "Bundle 'tpope/vim-repeat'
-    Bundle 'tpope/vim-endwise'
+    "Bundle 'tpope/vim-endwise'
     Bundle 'tpope/vim-surround'
+    Bundle 'majutsushi/tagbar'
+    "Bundle 'xolox/vim-easytags'
 
     " vim-scripts repos
     "Bundle 'L9'
