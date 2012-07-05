@@ -146,7 +146,7 @@ nnoremap ; :
 nnoremap <leader>i :set list!<CR>
 
 " Edit .vimrc and re-source on save
-nnoremap <leader>. :e! ~/.vimrc<CR>
+nnoremap <leader>. :vsplit $MYVIMRC<CR>
 autocmd BufWritePost .vimrc source $MYVIMRC
 autocmd BufWritePost .vimrc call Pl#Load()
 
