@@ -40,7 +40,7 @@ endif
 " Visual settings
 set guicursor=n-v-c:block-Cursor
 set guicursor+=i-ci:ver100-iCursor-blinkkwait300-blinkon200-blink-off100
-set listchars=tab:▸\ ,eol:¬,extends:»,precedes:«
+set listchars=tab:▸\ ,trail:·,eol:¬,extends:»,precedes:«
 
 if v:version > 700
     set cursorline
