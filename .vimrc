@@ -92,7 +92,7 @@ function! LoadBundles()
 endfunction
 
 try
-  set rtp+=~/.vim/bundle/vundle/
+  set runtimepath+=~/.vim/bundle/vundle/
   call vundle#rc()
   call LoadBundles()
 :catch /^Vim\%((\a\+)\)\=:E117/
