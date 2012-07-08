@@ -202,3 +202,8 @@ fi
 if [[ -f $bp/etc/grc.bashrc ]] ; then
 	source $bp/etc/grc.bashrc
 fi
+
+# Go
+if [[ -f $bp/bin/go ]] ; then
+	export GOROOT=$bp/bin
+fi
