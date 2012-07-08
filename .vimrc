@@ -42,10 +42,15 @@ set guicursor=n-v-c:block-Cursor
 set guicursor+=i-ci:ver100-iCursor-blinkkwait300-blinkon200-blink-off100
 set listchars=tab:▸\ ,trail:·,eol:¬,extends:»,precedes:«
 
-if v:version > 700
+if exists('+cursorline')
     set cursorline
     autocmd WinEnter * setlocal cursorline
     autocmd WinLeave * setlocal nocursorline
+endif
+if exists('+colorcolumn')
+    set colorcolumn=80
+    autocmd WinEnter * setlocal colorcolumn=80
+    autocmd WinLeave * setlocal colorcolumn=
 endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
