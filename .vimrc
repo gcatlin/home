@@ -68,6 +68,7 @@ function! LoadBundles()
 
     " GitHub repos
     Bundle 'gcatlin/modokai.vim'
+    Bundle 'gcatlin/go-vim.vim'
     Bundle 'mileszs/ack.vim'
     Bundle 'sjl/vitality.vim'
     Bundle 'Lokaltog/vim-powerline'
