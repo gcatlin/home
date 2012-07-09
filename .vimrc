@@ -18,6 +18,7 @@ set cursorline
 set encoding=utf-8
 set expandtab
 set grepprg=ack
+set hidden
 set history=700
 set hlsearch
 set ignorecase
@@ -36,7 +37,9 @@ set smartcase
 set smartindent
 set smarttab
 set tags=./tags;
+set visualbell
 set wildmenu
+set wildmode=list:longest
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vundle, the plug-in manager for Vim
