@@ -6,7 +6,6 @@
 " This must be first, because it changes other options as a side effect.
 set nocompatible
 
-" Behavioral settings
 " Remove ALL autocommands to prevent them from being loaded twice.
 if has("autocmd")
     autocmd!
@@ -38,15 +37,6 @@ set smartindent
 set smarttab
 set tags=./tags;
 set wildmenu
-
-if v:version >= 730
-       set colorcolumn=80
-endif
-
-" Visual settings
-set guicursor=n-v-c:block-Cursor
-set guicursor+=i-ci:ver100-iCursor-blinkkwait300-blinkon200-blink-off100
-set listchars=tab:▸\ ,trail:·,eol:¬,extends:»,precedes:«
 
 if exists('+cursorline')
     set cursorline
