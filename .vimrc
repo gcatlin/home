@@ -1,9 +1,3 @@
-" Remove ALL autocommands to prevent them from being loaded twice.
-if has("autocmd")
-    autocmd!
-end
-
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Settings
 "
@@ -13,6 +7,11 @@ end
 set nocompatible
 
 " Behavioral settings
+" Remove ALL autocommands to prevent them from being loaded twice.
+if has("autocmd")
+    autocmd!
+end
+
 set autoindent    "
 set backspace=indent,eol,start   " Set for maximum backspace smartness
 set grepprg=ack   " Use ack for grepping
