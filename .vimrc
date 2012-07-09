@@ -123,6 +123,7 @@ endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Automcommands
 "
+
 " When editing a file, always jump to the last known cursor position.
 " Don't do it when the position is invalid or when inside an event handler
 " (happens when dropping a file on gvim).
@@ -130,6 +131,17 @@ autocmd BufReadPost *
   \ if line("'\"") > 0 && line("'\"") <= line("$") |
   \   exe "normal g`\"" |
   \ endif
+
+" Reload .vimrc when saved
+autocmd BufWritePost $MYVIMRC source $MYVIMRC
+autocmd BufWritePost $MYVIMRC call Pl#Load()
+
+" Only show cursorline in active window
+autocmd WinEnter * setlocal cursorline
+autocmd WinLeave * setlocal nocursorline
+
+" Filetype settings
+autocmd FileType python setlocal autoindent expandtab shiftwidth=4 softtabstop=4 tabstop=4 cindent cinwords=if,elif,else,for,while,try,except,finally,def,class
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -148,8 +160,6 @@ nnoremap <leader>i :set list!<CR>
 
 " Edit .vimrc and re-source on save
 nnoremap <leader>. :vsplit $MYVIMRC<CR>
-autocmd BufWritePost .vimrc source $MYVIMRC
-autocmd BufWritePost .vimrc call Pl#Load()
 
 " Open file in vertically split window
 nnoremap <leader>o :Sexplore!<CR>
