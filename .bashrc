@@ -205,5 +205,5 @@ fi
 
 # Go
 if [[ -f $bp/bin/go ]] ; then
-	export GOROOT=$bp/bin
+	export GOROOT=`brew --prefix go`
 fi
