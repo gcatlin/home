@@ -12,28 +12,35 @@ if has("autocmd")
     autocmd!
 end
 
-set autoindent    "
-set backspace=indent,eol,start   " Set for maximum backspace smartness
-set grepprg=ack   " Use ack for grepping
-set history=700   " Number of ":" commands and search patterns to remember
-"set hlsearch      "
-set ignorecase    "
-set incsearch     "
-set number        "
-set magic         "
-set modelines=5   "
-"set mouse=a       " Enable the mouse
-set scrolloff=2   " Minimal number of screen lines to keep above and below the cursor
-set showcmd
-set showmatch     "
-set smartcase     " Overrides 'ignorecase' if search pattern contains upper case characters
-set smartindent   "
-set laststatus=2
+set autoindent
+set backspace=indent,eol,start
+set cindent
+set cursorline
 set encoding=utf-8
+set expandtab
+set grepprg=ack
+set history=700
+set hlsearch
+set ignorecase
+set incsearch
+set laststatus=2
+set listchars=tab:▸\ ,trail:·,eol:¬,extends:»,precedes:«
+set magic
+set modelines=5
+"set mouse=a
+set number
 set numberwidth=5
+set scrolloff=2
+set showcmd
+set showmatch
+set smartcase
+set smartindent
+set smarttab
+set tags=./tags;
+set wildmenu
 
 if v:version >= 730
-	set colorcolumn=80
+       set colorcolumn=80
 endif
 
 " Visual settings
