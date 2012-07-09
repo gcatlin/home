@@ -38,17 +38,6 @@ set smarttab
 set tags=./tags;
 set wildmenu
 
-if exists('+cursorline')
-    set cursorline
-    autocmd WinEnter * setlocal cursorline
-    autocmd WinLeave * setlocal nocursorline
-endif
-if exists('+colorcolumn')
-    set colorcolumn=80
-    autocmd WinEnter * setlocal colorcolumn=80
-    autocmd WinLeave * setlocal colorcolumn=
-endif
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vundle, the plug-in manager for Vim
 "
@@ -136,9 +125,17 @@ autocmd BufReadPost *
 autocmd BufWritePost $MYVIMRC source $MYVIMRC
 autocmd BufWritePost $MYVIMRC call Pl#Load()
 
-" Only show cursorline in active window
-autocmd WinEnter * setlocal cursorline
-autocmd WinLeave * setlocal nocursorline
+" Only show cursorline and colorcolumn in active window
+if exists('+cursorline')
+    set cursorline
+    autocmd WinEnter * setlocal cursorline
+    autocmd WinLeave * setlocal nocursorline
+endif
+if exists('+colorcolumn')
+    set colorcolumn=80
+    autocmd WinEnter * setlocal colorcolumn=80
+    autocmd WinLeave * setlocal colorcolumn=
+endif
 
 " Filetype settings
 autocmd FileType python setlocal autoindent expandtab shiftwidth=4 softtabstop=4 tabstop=4 cindent cinwords=if,elif,else,for,while,try,except,finally,def,class
