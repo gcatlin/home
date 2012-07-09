@@ -69,22 +69,23 @@ function! LoadBundles()
 
     " GitHub repos
     Bundle 'gcatlin/modokai.vim'
+    Bundle 'gcatlin/Pretty-Vim-Python'
     Bundle 'gcatlin/go-vim'
-    Bundle 'mileszs/ack.vim'
-    Bundle 'sjl/vitality.vim'
     Bundle 'Lokaltog/vim-powerline'
     Bundle 'Lokaltog/vim-easymotion'
+    Bundle 'kien/ctrlp.vim'
+    Bundle 'majutsushi/tagbar'
+    Bundle 'mileszs/ack.vim'
     "Bundle 'Lokaltog/python-syntax'
     "Bundle 'scrooloose/nerdcommenter'
     "Bundle 'scrooloose/nerdtree'
-    "Bundle 'scrooloose/syntastic'
+    Bundle 'scrooloose/syntastic'
     "Bundle 'ervandew/supertab'
+    Bundle 'sjl/vitality.vim'
     "Bundle 'tpope/vim-repeat'
     "Bundle 'tpope/vim-endwise'
     Bundle 'tpope/vim-surround'
-    Bundle 'majutsushi/tagbar'
     "Bundle 'xolox/vim-easytags'
-    Bundle "pfdevilliers/Pretty-Vim-Python"
 
     " vim-scripts repos
     "Bundle 'L9'
