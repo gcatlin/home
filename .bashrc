@@ -192,8 +192,8 @@ fi
 if [[ -f $bp/bin/virtualenvwrapper.sh ]] ; then
 	export WORKON_HOME=~/.virtualenvs
 	export PROJECT_HOME=~/Code
-	export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python
-	source $bp/bin/virtualenvwrapper.sh
+	export VIRTUALENVWRAPPER_SCRIPT=$bp/bin/virtualenvwrapper.sh
+	source $bp/bin/virtualenvwrapper_lazy.sh
 	export PIP_VIRTUALENV_BASE=$WORKON_HOME
 	export PIP_RESPECT_VIRTUALENV=true
 fi
