@@ -155,7 +155,7 @@ cnoremap w!! w !sudo tee % >/dev/null
 " Toggles invisible characters
 nnoremap <leader>i :set list!<CR>
 
-" Edit .vimrc and re-source on save
+" Edit .vimrc
 nnoremap <leader>. :vsplit $MYVIMRC<CR>
 
 " Open file in vertically split window
@@ -163,6 +163,12 @@ nnoremap <leader>o :Sexplore!<CR>
 
 " Fast saving
 nnoremap <leader>w :w!<CR>
+
+" Fast help
+nnoremap <leader>h :help<Space>
+
+" Fast substitution
+nnoremap <leader>s :%s/
 
 " Don't use Ex mode, use Q for formatting
 nnoremap Q gq
@@ -183,8 +189,8 @@ vnoremap p "_dP
 vnoremap < <gv
 vnoremap > >gv
 
-"This unsets the "last search pattern" register by hitting return
-nnoremap <CR> :nohlsearch<CR><CR>
+" Disable search highlighting
+nnoremap <silent> <leader>/ :nohlsearch<CR>
 
 " Show syntax highlighting groups for word under cursor
 nnoremap <C-S-P> :call <SID>SynStack()<CR>
@@ -194,3 +200,15 @@ function! <SID>SynStack()
   endif
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
+
+" Vundle plugin
+nnoremap <leader>bc :BundleClean<CR>
+nnoremap <leader>bi :BundleInstall<CR>
+nnoremap <leader>bl :BundleList<CR>
+
+" Tagbar plugin
+let g:tagbar_iconchars = ['▾', '▸']
+nnoremap <leader>t :TagbarToggle<CR>
+
+" CtrlP plugin
+nnoremap <leader>ff :CtrlPMixed<CR>
