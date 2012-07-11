@@ -205,13 +205,14 @@ function! <SID>SynStack()
 endfunc
 
 " Vundle plugin
-nnoremap <leader>bc :BundleClean<CR>
-nnoremap <leader>bi :BundleInstall<CR>
-nnoremap <leader>bl :BundleList<CR>
+nnoremap <leader>vbc :BundleClean<CR>
+nnoremap <leader>vbi :BundleInstall<CR>
+nnoremap <leader>vbl :BundleList<CR>
 
 " Tagbar plugin
 let g:tagbar_iconchars = ['▾', '▸']
-nnoremap <leader>t :TagbarToggle<CR>
+nnoremap <leader>tt :TagbarToggle<CR>
 
 " CtrlP plugin
 nnoremap <leader>ff :CtrlPMixed<CR>
+
