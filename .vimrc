@@ -8,7 +8,7 @@ set nocompatible
 
 " Remove ALL autocommands to prevent them from being loaded twice.
 if has("autocmd")
-    autocmd!
+        autocmd!
 end
 
 set autoindent
@@ -56,45 +56,45 @@ filetype off
 
 " NOTE: comments after Bundle command are not allowed
 function! LoadBundles()
-    " Required! Lets Vundle manage Vundle
-    Bundle 'gmarik/vundle'
+        " Required! Lets Vundle manage Vundle
+        Bundle 'gmarik/vundle'
 
-    " GitHub repos
-    Bundle 'gcatlin/modokai.vim'
-    Bundle 'gcatlin/Pretty-Vim-Python'
-    Bundle 'gcatlin/go-vim'
-    Bundle 'Lokaltog/vim-powerline'
-    Bundle 'Lokaltog/vim-easymotion'
-    Bundle 'kien/ctrlp.vim'
-    Bundle 'majutsushi/tagbar'
-    Bundle 'mileszs/ack.vim'
-    "Bundle 'Lokaltog/python-syntax'
-    "Bundle 'scrooloose/nerdcommenter'
-    "Bundle 'scrooloose/nerdtree'
-    Bundle 'scrooloose/syntastic'
-    "Bundle 'ervandew/supertab'
-    Bundle 'sjl/vitality.vim'
-    "Bundle 'tpope/vim-repeat'
-    "Bundle 'tpope/vim-endwise'
-    Bundle 'tpope/vim-surround'
-    "Bundle 'xolox/vim-easytags'
+        " GitHub repos
+        Bundle 'gcatlin/modokai.vim'
+        Bundle 'gcatlin/Pretty-Vim-Python'
+        Bundle 'gcatlin/go-vim'
+        Bundle 'Lokaltog/vim-powerline'
+        Bundle 'Lokaltog/vim-easymotion'
+        Bundle 'kien/ctrlp.vim'
+        Bundle 'majutsushi/tagbar'
+        Bundle 'mileszs/ack.vim'
+        "Bundle 'Lokaltog/python-syntax'
+        "Bundle 'scrooloose/nerdcommenter'
+        "Bundle 'scrooloose/nerdtree'
+        Bundle 'scrooloose/syntastic'
+        "Bundle 'ervandew/supertab'
+        Bundle 'sjl/vitality.vim'
+        "Bundle 'tpope/vim-repeat'
+        "Bundle 'tpope/vim-endwise'
+        Bundle 'tpope/vim-surround'
+        "Bundle 'xolox/vim-easytags'
 
-    " vim-scripts repos
-    "Bundle 'L9'
+        " vim-scripts repos
+        "Bundle 'L9'
 
-    " Other git repos
-    "Bundle 'git://git.wincent.com/command-t.git'
+        " Other git repos
+        "Bundle 'git://git.wincent.com/command-t.git'
 endfunction
 
 try
-  set runtimepath+=~/.vim/bundle/vundle/
-  call vundle#rc()
-  call LoadBundles()
-:catch /^Vim\%((\a\+)\)\=:E117/
-  echomsg "Failed to load vundle and/or bundles. Perhaps vundle isn't installed."
-  echomsg "To install vundle: "
-  echomsg "   git clone http://github.com/gmarik/vundle.git ~/.vim/bundle/vundle"
-  echomsg "   vim -c ':BundleInstall' -c ':qa!'"
+        set runtimepath+=~/.vim/bundle/vundle/
+        call vundle#rc()
+        call LoadBundles()
+catch /^Vim\%((\a\+)\)\=:E117/
+        echomsg "Failed to load vundle and/or bundles. Perhaps vundle isn't installed."
+        echomsg "To install vundle: "
+        echomsg "   git clone http://github.com/gmarik/vundle.git ~/.vim/bundle/vundle"
+        echomsg "   vim -c ':BundleInstall' -c ':qa!'"
 endtry
 
 " Required!
@@ -106,9 +106,9 @@ filetype plugin indent on
 "
 
 if &t_Co > 2 || has("gui_running")
-   syntax on
-   set t_Co=256
-   colorscheme modokai
+        syntax on
+        set t_Co=256
+        colorscheme modokai
 endif
 
 
@@ -130,14 +130,14 @@ autocmd BufWritePost $MYVIMRC call Pl#Load()
 
 " Only show cursorline and colorcolumn in active window
 if exists('+cursorline')
-    set cursorline
-    autocmd WinEnter * setlocal cursorline
-    autocmd WinLeave * setlocal nocursorline
+        set cursorline
+        autocmd WinEnter * setlocal cursorline
+        autocmd WinLeave * setlocal nocursorline
 endif
 if exists('+colorcolumn')
-    set colorcolumn=80
-    autocmd WinEnter * setlocal colorcolumn=80
-    autocmd WinLeave * setlocal colorcolumn=
+        set colorcolumn=80
+        autocmd WinEnter * setlocal colorcolumn=80
+        autocmd WinLeave * setlocal colorcolumn=
 endif
 
 " Filetype settings
@@ -198,10 +198,10 @@ nnoremap <silent> <leader>/ :nohlsearch<CR>
 " Show syntax highlighting groups for word under cursor
 nnoremap <C-S-P> :call <SID>SynStack()<CR>
 function! <SID>SynStack()
-  if !exists("*synstack")
-    return
-  endif
-  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+        if !exists("*synstack")
+                return
+        endif
+        echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
 
 " Vundle plugin
@@ -219,23 +219,24 @@ nnoremap <leader>ff :CtrlPMixed<CR>
 " Swap windows
 " http://stackoverflow.com/questions/2586984/how-can-i-swap-positions-of-two-open-files-in-splits-in-vim
 function! MarkWindowSwap()
-  let g:markedWinNum = winnr()
+        let g:markedWinNum = winnr()
 endfunction
 
 function! DoWindowSwap()
-  "Mark destination
-  let curNum = winnr()
-  let curBuf = bufnr( "%" )
-  exe g:markedWinNum . "wincmd w"
-  "Switch to source and shuffle dest->source
-  let markedBuf = bufnr( "%" )
-  "Hide and open so that we aren't prompted and keep history
-  exe 'hide buf' curBuf
-  "Switch to dest and shuffle source->dest
-  exe curNum . "wincmd w"
-  "Hide and open so that we aren't prompted and keep history
-  exe 'hide buf' markedBuf
+        "Mark destination
+        let curNum = winnr()
+        let curBuf = bufnr( "%" )
+        exe g:markedWinNum . "wincmd w"
+        "Switch to source and shuffle dest->source
+        let markedBuf = bufnr( "%" )
+        "Hide and open so that we aren't prompted and keep history
+        exe 'hide buf' curBuf
+        "Switch to dest and shuffle source->dest
+        exe curNum . "wincmd w"
+        "Hide and open so that we aren't prompted and keep history
+        exe 'hide buf' markedBuf
 endfunction
 
 nmap <silent> <leader>mw :call MarkWindowSwap()<CR>
 nmap <silent> <leader>pw :call DoWindowSwap()<CR>
+
