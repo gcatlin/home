@@ -27,7 +27,7 @@ set laststatus=2
 set listchars=tab:▸\ ,trail:·,eol:¬,extends:»,precedes:«
 set magic
 set modelines=5
-"set mouse=a
+set mouse=a
 set number
 set numberwidth=5
 set scrolloff=2
