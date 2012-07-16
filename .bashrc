@@ -158,13 +158,13 @@ export FIGNORE=.svn
 if command_exists brew ; then
 	bp=$(brew --prefix)
 
-	if [ -f $bp/etc/bash_completion ]; then
-		. $bp/etc/bash_completion
-	fi
-
-	if [[ -f $bp/Library/Contributions/brew_bash_completion.sh ]] ; then
-		. $bp/Library/Contributions/brew_bash_completion.sh
-	fi
+ 	if [ -f $bp/etc/bash_completion ]; then
+ 		. $bp/etc/bash_completion
+ 	fi
+ 
+ 	if [[ -f $bp/Library/Contributions/brew_bash_completion.sh ]] ; then
+ 		. $bp/Library/Contributions/brew_bash_completion.sh
+ 	fi
 fi
 
 
