@@ -152,6 +152,9 @@ autocmd FileType python setlocal autoindent expandtab shiftwidth=4 softtabstop=4
 let mapleader=","
 let g:mapleader=","
 
+" Lazy Escape
+inoremap jj <Esc>
+
 " Sudo to write
 cnoremap w!! w !sudo tee % >/dev/null
 
