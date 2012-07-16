@@ -198,6 +198,10 @@ vnoremap > >gv
 " Disable search highlighting
 nnoremap <silent> <leader>/ :nohlsearch<CR>
 
+" Maxmize window height and set width=85
+nnoremap <C-W>m 85<C-W><Bar><C-W>_
+nmap <C-W><C-M> <C-W>m
+
 " Show syntax highlighting groups for word under cursor
 nnoremap <C-S-P> :call <SID>SynStack()<CR>
 function! <SID>SynStack()
