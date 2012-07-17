@@ -16,7 +16,6 @@ set backspace=indent,eol,start
 set cindent
 set cursorline
 set encoding=utf-8
-set expandtab
 set grepprg=ack
 set hidden
 set history=700
@@ -141,8 +140,10 @@ if exists('+colorcolumn')
 endif
 
 " Filetype settings
-autocmd FileType python setlocal autoindent expandtab shiftwidth=4 softtabstop=4 tabstop=4 cindent cinwords=if,elif,else,for,while,try,except,finally,def,class
+autocmd FileType python setlocal expandtab shiftwidth=4 softtabstop=4 tabstop=4 cindent cinwords=if,elif,else,for,while,try,except,finally,def,class
 
+autocmd BufNewFile,BufRead *.go set filetype=go
+autocmd FileType go setlocal noexpandtab shiftwidth=4 softtabstop=4 tabstop=4
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Key mappings
