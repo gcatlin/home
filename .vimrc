@@ -16,7 +16,8 @@ set backspace=indent,eol,start
 set cindent
 set cursorline
 set encoding=utf-8
-set grepprg=ack
+set grepprg=ack\ -a\ -H\ --nocolor\ --nogroup\ --column
+set grepformat=%f:%l:%c:%m
 set hidden
 set history=700
 set hlsearch
