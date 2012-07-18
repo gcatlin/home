@@ -200,6 +200,9 @@ vnoremap > >gv
 " Disable search highlighting
 nnoremap <silent> <leader>/ :nohlsearch<CR>
 
+" Easy omni-completion
+inoremap <C-space> <c-x><c-o>
+
 " Maxmize window height and set width=85
 nnoremap <C-W>m 85<C-W><Bar><C-W>_
 nmap <C-W><C-M> <C-W>m
