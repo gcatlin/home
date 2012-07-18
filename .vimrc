@@ -153,31 +153,20 @@ autocmd FileType python setlocal expandtab shiftwidth=4 softtabstop=4 tabstop=4 
 autocmd BufNewFile,BufRead *.go set filetype=go
 autocmd FileType go setlocal noexpandtab shiftwidth=4 softtabstop=4 tabstop=4
 
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Key mappings
 "
 
-" Set the mapleader (default is "\")
-let mapleader=","
-let g:mapleader=","
+" Set the mapLeader (default is "\")
+let mapLeader=","
+let g:mapLeader=","
 
-" Lazy Escape
+" Lazy escape
 inoremap jj <Esc>
 
 " Sudo to write
 cnoremap w!! w !sudo tee % >/dev/null
-
-" Toggles invisible characters
-nnoremap <leader>i :set list!<CR>
-
-" Edit .vimrc
-nnoremap <leader>. :vsplit $MYVIMRC<CR>
-
-" Open file in vertically split window
-nnoremap <leader>o :Sexplore!<CR>
-
-" Fast saving
-nnoremap <leader>w :w!<CR>
 
 " Don't use Ex mode, use Q for formatting
 nnoremap Q gq
@@ -198,18 +187,30 @@ vnoremap p "_dP
 vnoremap < <gv
 vnoremap > >gv
 
+" Toggles invisible characters
+nnoremap <Leader>i :set list!<CR>
+
+" Edit .vimrc
+nnoremap <Leader>. :vsplit $MYVIMRC<CR>
+
+" Open file in vertically split window
+nnoremap <Leader>o :Sexplore!<CR>
+
+" Easy saving
+nnoremap <Leader>w :w!<CR>
+
 " Disable search highlighting
-nnoremap <silent> <leader>/ :nohlsearch<CR>
+nnoremap <silent> <Leader>/ :nohlsearch<CR>
 
 " Easy omni-completion
-inoremap <C-space> <c-x><c-o>
+inoremap <C-Space> <C-X><C-O>
 
 " Maximize window height and set width to something reasonable
 nnoremap <C-W>m 85<C-W><Bar><C-W>_
 nmap <C-W><C-M> <C-W>m
 
 " Show syntax highlighting groups for word under cursor
-nnoremap <C-S-H> :call <SID>SynStack()<CR>
+nnoremap <C-H> :call <SID>SynStack()<CR>
 function! <SID>SynStack()
         if !exists("*synstack")
                 return
@@ -245,28 +246,40 @@ nmap <silent> <leader>pw :call DoWindowSwap()<CR>
 " Plugin mappings and configuration
 "
 
+" Ack plugin
+nnoremap <Leader>a :vsplit<Esc>:Ack 
+"nnoremap <Leader>a :botright copen 10<Esc>:grep 
+
 " Vundle plugin
-nnoremap <leader>vc :BundleClean<CR>
-nnoremap <leader>vi :BundleInstall<CR>
-nnoremap <leader>vl :BundleList<CR>
-nnoremap <leader>vs :BundleSearch 
-nnoremap <leader>vu :BundleInstall!<CR>
+nnoremap <Leader>vc :BundleClean<CR>
+nnoremap <Leader>vi :BundleInstall<CR>
+nnoremap <Leader>vl :BundleList<CR>
+nnoremap <Leader>vs :BundleSearch 
+nnoremap <Leader>vu :BundleInstall!<CR>
 
 
 " Tagbar plugin
 let g:tagbar_iconchars = ['▾', '▸']
-nnoremap <leader>tt :TagbarToggle<CR>
+nnoremap <Leader>tt :TagbarToggle<CR>
 
 " CtrlP plugin
-let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_map = '<C-P>'
 let g:ctrlp_custom_ignore = {
         \ 'dir':  '\.git$\|\.hg$\|\.svn$',
         \ }
-nnoremap <leader>fd :CtrlPDir<CR>
-nnoremap <leader>ff :CtrlP<CR>
-nnoremap <leader>fl :CtrlPLine<CR>
-nnoremap <leader>fq :CtrlPQuickfix<CR>
-nnoremap <leader>fr :CtrlPMRU<CR>
-nnoremap <leader>fs :CtrlPBufTag<CR>
-nnoremap <leader>ft :CtrlPTag<CR>
+let g:ctrlp_extensions = ['tag', 'buffertag', 'quickfix', 'dir',
+                          \ 'undo', 'line', 'changes', 'mixed']
+
+
+nnoremap <Leader>fb :CtrlPBuffer<CR>
+nnoremap <Leader>fc :CtrlPChange<CR>
+nnoremap <Leader>fd :CtrlPDir<CR>
+nnoremap <Leader>ff :CtrlP<CR>
+nnoremap <Leader>fl :CtrlPLine<CR>
+nnoremap <Leader>fq :CtrlPQuickfix<CR>
+nnoremap <Leader>fr :CtrlPMRU<CR>
+nnoremap <Leader>fs :CtrlPBufTag<CR>
+nnoremap <Leader>ft :CtrlPTag<CR>
+nnoremap <Leader>fu :CtrlPUndo<CR>
 
