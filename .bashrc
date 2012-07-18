@@ -150,6 +150,9 @@ shopt -s checkwinsize
 shopt -s sourcepath
 shopt -s no_empty_cmd_completion
 
+# Only show dirs when completing dir-related commands
+complete -d cd pushd rmdir
+
 # A colon-separated list of suffixes to ignore when performing filename
 # completion. A filename whose suffix matches one of the entries in FIGNORE is
 # excluded from the list of matched filenames.
