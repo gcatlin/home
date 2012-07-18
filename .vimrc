@@ -178,12 +178,6 @@ nnoremap <leader>o :Sexplore!<CR>
 " Fast saving
 nnoremap <leader>w :w!<CR>
 
-" Fast help
-nnoremap <leader>h :help<Space>
-
-" Fast substitution
-nnoremap <leader>s :%s/
-
 " Don't use Ex mode, use Q for formatting
 nnoremap Q gq
 
