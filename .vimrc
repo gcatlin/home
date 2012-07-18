@@ -86,6 +86,7 @@ function! LoadBundles()
 
         " vim-scripts repos
         "Bundle 'L9'
+        "Bundle 'vim_movement'
 
         " Other git repos
         "Bundle 'git://git.wincent.com/command-t.git'
