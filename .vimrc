@@ -71,6 +71,7 @@ function! LoadBundles()
         "Bundle 'kana/vim-textobj-function'
         Bundle 'kien/ctrlp.vim'
         Bundle 'majutsushi/tagbar'
+        Bundle 'michaeljsmith/vim-indent-object'
         Bundle 'mileszs/ack.vim'
         "Bundle 'Lokaltog/python-syntax'
         "Bundle 'scrooloose/nerdcommenter'
