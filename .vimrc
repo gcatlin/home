@@ -23,6 +23,7 @@ set hlsearch
 set ignorecase
 set incsearch
 set laststatus=2
+set lazyredraw
 set listchars=tab:▸\ ,trail:·,eol:¬,extends:»,precedes:«
 set magic
 set modelines=5
@@ -36,7 +37,10 @@ set smartcase
 set smartindent
 set smarttab
 set tags=./tags;
+set ttimeoutlen=100
+set ttyfast
 set visualbell
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 set wildmenu
 set wildmode=list:longest
 
