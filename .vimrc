@@ -68,6 +68,7 @@ function! LoadBundles()
         Bundle 'gcatlin/go-vim'
         Bundle 'Lokaltog/vim-powerline'
         Bundle 'Lokaltog/vim-easymotion'
+        "Bundle 'kana/vim-textobj-function'
         Bundle 'kien/ctrlp.vim'
         Bundle 'majutsushi/tagbar'
         Bundle 'mileszs/ack.vim'
