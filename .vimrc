@@ -159,8 +159,8 @@ autocmd FileType go setlocal noexpandtab shiftwidth=4 softtabstop=4 tabstop=4
 "
 
 " Set the mapLeader (default is "\")
-let mapLeader=","
-let g:mapLeader=","
+let mapleader=","
+let g:mapleader=","
 
 " Lazy escape
 inoremap jj <Esc>
