@@ -216,18 +216,6 @@ function! <SID>SynStack()
         echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
 
-" Vundle plugin
-nnoremap <leader>vbc :BundleClean<CR>
-nnoremap <leader>vbi :BundleInstall<CR>
-nnoremap <leader>vbl :BundleList<CR>
-
-" Tagbar plugin
-let g:tagbar_iconchars = ['▾', '▸']
-nnoremap <leader>tt :TagbarToggle<CR>
-
-" CtrlP plugin
-nnoremap <leader>ff :CtrlPMixed<CR>
-
 " Swap windows
 " http://stackoverflow.com/questions/2586984/how-can-i-swap-positions-of-two-open-files-in-splits-in-vim
 function! MarkWindowSwap()
@@ -251,4 +239,32 @@ endfunction
 
 nmap <silent> <leader>mw :call MarkWindowSwap()<CR>
 nmap <silent> <leader>pw :call DoWindowSwap()<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Plugin mappings and configuration
+"
+
+" Vundle plugin
+nnoremap <leader>vc :BundleClean<CR>
+nnoremap <leader>vi :BundleInstall<CR>
+nnoremap <leader>vl :BundleList<CR>
+nnoremap <leader>vs :BundleSearch 
+
+
+" Tagbar plugin
+let g:tagbar_iconchars = ['▾', '▸']
+nnoremap <leader>tt :TagbarToggle<CR>
+
+" CtrlP plugin
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_custom_ignore = {
+        \ 'dir':  '\.git$\|\.hg$\|\.svn$',
+        \ }
+nnoremap <leader>fd :CtrlPDir<CR>
+nnoremap <leader>ff :CtrlP<CR>
+nnoremap <leader>fl :CtrlPLine<CR>
+nnoremap <leader>fq :CtrlPQuickfix<CR>
+nnoremap <leader>fr :CtrlPMRU<CR>
+nnoremap <leader>fs :CtrlPBufTag<CR>
+nnoremap <leader>ft :CtrlPTag<CR>
 
