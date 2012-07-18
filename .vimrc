@@ -249,6 +249,7 @@ nnoremap <leader>vc :BundleClean<CR>
 nnoremap <leader>vi :BundleInstall<CR>
 nnoremap <leader>vl :BundleList<CR>
 nnoremap <leader>vs :BundleSearch 
+nnoremap <leader>vu :BundleInstall!<CR>
 
 
 " Tagbar plugin
