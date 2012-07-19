@@ -71,7 +71,7 @@ function! LoadBundles()
         Bundle 'Lokaltog/vim-easymotion'
         "Bundle 'kana/vim-textobj-function'
         Bundle 'kien/ctrlp.vim'
-        Bundle 'majutsushi/tagbar'
+        "Bundle 'majutsushi/tagbar'
         Bundle 'michaeljsmith/vim-indent-object'
         Bundle 'mileszs/ack.vim'
         "Bundle 'Lokaltog/python-syntax'
@@ -329,7 +329,7 @@ nnoremap <Leader>fu :CtrlPUndo<CR>
 nnoremap <Leader>e :lwindow<CR>
 
 " Tagbar plugin
-let g:tagbar_iconchars = ['▾', '▸']
+"let g:tagbar_iconchars = ['▾', '▸']
 "nnoremap <Leader>tt :TagbarToggle<CR>
 
 " Vundle plugin
