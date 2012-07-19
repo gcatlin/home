@@ -1,3 +1,4 @@
+# https://github.com/github/gitignore
 # https://help.github.com/articles/ignoring-files
 # To add this to your config, run:
 #   git config --global core.excludesfile ~/.gitignore_global
@@ -40,3 +41,9 @@
 Icon?
 ehthumbs.db
 Thumbs.db
+
+# Vim #
+#######
+.*.sw[a-z]
+*.un~
+Session.vim
