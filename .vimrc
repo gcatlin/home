@@ -187,6 +187,16 @@ vnoremap p "_dP
 vnoremap < <gv
 vnoremap > >gv
 
+" Easy interaction with pasteboard
+nnoremap <Leader>p "*]p
+nnoremap <Leader>P "*]P
+vnoremap <Leader>p "*]p
+vnoremap <Leader>P "*]P
+nnoremap <Leader>y "*y
+nnoremap <Leader>Y "*Y
+vnoremap <Leader>y "*y
+vnoremap <Leader>Y "*Y
+
 " Toggles invisible characters
 nnoremap <Leader>i :set list!<CR>
 
