@@ -217,7 +217,7 @@ inoremap <C-Space> <C-X><C-O>
 
 " Maximize window height and set width to something reasonable
 nnoremap <C-W>m 85<C-W><Bar><C-W>_
-nmap <C-W><C-M> <C-W>m
+nnoremap <C-W><C-M> 85<C-W><Bar><C-W>_
 
 " Show syntax highlighting groups for word under cursor
 nnoremap <C-H> :call <SID>SynStack()<CR>
@@ -249,8 +249,8 @@ function! DoWindowSwap()
         execute "hide buf" markedBuf
 endfunction
 
-nmap <silent> <Leader>mw :call MarkWindowSwap()<CR>
-nmap <silent> <Leader>pw :call DoWindowSwap()<CR>
+nnoremap <silent> <Leader>wm :call MarkWindowSwap()<CR>
+nnoremap <silent> <Leader>wp :call DoWindowSwap()<CR>
 
 " Show current class and method (python only)
 " http://jeetworks.org/node/147
