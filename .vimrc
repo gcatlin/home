@@ -80,6 +80,7 @@ function! LoadBundles()
         Bundle 'scrooloose/syntastic'
         "Bundle 'ervandew/supertab'
         Bundle 'sjl/vitality.vim'
+        Bundle 'tomtom/tcomment_vim'
         "Bundle 'tpope/vim-repeat'
         "Bundle 'tpope/vim-endwise'
         Bundle 'tpope/vim-surround'
