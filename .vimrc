@@ -305,18 +305,6 @@ nnoremap <Leader>? :PythonLocation<CR>
 nnoremap <Leader>a :vsplit<Esc>:Ack 
 "nnoremap <Leader>a :botright copen 10<Esc>:grep 
 
-" Vundle plugin
-nnoremap <Leader>vc :BundleClean<CR>
-nnoremap <Leader>vi :BundleInstall<CR>
-nnoremap <Leader>vl :BundleList<CR>
-nnoremap <Leader>vs :BundleSearch 
-nnoremap <Leader>vu :BundleInstall!<CR>
-
-
-" Tagbar plugin
-let g:tagbar_iconchars = ['▾', '▸']
-nnoremap <Leader>tt :TagbarToggle<CR>
-
 " CtrlP plugin
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_map = '<C-P>'
@@ -325,7 +313,6 @@ let g:ctrlp_custom_ignore = {
         \ }
 let g:ctrlp_extensions = ['tag', 'buffertag', 'quickfix', 'dir',
                           \ 'undo', 'line', 'changes', 'mixed']
-
 
 nnoremap <Leader>fb :CtrlPBuffer<CR>
 nnoremap <Leader>fc :CtrlPChange<CR>
@@ -337,4 +324,15 @@ nnoremap <Leader>fr :CtrlPMRU<CR>
 nnoremap <Leader>fs :CtrlPBufTag<CR>
 nnoremap <Leader>ft :CtrlPTag<CR>
 nnoremap <Leader>fu :CtrlPUndo<CR>
+
+" Tagbar plugin
+let g:tagbar_iconchars = ['▾', '▸']
+"nnoremap <Leader>tt :TagbarToggle<CR>
+
+" Vundle plugin
+nnoremap <Leader>vc :BundleClean<CR>
+nnoremap <Leader>vi :BundleInstall<CR>
+nnoremap <Leader>vl :BundleList<CR>
+nnoremap <Leader>vs :BundleSearch 
+nnoremap <Leader>vu :BundleInstall!<CR>
 
