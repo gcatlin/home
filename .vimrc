@@ -325,6 +325,9 @@ nnoremap <Leader>fs :CtrlPBufTag<CR>
 nnoremap <Leader>ft :CtrlPTag<CR>
 nnoremap <Leader>fu :CtrlPUndo<CR>
 
+" Syntastic plugin
+nnoremap <Leader>e :lwindow<CR>
+
 " Tagbar plugin
 let g:tagbar_iconchars = ['▾', '▸']
 "nnoremap <Leader>tt :TagbarToggle<CR>
