@@ -44,6 +44,6 @@ Thumbs.db
 
 # Vim #
 #######
-.*.sw[a-z]
+.*.sw[nop]
 *.un~
 Session.vim
