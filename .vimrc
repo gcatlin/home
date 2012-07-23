@@ -182,6 +182,16 @@ vnoremap <F1> <Esc>
 " Sudo to write
 cnoremap w!! w !sudo tee % >/dev/null
 
+" Use real regex syntax when searching
+nnoremap / /\v
+nnoremap ? ?\v
+vnoremap / /\v
+vnoremap ? ?\v
+
+" Easy bracket matching
+"nnoremap <Tab> %
+"vnoremap <Tab> %
+
 " Don't use Ex mode, use Q for formatting
 nnoremap Q gq
 
