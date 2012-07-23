@@ -13,6 +13,9 @@ if has("autocmd")
 	autocmd!
 end
 
+" Remove ALL mappings
+mapclear
+
 set autoindent
 set backspace=indent,eol,start
 set cindent
