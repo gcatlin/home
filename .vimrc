@@ -142,8 +142,7 @@ autocmd BufReadPost *
 			\ endif
 
 " Reload .vimrc when saved
-autocmd BufWritePost $MYVIMRC source $MYVIMRC
-autocmd BufWritePost $MYVIMRC call Pl#Load()
+autocmd BufWritePost $MYVIMRC source $MYVIMRC | call Pl#Load()
 
 " Only show cursorline and colorcolumn in active window
 if exists('+cursorline')
