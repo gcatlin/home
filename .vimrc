@@ -22,6 +22,8 @@ set cindent
 set cursorline
 set directory=$HOME/.vim/tmp
 set encoding=utf-8
+set formatoptions=cqrn1j
+set gdefault
 set grepprg=ack\ -a\ -H\ --nocolor\ --nogroup\ --column
 set grepformat=%f:%l:%c:%m
 set hidden
