@@ -46,6 +46,7 @@ set smartcase
 set smartindent
 set smarttab
 set tags=./tags;
+set textwidth=80
 set ttimeoutlen=100
 set ttyfast
 set visualbell
