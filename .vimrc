@@ -177,6 +177,7 @@ inoremap jj <Esc>
 " Oh, F1, how I hate thee
 nnoremap <F1> <Esc>
 inoremap <F1> <Esc>
+vnoremap <F1> <Esc>
 
 " Sudo to write
 cnoremap w!! w !sudo tee % >/dev/null
