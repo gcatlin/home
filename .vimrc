@@ -234,7 +234,8 @@ nnoremap <Leader>. :vsplit $MYVIMRC<CR>
 nnoremap <Leader>o :Sexplore!<CR>
 
 " Easy saving
-nnoremap <Leader>w :w!<CR>
+nnoremap <Leader>s :w!<CR>
+nnoremap <leader>S :%s/\s\+$//<CR>:nohlsearch<CR>
 
 " Disable search highlighting
 nnoremap <silent> <Leader>/ :nohlsearch<CR>
