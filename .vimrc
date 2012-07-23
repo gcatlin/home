@@ -247,6 +247,12 @@ inoremap <C-Space> <C-X><C-O>
 nnoremap <C-W>m 85<C-W><Bar><C-W>_
 nnoremap <C-W><C-M> 85<C-W><Bar><C-W>_
 
+" Easy window navigation
+nnoremap <C-H> <C-W>h
+nnoremap <C-J> <C-W>j
+nnoremap <C-K> <C-W>k
+nnoremap <C-L> <C-W>l
+
 " Show syntax highlighting groups for word under cursor
 nnoremap <C-H> :call <SID>SynStack()<CR>
 function! <SID>SynStack()
