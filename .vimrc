@@ -235,6 +235,8 @@ nnoremap <Leader>o :Sexplore!<CR>
 
 " Easy saving
 nnoremap <Leader>s :w!<CR>
+
+" Strip trailing whitespace
 nnoremap <leader>S :%s/\s\+$//<CR>:nohlsearch<CR>
 
 " Disable search highlighting
