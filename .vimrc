@@ -266,27 +266,99 @@ endfunc
 
 " Swap windows
 " http://stackoverflow.com/questions/2586984/how-can-i-swap-positions-of-two-open-files-in-splits-in-vim
-function! MarkWindowSwap()
+function! MarkWindow()
 	let g:markedWinNum = winnr()
 endfunction
 
-function! DoWindowSwap()
-	"Mark destination
-	let curNum = winnr()
-	let curBuf = bufnr("%")
+function! SwapBufferWithMarkedWindow()
+	" Capture current window and buffer
+	let curWinNum = winnr()
+	let curBufNum = bufnr("%")
+
+	" Switch to marked window, mark buffer, and open current buffer
 	execute g:markedWinNum . "wincmd w"
-	"Switch to source and shuffle dest->source
-	let markedBuf = bufnr("%")
-	"Hide and open so that we aren't prompted and keep history
-	execute "hide buf" curBuf
-	"Switch to dest and shuffle source->dest
-	execute curNum . "wincmd w"
-	"Hide and open so that we aren't prompted and keep history
-	execute "hide buf" markedBuf
+	let markedBufNum = bufnr("%")
+	execute "hide buf" curBufNum
+
+	" Switch back to current window and open marked buffer
+	execute curWinNum . "wincmd w"
+	execute "hide buf" markedBufNum
 endfunction
 
-nnoremap <silent> <Leader>wm :call MarkWindowSwap()<CR>
-nnoremap <silent> <Leader>wp :call DoWindowSwap()<CR>
+function! CloseMarkedWindow()
+	" Capture current window
+	let curWinNum = winnr()
+
+	" Switch to marked window and close it, then switch back to current window
+	execute g:markedWinNum . "wincmd w"
+	execute "hide close"
+	execute "wincmd p"
+endfunction
+
+function! MoveWindowLeft()
+	call MarkWindow()
+	execute "wincmd h"
+	if winnr() == g:markedWinNum
+		execute "wincmd H"
+	else
+		let g:markedWinNum += 1
+		execute "wincmd s"
+		execute g:markedWinNum . "wincmd w"
+		execute "wincmd h"
+		call SwapBufferWithMarkedWindow()
+		call CloseMarkedWindow()
+	endif
+endfunction
+
+function! MoveWindowDown()
+	call MarkWindow()
+	execute "wincmd j"
+	if winnr() == g:markedWinNum
+		execute "wincmd J"
+	else
+		execute "wincmd v"
+		execute g:markedWinNum . "wincmd w"
+		execute "wincmd j"
+		call SwapBufferWithMarkedWindow()
+		call CloseMarkedWindow()
+	endif
+endfunction
+
+function! MoveWindowUp()
+	call MarkWindow()
+	execute "wincmd k"
+	if winnr() == g:markedWinNum
+		execute "wincmd K"
+	else
+		let g:markedWinNum += 1
+		execute "wincmd v"
+		execute g:markedWinNum . "wincmd w"
+		execute "wincmd k"
+		call SwapBufferWithMarkedWindow()
+		call CloseMarkedWindow()
+	endif
+endfunction
+
+function! MoveWindowRight()
+	call MarkWindow()
+	execute "wincmd l"
+	if winnr() == g:markedWinNum
+		execute "wincmd L"
+	else
+		execute "wincmd s"
+		execute g:markedWinNum . "wincmd w"
+		execute "wincmd l"
+		call SwapBufferWithMarkedWindow()
+		call CloseMarkedWindow()
+	endif
+endfunction
+
+nnoremap <silent> <Leader>wm :call MarkWindow()<CR>
+nnoremap <silent> <Leader>ws :call SwapBufferWithMarkedWindow()<CR>
+nnoremap <silent> <Leader>wh :call MoveWindowLeft()<CR>
+nnoremap <silent> <Leader>wj :call MoveWindowDown()<CR>
+nnoremap <silent> <Leader>wk :call MoveWindowUp()<CR>
+nnoremap <silent> <Leader>wl :call MoveWindowRight()<CR>
 
 " Show current class and method (python only)
 " http://jeetworks.org/node/147
