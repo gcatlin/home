@@ -40,6 +40,7 @@ set mouse=a
 set number
 set numberwidth=5
 set scrolloff=2
+set shiftround
 set showcmd
 set showmatch
 set smartcase
