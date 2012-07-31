@@ -247,8 +247,15 @@ nnoremap <silent> <Leader>/ :nohlsearch<CR>
 inoremap <C-Space> <C-X><C-O>
 
 " Maximize window height and set width to something reasonable
-nnoremap <C-W>m 85<C-W><Bar><C-W>_
-nnoremap <C-W><C-M> 85<C-W><Bar><C-W>_
+function! ExpandWindow(min_width)
+	let cur_width = winwidth(0)
+	if cur_width < a:min_width
+		execute a:min_width . "wincmd |"
+	endif
+	execute "wincmd _"
+endfunction
+nnoremap <silent> <C-W>e :call ExpandWindow(85)<CR>
+nnoremap <silent> <C-W><C-E> :call ExpandWindow(85)<CR>
 
 " Easy window navigation
 nnoremap <C-H> <C-W>h
