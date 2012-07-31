@@ -264,13 +264,13 @@ nnoremap <C-K> <C-W>k
 nnoremap <C-L> <C-W>l
 
 " Show syntax highlighting groups for word under cursor
-nnoremap <C-/> :call <SID>SynStack()<CR>
 function! <SID>SynStack()
 	if !exists("*synstack")
 		return
 	endif
 	echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
+nnoremap <C-M> :call <SID>SynStack()<CR>
 
 " Swap windows
 " http://stackoverflow.com/questions/2586984/how-can-i-swap-positions-of-two-open-files-in-splits-in-vim
