@@ -40,6 +40,7 @@ set mouse=a
 set number
 set numberwidth=5
 set scrolloff=2
+set shiftround
 set showcmd
 set showmatch
 set smartcase
@@ -246,8 +247,15 @@ nnoremap <silent> <Leader>/ :nohlsearch<CR>
 inoremap <C-Space> <C-X><C-O>
 
 " Maximize window height and set width to something reasonable
-nnoremap <C-W>m 85<C-W><Bar><C-W>_
-nnoremap <C-W><C-M> 85<C-W><Bar><C-W>_
+function! ExpandWindow(min_width)
+	let cur_width = winwidth(0)
+	if cur_width < a:min_width
+		execute a:min_width . "wincmd |"
+	endif
+	execute "wincmd _"
+endfunction
+nnoremap <silent> <C-W>e :call ExpandWindow(85)<CR>
+nnoremap <silent> <C-W><C-E> :call ExpandWindow(85)<CR>
 
 " Easy window navigation
 nnoremap <C-H> <C-W>h
@@ -256,13 +264,13 @@ nnoremap <C-K> <C-W>k
 nnoremap <C-L> <C-W>l
 
 " Show syntax highlighting groups for word under cursor
-nnoremap <C-/> :call <SID>SynStack()<CR>
 function! <SID>SynStack()
 	if !exists("*synstack")
 		return
 	endif
 	echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
+nnoremap <C-M> :call <SID>SynStack()<CR>
 
 " Swap windows
 " http://stackoverflow.com/questions/2586984/how-can-i-swap-positions-of-two-open-files-in-splits-in-vim
@@ -359,6 +367,28 @@ nnoremap <silent> <Leader>wh :call MoveWindowLeft()<CR>
 nnoremap <silent> <Leader>wj :call MoveWindowDown()<CR>
 nnoremap <silent> <Leader>wk :call MoveWindowUp()<CR>
 nnoremap <silent> <Leader>wl :call MoveWindowRight()<CR>
+
+" http://stackoverflow.com/a/7321131/1518167
+function! DeleteInactiveBufs()
+    "From tabpagebuflist() help, get a list of all buffers in all tabs
+    let tablist = []
+    for i in range(tabpagenr('$'))
+        call extend(tablist, tabpagebuflist(i + 1))
+    endfor
+
+    "Below originally inspired by Hara Krishna Dara and Keith Roberts
+    "http://tech.groups.yahoo.com/group/vim/message/56425
+    let nWipeouts = 0
+    for i in range(1, bufnr('$'))
+        if bufexists(i) && !getbufvar(i,"&mod") && index(tablist, i) == -1
+        "bufno exists AND isn't modified AND isn't in the list of buffers open in windows and tabs
+            silent exec 'bwipeout' i
+            let nWipeouts = nWipeouts + 1
+        endif
+    endfor
+    echomsg nWipeouts . ' buffer(s) wiped out'
+endfunction
+
 
 " Show current class and method (python only)
 " http://jeetworks.org/node/147
