@@ -209,4 +209,5 @@ fi
 # Go
 if [[ -f $bp/bin/go ]] ; then
 	export GOROOT=`brew --prefix go`
+	source `brew --prefix go`/misc/bash/go
 fi
