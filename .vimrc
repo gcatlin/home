@@ -202,7 +202,7 @@ nnoremap Q gq
 " Make Y behave like other capitals.
 nnoremap Y y$
 
-" Prevent 'x' from adding to register
+" Prevent 'x' from appending to register
 nnoremap x "_x
 
 " Duplicate a selection
@@ -215,7 +215,7 @@ vnoremap p "_dP
 vnoremap < <gv
 vnoremap > >gv
 
-" Easy interaction with pasteboard
+" Easy interaction with system pasteboard
 nnoremap <Leader>p "*]p
 nnoremap <Leader>P "*]P
 vnoremap <Leader>p "*]p
@@ -462,9 +462,6 @@ nnoremap <Leader>fr :CtrlPMRU<CR>
 nnoremap <Leader>fs :CtrlPBufTag<CR>
 nnoremap <Leader>ft :CtrlPTag<CR>
 nnoremap <Leader>fu :CtrlPUndo<CR>
-
-" Syntastic plugin
-nnoremap <Leader>e :lwindow<CR>
 
 " Tagbar plugin
 let g:tagbar_iconchars = ['▾', '▸']
