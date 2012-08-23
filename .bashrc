@@ -185,11 +185,11 @@ export EDITOR=vim
 stty stop ''
 
 
-# Load RVM into a shell session *as a function*
-if [[ -f ~/.rvm/scripts/rvm ]] ; then
-	source ~/.rvm/scripts/rvm
-	# rvm use
-fi
+# # Load RVM into a shell session *as a function*
+# if [[ -f ~/.rvm/scripts/rvm ]] ; then
+# 	source ~/.rvm/scripts/rvm
+# 	# rvm use
+# fi
 
 # virtualenvwrapper
 if [[ -f $bp/bin/virtualenvwrapper.sh ]] ; then
