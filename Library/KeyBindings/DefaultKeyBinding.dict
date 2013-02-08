@@ -37,7 +37,7 @@ $ : Shift
 	"~u" = "uppercaseWord:";
 	"^v" = "pageDown:";
 	"~v" = "pageUp:";
-	"^w" = ("setMark:", "moveWordBackward:", "deleteToMark:"); /* deleteWordBackword: does not push onto the kill buffer */
+	"^w" = ("setMark:", "moveWordBackward:", "deleteToMark:"); /* deleteWordBackward: does not push onto the kill buffer */
 	"^x" = {
 		"\010"  = "deleteToEndOfLine:"; /* C-x backspace */
 		"^u"    = "undo:";              /* C-x C-u */
