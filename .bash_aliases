@@ -74,21 +74,11 @@ if command_exists git ; then
 		alias git=hub
 	fi
 
-	alias ga='git add'
+	alias g='git'
 	alias gap='git add -p'
 	alias gb='git branch'
-	alias gc='git checkout'
-	alias gcl='git clone'
 	alias gd='git diff'
 	alias gdc='git diff --cached'
-	alias gl='git log'
-	alias gm='git commit -m'
-	alias gma='git commit -am'
-	alias gp='git push'
-	alias gpom='git push -u origin master'
-	alias gpu='git pull'
-	alias gra='git remote add'
-	alias grr='git remote rm'
 	alias gs='git status'
 fi
 
