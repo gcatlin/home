@@ -84,6 +84,7 @@ function! LoadBundles()
 	Bundle 'tomtom/tcomment_vim'
 	Bundle 'Lokaltog/vim-powerline'
 	Bundle 'Lokaltog/vim-easymotion'
+	Bundle 'Valloric/YouCompleteMe'
 	"Bundle 'kana/vim-textobj-function'
 	Bundle 'kien/ctrlp.vim'
 	Bundle 'majutsushi/tagbar'
