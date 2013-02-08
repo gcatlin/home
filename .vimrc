@@ -262,6 +262,9 @@ nnoremap <silent> <Leader>/ :nohlsearch<CR>
 " Easy omni-completion
 " inoremap <C-Space> <C-X><C-O>
 
+" Enter key will select the highlighted menu item, just as <C-Y> does
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
 " Maximize window height and set width to something reasonable
 function! ExpandWindow(min_width)
 	let cur_width = winwidth(0)
