@@ -482,6 +482,9 @@ nnoremap <Leader>fs :CtrlPBufTag<CR>
 nnoremap <Leader>ft :CtrlPTag<CR>
 nnoremap <Leader>fu :CtrlPUndo<CR>
 
+" MatchParen (standard plugin)
+let loaded_matchparen = 1
+
 " Tagbar plugin
 let g:tagbar_iconchars = ['▾', '▸']
 let g:tagbar_autofocus = 1
