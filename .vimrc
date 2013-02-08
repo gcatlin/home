@@ -81,6 +81,7 @@ function! LoadBundles()
 	Bundle 'gcatlin/modokai.vim'
 	Bundle 'gcatlin/Pretty-Vim-Python'
 	Bundle 'gcatlin/go-vim'
+	Bundle 'tomtom/tcomment_vim'
 	Bundle 'Lokaltog/vim-powerline'
 	Bundle 'Lokaltog/vim-easymotion'
 	"Bundle 'kana/vim-textobj-function'
