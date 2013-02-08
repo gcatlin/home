@@ -485,6 +485,9 @@ nnoremap <Leader>fu :CtrlPUndo<CR>
 " MatchParen (standard plugin)
 let loaded_matchparen = 1
 
+" Powerline plugin
+let g:Powerline_symbols = 'fancy'
+
 " Tagbar plugin
 let g:tagbar_iconchars = ['▾', '▸']
 let g:tagbar_autofocus = 1
