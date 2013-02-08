@@ -19,6 +19,7 @@ mapclear
 set autoindent
 set backspace=indent,eol,start
 set cindent
+set completeopt=longest,menuone,preview
 set cursorline
 set directory=$HOME/.vim/tmp
 set encoding=utf-8
