@@ -167,6 +167,8 @@ endif
 
 " Filetype settings
 autocmd FileType html setlocal expandtab shiftwidth=4 softtabstop=4 tabstop=4
+autocmd FileType js setlocal expandtab shiftwidth=4 softtabstop=4 tabstop=4
+
 
 autocmd FileType python setlocal expandtab shiftwidth=4 softtabstop=4 tabstop=4 cindent cinwords=if,elif,else,for,while,try,except,finally,def,class
 
