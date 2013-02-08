@@ -101,6 +101,7 @@ function! LoadBundles()
 	Bundle 'tpope/vim-surround'
 	Bundle 'tpope/vim-eunuch'
 	"Bundle 'xolox/vim-easytags'
+	Bundle 'joonty/vdebug'
 
 	" Other git repos
 	"Bundle 'git://git.wincent.com/command-t.git'
