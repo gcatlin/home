@@ -459,8 +459,8 @@ nnoremap <Leader>? :PythonLocation<CR>
 "
 
 " Ack plugin
-nnoremap <Leader>a :vsplit<Esc>:Ack 
-"nnoremap <Leader>a :botright copen 10<Esc>:grep 
+nnoremap <Leader>a :vsplit<Esc>:Ack
+"nnoremap <Leader>a :botright copen 10<Esc>:grep
 
 " CtrlP plugin
 let g:ctrlp_cmd = 'CtrlP'
