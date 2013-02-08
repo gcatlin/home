@@ -102,6 +102,7 @@ function! LoadBundles()
 	Bundle 'tpope/vim-eunuch'
 	"Bundle 'xolox/vim-easytags'
 	Bundle 'joonty/vdebug'
+	Bundle 'gagoar/StripWhiteSpaces'
 
 	" Other git repos
 	"Bundle 'git://git.wincent.com/command-t.git'
