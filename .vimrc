@@ -74,6 +74,9 @@ function! LoadBundles()
 	" Required! Lets Vundle manage Vundle
 	Bundle 'gmarik/vundle'
 
+	" vim-scripts repos
+	Bundle 'Align'
+
 	" GitHub repos
 	Bundle 'gcatlin/modokai.vim'
 	Bundle 'gcatlin/Pretty-Vim-Python'
