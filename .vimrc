@@ -497,6 +497,6 @@ nnoremap <Leader>tb :TagbarToggle<CR>
 nnoremap <Leader>vc :BundleClean<CR>
 nnoremap <Leader>vi :BundleInstall<CR>
 nnoremap <Leader>vl :BundleList<CR>
-nnoremap <Leader>vs :BundleSearch 
+nnoremap <Leader>vs :BundleSearch
 nnoremap <Leader>vu :BundleInstall!<CR>
 
