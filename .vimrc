@@ -99,6 +99,7 @@ function! LoadBundles()
 	"Bundle 'tpope/vim-repeat'
 	"Bundle 'tpope/vim-endwise'
 	Bundle 'tpope/vim-surround'
+	Bundle 'tpope/vim-eunuch'
 	"Bundle 'xolox/vim-easytags'
 
 	" vim-scripts repos
