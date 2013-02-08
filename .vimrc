@@ -195,6 +195,10 @@ nnoremap <F1> <Esc>
 inoremap <F1> <Esc>
 vnoremap <F1> <Esc>
 
+" Disable :only
+nnoremap <C-W>o <Nop>
+nnoremap <C-W><C-O> <Nop>
+
 " Sudo to write
 cnoremap w!! w !sudo tee % >/dev/null
 
