@@ -260,7 +260,7 @@ nnoremap <leader>S :%s/\s\+$//<CR>:nohlsearch<CR>
 nnoremap <silent> <Leader>/ :nohlsearch<CR>
 
 " Easy omni-completion
-inoremap <C-Space> <C-X><C-O>
+" inoremap <C-Space> <C-X><C-O>
 
 " Maximize window height and set width to something reasonable
 function! ExpandWindow(min_width)
