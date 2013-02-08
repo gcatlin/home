@@ -170,6 +170,8 @@ autocmd FileType html setlocal expandtab shiftwidth=4 softtabstop=4 tabstop=4
 autocmd FileType js setlocal expandtab shiftwidth=4 softtabstop=4 tabstop=4
 
 
+autocmd FileType php setlocal expandtab shiftwidth=4 cindent cinwords=if,elseif,else,for,while,try,except,function,class
+
 autocmd FileType python setlocal expandtab shiftwidth=4 softtabstop=4 tabstop=4 cindent cinwords=if,elif,else,for,while,try,except,finally,def,class
 
 autocmd BufNewFile,BufRead *.go set filetype=go
