@@ -5,7 +5,12 @@ use strict;
 use FindBin qw($Bin);
 use English qw( -no_match_vars );
 
+use Test::Trap qw/ :output(systemsafe) /;
+
 require "$Bin/helper.pl";
+
+# unset the repo env override so that test work properly
+$ENV{'DFM_REPO'} = undef;
 
 my $file_slurp_available = load_mod("File::Slurp qw(read_file)");
 
@@ -22,7 +27,7 @@ subtest 'uninstall dotfiles' => sub {
 
     my $output;
 
-    $output = `HOME=$home perl $repo/bin/dfm --verbose`;
+    run_dfm( $home, $repo, 'install', '--verbose' );
 
     ok( -d "$home/.backup", 'main backup dir exists' );
     ok( -l "$home/bin",     'bin is a symlink' );
@@ -34,7 +39,7 @@ SKIP: {
             "loader present in $profile_filename" );
     }
 
-    $output = `HOME=$home perl $repo/bin/dfm --verbose uninstall`;
+    run_dfm( $home, $repo, 'uninstall', '--verbose' );
 
     ok( !-l "$home/bin",            'bin is no longer a symlink' );
     ok( -e "$home/bin/preexisting", 'bin from backup is restored' );
@@ -62,7 +67,7 @@ subtest 'uninstall dotfiles (dry-run)' => sub {
 
     my $output;
 
-    $output = `HOME=$home perl $repo/bin/dfm --verbose`;
+    run_dfm( $home, $repo, 'install', '--verbose' );
 
     ok( -d "$home/.backup", 'main backup dir exists' );
     ok( -l "$home/bin",     'bin is a symlink' );
@@ -74,7 +79,7 @@ SKIP: {
             "loader present in $profile_filename" );
     }
 
-    $output = `HOME=$home perl $repo/bin/dfm --dry-run --verbose uninstall`;
+    run_dfm( $home, $repo, 'uninstall', '--dry-run', '--verbose' );
 
     ok( -l "$home/bin", 'bin is still a symlink' );
 

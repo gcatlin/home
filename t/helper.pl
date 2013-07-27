@@ -5,6 +5,15 @@ use warnings;
 use FindBin qw($Bin);
 use Test::More;
 
+BEGIN {
+
+    package DFM;
+    require "dfm";
+    die $@ if $@;
+}
+
+ok defined &DFM::run_dfm, 'DFM::run_dfm is defined';
+
 sub simple_repo {
     my ( $name, $dfminstall_contents ) = @_;
 
@@ -20,7 +29,7 @@ sub simple_repo {
     `mkdir -p '$repo/t'`;
     `echo "ignore" > '$repo/.gitignore'`;
     `echo "readme contents" > '$repo/README.md'`;
-    `cp $Bin/../bin/dfm '$repo/bin'`;
+    `cp $Bin/../dfm '$repo/bin'`;
 
     chdir($repo);
     `git init`;
@@ -46,6 +55,7 @@ sub minimum_home {
 
     # create homedir
     `mkdir -p '$home'`;
+    `echo "[user]\n\tname = Test User\n\temail = test\@test.com" > '$home/.gitconfig'`;
 
     `git clone 'file://$origin_repo_path' '$repo'`;
 
@@ -65,6 +75,12 @@ sub minimum_home_with_ssh {
     `mkdir -p '$repo/.ssh'`;
     `mkdir -p '$repo/.ssh/config'`;
     `echo "sshignore" > '$repo/.ssh/.gitignore'`;
+
+    chdir($repo);
+    `git add .dfminstall`;
+    `git add .ssh`;
+    `git commit -m 'ssh additions'`;
+    chdir($Bin);
 
     return ( $home, $repo );
 }
@@ -88,4 +104,18 @@ sub focus {
         plan skip_all => "focus on tests ($name)";
     }
 }
+
+sub run_dfm {
+    my ( $home, $repo, @args ) = @_;
+    trap {
+        $ENV{HOME} = $home;
+        DFM::run_dfm( "$repo/bin", @args );
+    };
+
+    # TODO: enable this and clean up any warning seen
+    #if (length($trap->stderr) > 0) {
+    #diag($trap->stderr);
+    #}
+}
+
 1;
