@@ -191,16 +191,6 @@ export EDITOR=vim
 # Un-hijack ^S
 stty stop ''
 
-# virtualenvwrapper
-if [[ -f $bp/bin/virtualenvwrapper.sh ]] ; then
-	export WORKON_HOME=~/.virtualenvs
-	export PROJECT_HOME=~/Code
-	export VIRTUALENVWRAPPER_SCRIPT=$bp/bin/virtualenvwrapper.sh
-	source $bp/bin/virtualenvwrapper_lazy.sh
-	export PIP_VIRTUALENV_BASE=$WORKON_HOME
-	export PIP_RESPECT_VIRTUALENV=true
-fi
-
 # Generic colourizer
 if [[ -f $bp/etc/grc.bashrc ]] ; then
 	source $bp/etc/grc.bashrc
