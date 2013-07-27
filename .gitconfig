@@ -3,6 +3,14 @@
 	email = gcatlin@gmail.com
 [alias]
 	co = checkout
+	switch = !legit switch \"$@\"
+	branches = !legit branches
+	sprout = !legit sprout \"$@\"
+	unpublish = !legit unpublish \"$@\"
+	harvest = !legit harvest \"$@\"
+	sync = !legit sync \"$@\"
+	publish = !legit publish \"$@\"
+	graft = !legit graft \"$@\"
 [apply]
 	whitespace = nowarn
 [color]
@@ -19,3 +27,5 @@
 [github]
 	user = gcatlin
 	token = c49f467170498ecf398ef977cf9b0951
+[push]
+	default = simple

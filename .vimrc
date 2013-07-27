@@ -19,6 +19,7 @@ mapclear
 set autoindent
 set backspace=indent,eol,start
 set cindent
+set completeopt=longest,menuone,preview
 set cursorline
 set directory=$HOME/.vim/tmp
 set encoding=utf-8
@@ -73,12 +74,17 @@ function! LoadBundles()
 	" Required! Lets Vundle manage Vundle
 	Bundle 'gmarik/vundle'
 
+	" vim-scripts repos
+	Bundle 'Align'
+
 	" GitHub repos
 	Bundle 'gcatlin/modokai.vim'
 	Bundle 'gcatlin/Pretty-Vim-Python'
 	Bundle 'gcatlin/go-vim'
+	Bundle 'tomtom/tcomment_vim'
 	Bundle 'Lokaltog/vim-powerline'
 	Bundle 'Lokaltog/vim-easymotion'
+	Bundle 'Valloric/YouCompleteMe'
 	"Bundle 'kana/vim-textobj-function'
 	Bundle 'kien/ctrlp.vim'
 	Bundle 'majutsushi/tagbar'
@@ -90,15 +96,13 @@ function! LoadBundles()
 	Bundle 'scrooloose/syntastic'
 	"Bundle 'ervandew/supertab'
 	Bundle 'sjl/vitality.vim'
-	Bundle 'tomtom/tcomment_vim'
 	"Bundle 'tpope/vim-repeat'
 	"Bundle 'tpope/vim-endwise'
 	Bundle 'tpope/vim-surround'
+	Bundle 'tpope/vim-eunuch'
 	"Bundle 'xolox/vim-easytags'
-
-	" vim-scripts repos
-	"Bundle 'L9'
-	"Bundle 'vim_movement'
+	Bundle 'joonty/vdebug'
+	Bundle 'gagoar/StripWhiteSpaces'
 
 	" Other git repos
 	"Bundle 'git://git.wincent.com/command-t.git'
@@ -127,6 +131,7 @@ if &t_Co > 2 || has("gui_running")
 	syntax on
 	set t_Co=256
 	colorscheme modokai
+	set guifont=Source\ Code\ Pro\ for\ Powerline:h12
 endif
 
 
@@ -161,6 +166,11 @@ if exists('+colorcolumn')
 endif
 
 " Filetype settings
+autocmd FileType html setlocal expandtab shiftwidth=4 softtabstop=4 tabstop=4
+autocmd FileType js setlocal expandtab shiftwidth=4 softtabstop=4 tabstop=4
+
+autocmd FileType php setlocal expandtab shiftwidth=4 cindent cinwords=if,elseif,else,for,while,try,except,function,class
+
 autocmd FileType python setlocal expandtab shiftwidth=4 softtabstop=4 tabstop=4 cindent cinwords=if,elif,else,for,while,try,except,finally,def,class
 
 autocmd BufNewFile,BufRead *.go set filetype=go
@@ -176,12 +186,18 @@ let mapleader=","
 let g:mapleader=","
 
 " Lazy escape
+inoremap jk <Esc>
 inoremap jj <Esc>
+inoremap kk <Esc>
 
 " Oh, F1, how I hate thee
 nnoremap <F1> <Esc>
 inoremap <F1> <Esc>
 vnoremap <F1> <Esc>
+
+" Disable :only
+nnoremap <C-W>o <Nop>
+nnoremap <C-W><C-O> <Nop>
 
 " Sudo to write
 cnoremap w!! w !sudo tee % >/dev/null
@@ -244,7 +260,10 @@ nnoremap <leader>S :%s/\s\+$//<CR>:nohlsearch<CR>
 nnoremap <silent> <Leader>/ :nohlsearch<CR>
 
 " Easy omni-completion
-inoremap <C-Space> <C-X><C-O>
+" inoremap <C-Space> <C-X><C-O>
+
+" Enter key will select the highlighted menu item, just as <C-Y> does
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 " Maximize window height and set width to something reasonable
 function! ExpandWindow(min_width)
@@ -440,8 +459,8 @@ nnoremap <Leader>? :PythonLocation<CR>
 "
 
 " Ack plugin
-nnoremap <Leader>a :vsplit<Esc>:Ack 
-"nnoremap <Leader>a :botright copen 10<Esc>:grep 
+nnoremap <Leader>a :vsplit<Esc>:Ack
+"nnoremap <Leader>a :botright copen 10<Esc>:grep
 
 " CtrlP plugin
 let g:ctrlp_cmd = 'CtrlP'
@@ -463,6 +482,12 @@ nnoremap <Leader>fs :CtrlPBufTag<CR>
 nnoremap <Leader>ft :CtrlPTag<CR>
 nnoremap <Leader>fu :CtrlPUndo<CR>
 
+" MatchParen (standard plugin)
+let loaded_matchparen = 1
+
+" Powerline plugin
+let g:Powerline_symbols = 'fancy'
+
 " Tagbar plugin
 let g:tagbar_iconchars = ['▾', '▸']
 let g:tagbar_autofocus = 1
@@ -472,6 +497,6 @@ nnoremap <Leader>tb :TagbarToggle<CR>
 nnoremap <Leader>vc :BundleClean<CR>
 nnoremap <Leader>vi :BundleInstall<CR>
 nnoremap <Leader>vl :BundleList<CR>
-nnoremap <Leader>vs :BundleSearch 
+nnoremap <Leader>vs :BundleSearch
 nnoremap <Leader>vu :BundleInstall!<CR>
 

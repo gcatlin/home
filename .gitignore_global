@@ -3,47 +3,77 @@
 # To add this to your config, run:
 #   git config --global core.excludesfile ~/.gitignore_global
 
-# Compiled source #
-###################
-*.com
-*.class
-*.dll
-*.exe
-*.o
-*.so
-
-# Packages #
-############
-# it's better to unpack these files and commit the raw source
-# git has its own built in compression methods
+# Archives
 *.7z
-*.dmg
-*.gz
-*.iso
 *.jar
 *.rar
-*.tar
 *.zip
+*.gz
+*.bzip
+*.bz2
+*.xz
+*.lzma
+*.iso
+*.tar
+*.dmg
+*.xpi
+*.gem
+*.egg
+*.deb
+*.rpm
 
-# Logs and databases #
-######################
-*.log
-*.sql
-*.sqlite
+# C
+*.o
+*.lib
+*.a
+*.dll
+*.so
+*.so.*
+*.dylib
+*.exe
+*.out
+*.app
 
-# OS generated files #
-######################
+# Go
+# Compiled Object files, Static and Dynamic libs (Shared Objects)
+*.o
+*.a
+*.so
+_obj
+_test
+*.[568vq]
+[568vq].out
+*.cgo1.go
+*.cgo2.c
+_cgo_defun.c
+_cgo_gotypes.go
+_cgo_export.*
+_testmain.go
+*.exe
+
+# OSX
 .DS_Store
-.DS_Store?
+.AppleDouble
+.LSOverride
+Icon
 ._*
-.Spotlight-V100
+ .Spotlight-V100
 .Trashes
-Icon?
-ehthumbs.db
-Thumbs.db
 
-# Vim #
-#######
-.*.sw[nop]
+# Tags
+TAGS
+!TAGS/
+tags
+!tags/
+
+# Vim
+.*.sw[a-z]
 *.un~
 Session.vim
+.netrwhist
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/

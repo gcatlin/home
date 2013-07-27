@@ -62,6 +62,13 @@ else
 	fi
 fi
 
+if [[ -f ~/code/powerline-bash/powerline-bash.py ]] ; then
+	function _update_ps1()
+	{
+		export PS1="$(~/code/powerline-bash/powerline-bash.py $?)"
+	}
+	export PROMPT_COMMAND="_update_ps1"
+fi
 
 #-------------------------------------------------------------
 # Colorful command output
@@ -185,11 +192,11 @@ export EDITOR=vim
 stty stop ''
 
 
-# Load RVM into a shell session *as a function*
-if [[ -f ~/.rvm/scripts/rvm ]] ; then
-	source ~/.rvm/scripts/rvm
-	# rvm use
-fi
+# # Load RVM into a shell session *as a function*
+# if [[ -f ~/.rvm/scripts/rvm ]] ; then
+# 	source ~/.rvm/scripts/rvm
+# 	# rvm use
+# fi
 
 # virtualenvwrapper
 if [[ -f $bp/bin/virtualenvwrapper.sh ]] ; then
@@ -209,5 +216,5 @@ fi
 # Go
 if [[ -f $bp/bin/go ]] ; then
 	export GOROOT=`brew --prefix go`
-	source `brew --prefix go`/misc/bash/go
+	source `brew --prefix go`/etc/bash_completion.d/go-completion.bash
 fi
