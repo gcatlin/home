@@ -103,6 +103,7 @@ function! LoadBundles()
 	"Bundle 'tpope/vim-endwise'
 	Bundle 'tpope/vim-eunuch'
 	Bundle 'tpope/vim-fireplace'
+	Bundle 'tpope/vim-fugitive'
 	Bundle 'tpope/vim-repeat'
 	Bundle 'tpope/vim-surround'
 	Bundle 'Valloric/YouCompleteMe'
