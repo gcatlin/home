@@ -25,7 +25,7 @@ set directory=$HOME/.vim/tmp
 set encoding=utf-8
 set formatoptions=cqrn1
 set gdefault
-set grepprg=ack\ -a\ -H\ --nocolor\ --nogroup\ --column
+set grepprg=ag\ -a\ -H\ --nocolor\ --nogroup\ --column
 set grepformat=%f:%l:%c:%m
 set hidden
 set history=700
@@ -89,8 +89,8 @@ function! LoadBundles()
 	Bundle 'kien/ctrlp.vim'
 	Bundle 'majutsushi/tagbar'
 	Bundle 'michaeljsmith/vim-indent-object'
-	Bundle 'mileszs/ack.vim'
 	"Bundle 'Lokaltog/python-syntax'
+	Bundle 'rking/ag.vim'
 	"Bundle 'scrooloose/nerdcommenter'
 	"Bundle 'scrooloose/nerdtree'
 	Bundle 'scrooloose/syntastic'
@@ -458,8 +458,8 @@ nnoremap <Leader>? :PythonLocation<CR>
 " Plugin mappings and configuration
 "
 
-" Ack plugin
-nnoremap <Leader>a :vsplit<Esc>:Ack
+" Ag plugin
+nnoremap <Leader>a :vsplit<Esc>:Ag
 "nnoremap <Leader>a :botright copen 10<Esc>:grep
 
 " CtrlP plugin
