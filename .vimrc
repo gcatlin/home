@@ -130,8 +130,8 @@ filetype plugin indent on
 if &t_Co > 2 || has("gui_running")
 	syntax on
 	set t_Co=256
-	colorscheme modokai
 	set guifont=Source\ Code\ Pro\ for\ Powerline:h12
+	colorscheme modokai
 endif
 
 
