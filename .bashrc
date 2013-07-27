@@ -15,7 +15,7 @@ function command_exists () { hash "$1" 2>&- ; }
 #-------------------------------------------------------------
 # Set PATH
 #-------------------------------------------------------------
-PATH=.:~/bin:~/.rvm/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin
+PATH=.:~/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin
 #CDPATH=.:~:~/Code
 
 
