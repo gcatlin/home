@@ -191,13 +191,6 @@ export EDITOR=vim
 # Un-hijack ^S
 stty stop ''
 
-
-# # Load RVM into a shell session *as a function*
-# if [[ -f ~/.rvm/scripts/rvm ]] ; then
-# 	source ~/.rvm/scripts/rvm
-# 	# rvm use
-# fi
-
 # virtualenvwrapper
 if [[ -f $bp/bin/virtualenvwrapper.sh ]] ; then
 	export WORKON_HOME=~/.virtualenvs
