@@ -87,6 +87,7 @@ function! LoadBundles()
 	Bundle 'Valloric/YouCompleteMe'
 	"Bundle 'kana/vim-textobj-function'
 	Bundle 'kien/ctrlp.vim'
+	Bundle 'kien/rainbow_parentheses.vim'
 	Bundle 'majutsushi/tagbar'
 	Bundle 'michaeljsmith/vim-indent-object'
 	"Bundle 'Lokaltog/python-syntax'
@@ -487,6 +488,12 @@ let loaded_matchparen = 1
 
 " Powerline plugin
 let g:Powerline_symbols = 'fancy'
+
+" Rainbow Parentheses
+autocmd VimEnter * RainbowParenthesesToggle
+autocmd Syntax * RainbowParenthesesLoadRound
+autocmd Syntax * RainbowParenthesesLoadSquare
+autocmd Syntax * RainbowParenthesesLoadBraces
 
 " Tagbar plugin
 let g:tagbar_iconchars = ['▾', '▸']
