@@ -4,20 +4,107 @@ use strict;
 use warnings;
 use English qw( -no_match_vars );    # Avoids regex performance penalty
 use Data::Dumper;
-use FindBin qw($RealBin);
+use FindBin qw($RealBin $RealScript);
 use Getopt::Long;
 use Cwd qw(realpath getcwd);
 use File::Spec;
 use File::Copy;
+use Pod::Usage;
 
 our $VERSION = '0.6';
-
-run_dfm( $RealBin, @ARGV ) unless defined caller;
 
 my %opts;
 my $profile_filename;
 my $repo_dir;
 my $home;
+
+my $command_aliases = {
+    'mi'  => 'mergeandinstall',
+    'umi' => 'updatemergeandinstall',
+    'un'  => 'uninstall',
+    'im'  => 'import'
+};
+
+my $commands = {
+    'install' => sub {
+        DEBUG("Running in [$RealBin] and installing in [$home]");
+
+        # install files
+        install( $home, $repo_dir );
+    },
+    'updates' => sub {
+        my $argv = shift;
+
+        GetOptionsFromArray( $argv, \%opts, 'no-fetch' );
+
+        fetch_updates( \%opts );
+    },
+    'mergeandinstall' => sub {
+        my $argv = shift;
+
+        GetOptionsFromArray( $argv, \%opts, 'merge', 'rebase' );
+
+        merge_and_install( \%opts );
+    },
+    'updatemergeandinstall' => sub {
+        my $argv = shift;
+
+        GetOptionsFromArray( $argv, \%opts, 'merge', 'no-fetch' );
+
+        fetch_updates( \%opts );
+        merge_and_install( \%opts );
+    },
+    'uninstall' => sub {
+        my $argv = shift;
+
+        INFO( "Uninstalling dotfiles..."
+                . ( $opts{'dry-run'} ? ' (dry run)' : '' ) );
+
+        DEBUG("Running in [$RealBin] and installing in [$home]");
+
+        # uninstall files
+        uninstall_files( _abs_repo_path( $home, $repo_dir ), $home );
+
+        # remove the bash loader
+        unconfigure_bash_loader();
+    },
+    'import' => sub {
+        my $argv = shift;
+
+        GetOptionsFromArray( $argv, \%opts, 'message=s', 'no-commit|n' );
+
+        # import files
+        import_files( _abs_repo_path( $home, $repo_dir ), $home, $argv );
+    },
+    'help' => sub {
+        my $argv = shift;
+
+        my $command = shift @$argv;
+
+        if ($command) {
+            $command = $command_aliases->{$command} || $command;
+
+            my %options = (
+                -verbose    => 99,
+                -exitstatus => 0,
+                -sections   => uc($command),
+            );
+
+            # if run as part of test, add option to point
+            # to real script source
+            if ( $RealScript eq '04.misc.t' ) {
+                $options{'-input'} = '../dfm';
+            }
+
+            pod2usage(%options);
+        }
+        else {
+            pod2usage(2);
+        }
+    },
+};
+
+run_dfm( $RealBin, @ARGV ) unless defined caller;
 
 sub run_dfm {
     my ( $realbin, @argv ) = @_;
@@ -28,21 +115,31 @@ sub run_dfm {
 
     my $command;
 
-    foreach my $arg (@argv) {
-        next if $arg =~ /^-/;
-        $command = $arg;
-        last;    # once we find the command, stop looking
+    if ( scalar(@argv) == 0 || $argv[0] =~ /^-/ ) {
+
+       # check to make sure there's not a dfm subcommand later in the arg list
+        if ( grep { exists $commands->{$_} } @argv ) {
+            ERROR("The command should be first.");
+            exit(-2);
+        }
+        $command = 'help';
+    }
+    else {
+        $command = $argv[0];
     }
 
-    if ( !$command ) {
-        $command = 'install';
-    }
+    $command = $command_aliases->{$command} || $command;
 
-    # parse global options first
-    Getopt::Long::Configure('pass_through');
-    GetOptionsFromArray( \@argv, \%opts, 'verbose', 'quiet', 'dry-run',
-        'help', 'version' );
-    Getopt::Long::Configure('no_pass_through');
+    if ( exists $commands->{$command} ) {
+
+        # parse global options first
+        Getopt::Long::Configure('pass_through');
+        GetOptionsFromArray(
+            \@argv,    \%opts, 'verbose', 'quiet',
+            'dry-run', 'help', 'version'
+        );
+        Getopt::Long::Configure('no_pass_through');
+    }
 
     $home = realpath( $ENV{HOME} );
 
@@ -87,59 +184,17 @@ sub run_dfm {
         $profile_filename = '.profile';
     }
 
-    if ( $opts{'help'} ) {
-        show_usage();
-        exit;
-    }
-
-    if ( $opts{'version'} ) {
-        show_version();
-        exit;
-    }
-
-    if ( $command eq 'install' ) {
-
-        DEBUG("Running in [$RealBin] and installing in [$home]");
-
-        # install files
-        install( $home, $repo_dir );
-    }
-    elsif ( $command eq 'updates' ) {
-        GetOptionsFromArray( \@argv, \%opts, 'no-fetch' );
-
-        fetch_updates( \%opts );
-    }
-    elsif ( $command eq 'mi' || $command eq 'mergeandinstall' ) {
-        GetOptionsFromArray( \@argv, \%opts, 'merge', 'rebase' );
-
-        merge_and_install( \%opts );
-    }
-    elsif ( $command eq 'umi' || $command eq 'updatemergeandinstall' ) {
-        GetOptionsFromArray( \@argv, \%opts, 'merge', 'no-fetch' );
-
-        fetch_updates( \%opts );
-        merge_and_install( \%opts );
-    }
-    elsif ( $command eq 'un' || $command eq 'uninstall' ) {
-        INFO( "Uninstalling dotfiles..."
-                . ( $opts{'dry-run'} ? ' (dry run)' : '' ) );
-
-        DEBUG("Running in [$RealBin] and installing in [$home]");
-
-        # uninstall files
-        uninstall_files( $home . '/' . $repo_dir, $home );
-
-        # remove the bash loader
-        unconfigure_bash_loader();
-    }
-    elsif ( $command eq 'im' || $command eq 'import' ) {
-        GetOptionsFromArray( \@argv, \%opts, 'message=s', 'no-commit|n' );
-
-        #DEBUG("Running in [$RealBin] and installing in [$home]");
-        shift @argv;    # toss the 'import' at the beginning of the array
-
-        # import files
-        import_files( $home . '/' . $repo_dir, $home, \@argv );
+    if ( exists $commands->{$command} ) {
+        if ( $opts{'help'} ) {
+            $commands->{'help'}->( [$command] );
+        }
+        elsif ( $opts{'version'} ) {
+            show_version();
+        }
+        else {
+            shift(@argv);    # remove the command from the array
+            $commands->{$command}->( \@argv );
+        }
     }
     else {
 
@@ -199,7 +254,7 @@ sub DEBUG {
 sub fetch_updates {
     my $opts = shift;
 
-    chdir( $home . '/' . $repo_dir );
+    chdir( _abs_repo_path( $home, $repo_dir ) );
 
     if ( !$opts->{'no-fetch'} ) {
         DEBUG('fetching changes');
@@ -215,7 +270,7 @@ sub fetch_updates {
 sub merge_and_install {
     my $opts = shift;
 
-    chdir( $home . '/' . $repo_dir );
+    chdir( _abs_repo_path( $home, $repo_dir ) );
 
     my $current_branch = get_current_branch();
     check_remote_branch($current_branch);
@@ -259,10 +314,10 @@ sub install {
 
     DEBUG("Running in [$RealBin] and installing in [$home]");
 
-    install_files( $home . '/' . $repo_dir, $home );
+    install_files( _abs_repo_path( $home, $repo_dir ), $home );
 
     # link in the bash loader
-    if ( -e "$home/$repo_dir/.bashrc.load" ) {
+    if ( -e _abs_repo_path( $home, $repo_dir ) . "/.bashrc.load" ) {
         configure_bash_loader();
     }
 }
@@ -346,7 +401,7 @@ sub install_files {
                 $recurse_options = {
                     install_only => [
                         map { s/^$recurse\///; $_ }
-                            grep {/^$recurse/} @$install_only
+                        grep {/^$recurse/} @$install_only
                     ]
                 };
             }
@@ -566,7 +621,7 @@ sub import_files {
         }
     }
 
-    install_files( $home . '/' . $repo_dir,
+    install_files( _abs_repo_path( $home, $repo_dir ),
         $home, { install_only => [@$files] } );
 
     INFO( "Committing with message '$message'"
@@ -653,10 +708,21 @@ sub _run_git {
     my $cwd_before_git = getcwd();
 
     DEBUG( 'running git ' . join( ' ', @args ) . " in $home/$repo_dir" );
-    chdir( $home . '/' . $repo_dir );
+    chdir( _abs_repo_path( $home, $repo_dir ) );
     system( 'git', @args );
 
     chdir($cwd_before_git);
+}
+
+sub _abs_repo_path {
+    my ( $home, $repo ) = @_;
+
+    if ( File::Spec->file_name_is_absolute($repo) ) {
+        return $repo;
+    }
+    else {
+        return $home . '/' . $repo;
+    }
 }
 
 # when symlinking from source_dir into target_dir, figure out if there's a
@@ -796,22 +862,6 @@ sub _load_dfminstall {
     return $dfminstall_info;
 }
 
-sub show_usage {
-    show_version();
-    print <<END;
-
-Usage:
-    dfm install [--verbose|--quiet] [--dry-run]
-    dfm uninstall [--verbose|--quiet] [--dry-run]
-    dfm updates [--verbose|--quiet] [--dry-run] [--no-fetch]
-    dfm mergeandinstall [--verbose|--quiet] [--dry-run] [--merge|--rebase]
-    dfm updatemergeandinstall [--verbose|--quiet] [--dry-run] [--merge|--rebase] [--no-fetch]
-    dfm [git subcommand] [git options]
-
-For full documentation, run "perldoc ~/$repo_dir/bin/dfm".
-END
-}
-
 sub show_version {
     print "dfm version $VERSION\n";
 }
@@ -838,21 +888,23 @@ __END__
 
 =head1 SYNOPSIS
 
-    dfm install [--verbose|--quiet] [--dry-run]
+usage: dfm <command> [--version] [--dry-run] [--verbose] [--quiet] [<args>]
 
-    dfm import [--verbose|--quiet] [--dry-run] [--no-commit] [--message <message>] file1 [file2 ..]
+The commands are:
 
-    dfm uninstall [--verbose|--quiet] [--dry-run]
-     - or -
-    dfm un [--verbose|--quiet] [--dry-run]
+   install    Install dotfiles
+   import     Add a new dotfile to the repo
+   uninstall  Uninstall dotfiles
+   updates    Fetch updates but don't merge them in
+   mi         Merge in updates and install dotfiles again
+   umi        Fetch updates, merge in and install
 
-    dfm updates [--verbose|--quiet] [--dry-run] [--no-fetch]
+See 'dfm help <command>' for more information on a specific command.
 
-    dfm mergeandinstall [--verbose|--quiet] [--dry-run] [--merge|--rebase]
-     - or -
-    dfm mi [--verbose|--quiet] [--dry-run] [--merge|--rebase]
+Any git command can be run on the dotfiles repository by using the following
+syntax:
 
-    dfm [git subcommand] [git options]
+   dfm [git subcommand] [git options]
 
 =head1 DESCRIPTION
 
@@ -868,19 +920,34 @@ All the subcommands implemented by dfm have the following options:
   --dry-run     Don't do anything.
   --version     Print version information.
 
-=head1 COMMANDS
+=head1 HELP
 
-=over
+All Options:
 
-=item dfm uninstall
+  dfm help <subcommand>
+  dfm <subcommand> --help
 
-This removes all traces of dfm and the dotfiles.  It basically is the reverse
-of 'dfm install'.
+Examples:
 
-=item dfm install
+  dfm install --help
+  dfm help install
 
-This is the default command.  Running 'dfm' is the same as running 'dfm
-install'.
+Description:
+
+This shows the help for a particular subcommand.
+
+=head1 INSTALL
+
+All Options:
+
+  dfm install [--verbose|--quiet] [--dry-run]
+
+Examples:
+
+  dfm install
+  dfm install --dry-run
+
+Description:
 
 This installs everything in the repository into the current user's home
 directory by making symlinks.  To skip any files, add their names to a file
@@ -896,7 +963,38 @@ this in .dfminstall:
 
     .ssh
 
-=item dfm import
+=head1 UNINSTALL
+
+All Options:
+
+  dfm uninstall [--verbose|--quiet] [--dry-run]
+   - or -
+  dfm un [--verbose|--quiet] [--dry-run]
+
+Examples:
+
+  dfm uninstall
+  dfm uninstall --dry-run
+
+Description:
+
+This removes all traces of dfm and the dotfiles.  It basically is the reverse
+of 'dfm install'.
+
+=head1 IMPORT
+
+All Options:
+
+  dfm import [--verbose|--quiet] [--dry-run] [--no-commit] [--message <message>] file1 [file2 ..]
+   - or -
+  dfm im [--verbose|--quiet] [--dry-run] [--no-commit] [--message <message>] file1 [file2 ..]
+
+=head2 Examples
+
+  dfm import ~/.vimrc
+  dfm import .tmux.conf --message 'adding my tmux config'
+
+Description:
 
 This command moves each file specified into the dotfiles repository and
 symlinks it into $HOME.  Then a commit is made.
@@ -905,28 +1003,64 @@ Use '--message' to specify a different commit message.
 
 Use '--no-commit' to add the files, but not commit.
 
-=item dfm updates [--no-fetch]
+=head1 UPDATES
+
+All Options:
+
+  dfm updates [--verbose|--quiet] [--dry-run] [--no-fetch]
+
+Examples:
+
+  dfm updates
+  dfm updates --no-fetch
+
+Description:
 
 This fetches any changes from the upstream remote and then shows a shortlog of
 what updates would come in if merged into the current branch.  Use '--no-fetch'
 to skip the fetch and just show what's new.
 
-=item dfm mergeandinstall [--merge|--rebase]
+=head1 MERGEANDINSTALL
 
-This merges or rebases the upstream changes in and re-installs dotfiiles.  A
-convenient alias is 'mi'.
+All Options:
 
-=item dfm updatemergeandinstall [--merge|--rebase] [--no-fetch]
+  dfm mergeandinstall [--verbose|--quiet] [--dry-run] [--merge|--rebase]
+   - or -
+  dfm mi [--verbose|--quiet] [--dry-run] [--merge|--rebase]
 
-This combines 'updates' and 'mergeandinstall'.  A convenient alias is 'umi'.
+Examples:
 
-=item dfm [git subcommand] [git options]
+  dfm mergeandinstall
+  dfm mi
+  dfm mergeandinstall --rebase
+
+Description:
+
+This merges or rebases the upstream changes in and re-installs dotfiiles.
+
+=head1 UPDATEMERGEANDINSTALL
+
+All Options:
+
+  dfm updatemergeandinstall [--verbose|--quiet] [--dry-run] [--merge|--rebase] [--no-fetch]
+   - or -
+  dfm umi [--verbose|--quiet] [--dry-run] [--merge|--rebase] [--no-fetch]
+
+Examples:
+
+  dfm updatemergeandinstall
+  dfm umi
+  dfm updatemergeandinstall --no-fetch
+
+Description:
+
+This combines 'updates' and 'mergeandinstall'.
+
+=head1 dfm [git subcommand] [git options]
 
 This runs any git command as if it was inside the dotfiles repository.  For
 instance, this makes it easy to commit changes that are made by running 'dfm
 commit'.
-
-=back
 
 =head1 AUTHOR
 

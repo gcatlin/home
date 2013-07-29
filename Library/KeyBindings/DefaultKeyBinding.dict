@@ -19,7 +19,7 @@ $ : Shift
 	"^a" = "moveToBeginningOfLine:";
 	"^b" = "moveBackward:";
 	"~b" = "moveWordBackward:";
-	"~c" = "capitalizeWork:";
+	"~c" = "capitalizeWord:";
 	"^d" = "deleteForward:";
 	"~d" = ("setMark:", "moveWordForward:", "deleteToMark:"); /* deleteWordForward: does not push onto the kill buffer */
 	"^e" = "moveToEndOfLine:";

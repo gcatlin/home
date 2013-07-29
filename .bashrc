@@ -15,7 +15,7 @@ function command_exists () { hash "$1" 2>&- ; }
 #-------------------------------------------------------------
 # Set PATH
 #-------------------------------------------------------------
-PATH=.:~/bin::/usr/local/bin:/usr/local/share/python:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin
+PATH=.:~/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin
 #CDPATH=.:~:~/Code
 
 
@@ -190,23 +190,6 @@ export EDITOR=vim
 
 # Un-hijack ^S
 stty stop ''
-
-
-# # Load RVM into a shell session *as a function*
-# if [[ -f ~/.rvm/scripts/rvm ]] ; then
-# 	source ~/.rvm/scripts/rvm
-# 	# rvm use
-# fi
-
-# virtualenvwrapper
-if [[ -f $bp/bin/virtualenvwrapper.sh ]] ; then
-	export WORKON_HOME=~/.virtualenvs
-	export PROJECT_HOME=~/Code
-	export VIRTUALENVWRAPPER_SCRIPT=$bp/bin/virtualenvwrapper.sh
-	source $bp/bin/virtualenvwrapper_lazy.sh
-	export PIP_VIRTUALENV_BASE=$WORKON_HOME
-	export PIP_RESPECT_VIRTUALENV=true
-fi
 
 # Generic colourizer
 if [[ -f $bp/etc/grc.bashrc ]] ; then

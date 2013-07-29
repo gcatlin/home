@@ -25,7 +25,7 @@ set directory=$HOME/.vim/tmp
 set encoding=utf-8
 set formatoptions=cqrn1
 set gdefault
-set grepprg=ack\ -a\ -H\ --nocolor\ --nogroup\ --column
+set grepprg=ag\ -a\ -H\ --nocolor\ --nogroup\ --column
 set grepformat=%f:%l:%c:%m
 set hidden
 set history=700
@@ -78,31 +78,36 @@ function! LoadBundles()
 	Bundle 'Align'
 
 	" GitHub repos
+	"Bundle 'ervandew/supertab'
+	Bundle 'gagoar/StripWhiteSpaces'
 	Bundle 'gcatlin/modokai.vim'
 	Bundle 'gcatlin/Pretty-Vim-Python'
 	Bundle 'gcatlin/go-vim'
-	Bundle 'tomtom/tcomment_vim'
+	Bundle 'guns/vim-clojure-static'
+	"Bundle 'Lokaltog/python-syntax'
 	Bundle 'Lokaltog/vim-powerline'
 	Bundle 'Lokaltog/vim-easymotion'
-	Bundle 'Valloric/YouCompleteMe'
+	Bundle 'joonty/vdebug'
 	"Bundle 'kana/vim-textobj-function'
 	Bundle 'kien/ctrlp.vim'
+	Bundle 'kien/rainbow_parentheses.vim'
 	Bundle 'majutsushi/tagbar'
 	Bundle 'michaeljsmith/vim-indent-object'
-	Bundle 'mileszs/ack.vim'
-	"Bundle 'Lokaltog/python-syntax'
+	Bundle 'rking/ag.vim'
 	"Bundle 'scrooloose/nerdcommenter'
 	"Bundle 'scrooloose/nerdtree'
 	Bundle 'scrooloose/syntastic'
-	"Bundle 'ervandew/supertab'
 	Bundle 'sjl/vitality.vim'
-	"Bundle 'tpope/vim-repeat'
+	Bundle 'tomtom/tcomment_vim'
+	Bundle 'tpope/vim-classpath'
 	"Bundle 'tpope/vim-endwise'
-	Bundle 'tpope/vim-surround'
 	Bundle 'tpope/vim-eunuch'
+	Bundle 'tpope/vim-fireplace'
+	Bundle 'tpope/vim-fugitive'
+	Bundle 'tpope/vim-repeat'
+	Bundle 'tpope/vim-surround'
+	Bundle 'Valloric/YouCompleteMe'
 	"Bundle 'xolox/vim-easytags'
-	Bundle 'joonty/vdebug'
-	Bundle 'gagoar/StripWhiteSpaces'
 
 	" Other git repos
 	"Bundle 'git://git.wincent.com/command-t.git'
@@ -130,8 +135,8 @@ filetype plugin indent on
 if &t_Co > 2 || has("gui_running")
 	syntax on
 	set t_Co=256
-	colorscheme modokai
 	set guifont=Source\ Code\ Pro\ for\ Powerline:h12
+	colorscheme modokai
 endif
 
 
@@ -389,23 +394,24 @@ nnoremap <silent> <Leader>wl :call MoveWindowRight()<CR>
 
 " http://stackoverflow.com/a/7321131/1518167
 function! DeleteInactiveBufs()
-    "From tabpagebuflist() help, get a list of all buffers in all tabs
-    let tablist = []
-    for i in range(tabpagenr('$'))
-        call extend(tablist, tabpagebuflist(i + 1))
-    endfor
+	"From tabpagebuflist() help, get a list of all buffers in all tabs
+	let tablist = []
+	for i in range(tabpagenr('$'))
+		call extend(tablist, tabpagebuflist(i + 1))
+	endfor
 
-    "Below originally inspired by Hara Krishna Dara and Keith Roberts
-    "http://tech.groups.yahoo.com/group/vim/message/56425
-    let nWipeouts = 0
-    for i in range(1, bufnr('$'))
-        if bufexists(i) && !getbufvar(i,"&mod") && index(tablist, i) == -1
-        "bufno exists AND isn't modified AND isn't in the list of buffers open in windows and tabs
-            silent exec 'bwipeout' i
-            let nWipeouts = nWipeouts + 1
-        endif
-    endfor
-    echomsg nWipeouts . ' buffer(s) wiped out'
+	"Below originally inspired by Hara Krishna Dara and Keith Roberts
+	"http://tech.groups.yahoo.com/group/vim/message/56425
+	let nWipeouts = 0
+	for i in range(1, bufnr('$'))
+		if bufexists(i) && !getbufvar(i,"&mod") && index(tablist, i) == -1
+			"bufno exists AND isn't modified AND isn't in the list of
+			"buffers open in windows and tabs
+			silent exec 'bwipeout' i
+			let nWipeouts = nWipeouts + 1
+		endif
+	endfor
+	echomsg nWipeouts . ' buffer(s) wiped out'
 endfunction
 
 
@@ -458,8 +464,8 @@ nnoremap <Leader>? :PythonLocation<CR>
 " Plugin mappings and configuration
 "
 
-" Ack plugin
-nnoremap <Leader>a :vsplit<Esc>:Ack
+" Ag plugin
+nnoremap <Leader>a :vsplit<Esc>:Ag
 "nnoremap <Leader>a :botright copen 10<Esc>:grep
 
 " CtrlP plugin
@@ -487,6 +493,12 @@ let loaded_matchparen = 1
 
 " Powerline plugin
 let g:Powerline_symbols = 'fancy'
+
+" Rainbow Parentheses
+autocmd VimEnter * RainbowParenthesesToggle
+autocmd Syntax * RainbowParenthesesLoadRound
+autocmd Syntax * RainbowParenthesesLoadSquare
+autocmd Syntax * RainbowParenthesesLoadBraces
 
 " Tagbar plugin
 let g:tagbar_iconchars = ['▾', '▸']
