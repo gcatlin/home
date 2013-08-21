@@ -200,7 +200,6 @@ let g:mapleader=","
 " Lazy escape
 inoremap jk <Esc>
 inoremap jj <Esc>
-inoremap kk <Esc>
 
 " Oh, F1, how I hate thee
 nnoremap <F1> <Esc>
