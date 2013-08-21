@@ -176,7 +176,10 @@ endif
 
 " Filetype settings
 autocmd FileType html setlocal expandtab shiftwidth=4 softtabstop=4 tabstop=4
-autocmd FileType js setlocal expandtab shiftwidth=4 softtabstop=4 tabstop=4
+
+autocmd FileType javascript setlocal expandtab shiftwidth=2 softtabstop=2 tabstop=2
+autocmd BufRead,BufNewFile *.json setfiletype javascript
+command! -range -nargs=0 -bar Jq <line1>,<line2>!jq '.' | jq '.'
 
 autocmd FileType php setlocal expandtab shiftwidth=4 cindent cinwords=if,elseif,else,for,while,try,except,function,class
 
