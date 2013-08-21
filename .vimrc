@@ -23,6 +23,7 @@ set completeopt=longest,menuone,preview
 set cursorline
 set directory=$HOME/.vim/tmp
 set encoding=utf-8
+set expandtab
 set formatoptions=cqrn1
 set gdefault
 set grepprg=ag\ -a\ -H\ --nocolor\ --nogroup\ --column
@@ -42,11 +43,14 @@ set number
 set numberwidth=5
 set scrolloff=2
 set shiftround
+set shiftwidth=4
 set showcmd
 set showmatch
 set smartcase
 set smartindent
 set smarttab
+set softtabstop=4
+set tabstop=4
 set tags=./tags;
 set textwidth=80
 set ttimeoutlen=100
