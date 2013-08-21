@@ -82,10 +82,11 @@ if [[ $USE_COLOR ]] ; then
 	fi
 
 	# ls
+    LS_COLORS=$LS_COLORS'ow=01;34;40:'
 	LS_OPTIONS='--color'
 
 	# grep
-	export GREP_OPTIONS="--color=auto"
+	export GREP_OPTIONS='--color=auto'
 	export GREP_COLORS='mt=30;43:fn=35:ln=32:se=36'
 fi
 
