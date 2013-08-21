@@ -170,13 +170,17 @@ if command_exists brew ; then
 		source $bp/etc/bash_completion
 	fi
 
-	if [[ -f $bp/Library/Contributions/brew_bash_completion.sh ]] ; then
+	if [ -f $bp/Library/Contributions/brew_bash_completion.sh ] ; then
 		source $bp/Library/Contributions/brew_bash_completion.sh
 	fi
 
 	if [ -f $bp/etc/bash_completion.d/vagrant ]; then
 		source $bp/etc/bash_completion.d/vagrant
 	fi
+fi
+
+if [ -f $HOME/.git-flow-completion/git-flow-completion.bash ]; then
+	source $HOME/.git-flow-completion/git-flow-completion.bash
 fi
 
 # Only show dirs when completing dir-related commands
