@@ -185,7 +185,7 @@ autocmd FileType php setlocal expandtab shiftwidth=4 cindent cinwords=if,elseif,
 
 autocmd FileType python setlocal expandtab shiftwidth=4 softtabstop=4 tabstop=4 cindent cinwords=if,elif,else,for,while,try,except,finally,def,class
 
-autocmd BufNewFile,BufRead *.go set filetype=go
+autocmd BufNewFile,BufRead *.go setfiletype go
 autocmd FileType go setlocal noexpandtab shiftwidth=4 softtabstop=4 tabstop=4
 
 
