@@ -513,6 +513,9 @@ let g:tagbar_iconchars = ['▾', '▸']
 let g:tagbar_autofocus = 1
 nnoremap <Leader>tb :TagbarToggle<CR>
 
+" Taglist plugin
+let tlist_clojure_settings = 'clojure;f:function'
+
 " Vundle plugin
 nnoremap <Leader>vc :BundleClean<CR>
 nnoremap <Leader>vi :BundleInstall<CR>
