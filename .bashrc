@@ -23,10 +23,10 @@ PATH=.:~/bin:/usr/local/bin:/usr/local/share/python:/usr/local/share/npm/bin:/us
 # Determine if terminal supports color output
 #-------------------------------------------------------------
 case ${TERM} in
-	ansi|xterm*|rxvt*|Eterm|aterm|kterm|gnome*|interix|screen)
-		USE_COLOR=true ;;
-	*)
-		USE_COLOR=false ;;
+    ansi|xterm*|rxvt*|Eterm|aterm|kterm|gnome*|interix|screen)
+        USE_COLOR=true ;;
+    *)
+        USE_COLOR=false ;;
 esac
 
 
@@ -36,58 +36,58 @@ esac
 # See https://wiki.archlinux.org/index.php/Color_Bash_Prompt
 #-------------------------------------------------------------
 if [[ $USE_COLOR && $TERM ]] ; then
-	# Define some colors (with transparent background)
-	reset=$(tput -T ${TERM} sgr0)
-	underline=$(tput -T ${TERM} sgr 0 1)
-	black=$(tput -T ${TERM} setaf 0)
-	red=$(tput -T ${TERM} setaf 1)
-	green=$(tput -T ${TERM} setaf 2)
-	yellow=$(tput -T ${TERM} setaf 3)
-	blue=$(tput -T ${TERM} setaf 4)
-	magenta=$(tput -T ${TERM} setaf 5)
-	cyan=$(tput -T ${TERM} setaf 6)
-	white=$(tput -T ${TERM} setaf 7)
+    # Define some colors (with transparent background)
+    reset=$(tput -T ${TERM} sgr0)
+    underline=$(tput -T ${TERM} sgr 0 1)
+    black=$(tput -T ${TERM} setaf 0)
+    red=$(tput -T ${TERM} setaf 1)
+    green=$(tput -T ${TERM} setaf 2)
+    yellow=$(tput -T ${TERM} setaf 3)
+    blue=$(tput -T ${TERM} setaf 4)
+    magenta=$(tput -T ${TERM} setaf 5)
+    cyan=$(tput -T ${TERM} setaf 6)
+    white=$(tput -T ${TERM} setaf 7)
 
-	# set color prompt
-	if [[ ${EUID} == 0 ]] ; then
-		PS1='\[$red\]\u\[$reset\]@\[$blue\]\h\[$reset\]:\[$magenta\]\w\[$reset\]# '   # root
-	else
-		PS1='\[$blue\]\u\[$reset\]@\[$blue\]\h\[$reset\]:\[$magenta\]\w\[$reset\]\$ ' # non-root
-	fi
+    # set color prompt
+    if [[ ${EUID} == 0 ]] ; then
+        PS1='\[$red\]\u\[$reset\]@\[$blue\]\h\[$reset\]:\[$magenta\]\w\[$reset\]# '   # root
+    else
+        PS1='\[$blue\]\u\[$reset\]@\[$blue\]\h\[$reset\]:\[$magenta\]\w\[$reset\]\$ ' # non-root
+    fi
 else
-	if [[ ${EUID} == 0 ]] ; then
-		PS1='\u@\h:\w# '  # root
-	else
-		PS1='\u@\h:\w\$ ' # non-root
-	fi
+    if [[ ${EUID} == 0 ]] ; then
+        PS1='\u@\h:\w# '  # root
+    else
+        PS1='\u@\h:\w\$ ' # non-root
+    fi
 fi
 
 if [[ -f ~/code/powerline-bash/powerline-bash.py ]] ; then
-	function _update_ps1()
-	{
-		export PS1="$(~/code/powerline-bash/powerline-bash.py $?)"
-	}
-	export PROMPT_COMMAND="_update_ps1"
+    function _update_ps1()
+    {
+        export PS1="$(~/code/powerline-bash/powerline-bash.py $?)"
+    }
+    export PROMPT_COMMAND="_update_ps1"
 fi
 
 #-------------------------------------------------------------
 # Colorful command output
 #-------------------------------------------------------------
 if [[ $USE_COLOR ]] ; then
-	# Enable colored file listings
-	if command_exists gdircolors ; then
-		test -r $d && eval "$(gdircolors -b $d)" || eval "$(gdircolors -b)"
-	elif command_exists dircolors ; then
-		test -r $d && eval "$(dircolors -b $d)" || eval "$(dircolors -b)"
-	fi
+    # Enable colored file listings
+    if command_exists gdircolors ; then
+        test -r $d && eval "$(gdircolors -b $d)" || eval "$(gdircolors -b)"
+    elif command_exists dircolors ; then
+        test -r $d && eval "$(dircolors -b $d)" || eval "$(dircolors -b)"
+    fi
 
-	# ls
+    # ls
     LS_COLORS=$LS_COLORS'ow=01;34;40:'
-	LS_OPTIONS='--color'
+    LS_OPTIONS='--color'
 
-	# grep
-	export GREP_OPTIONS='--color=auto'
-	export GREP_COLORS='mt=30;43:fn=35:ln=32:se=36'
+    # grep
+    export GREP_OPTIONS='--color=auto'
+    export GREP_COLORS='mt=30;43:fn=35:ln=32:se=36'
 fi
 
 
@@ -97,7 +97,7 @@ fi
 export LESS='-FiRMWX -z-2'
 export LESSCHARSET='UTF-8'
 if [[ -s "/usr/local/bin/lesspipe.sh" ]] ; then
-	export LESSOPEN='|/usr/local/bin/lesspipe.sh %s 2>&-'
+    export LESSOPEN='|/usr/local/bin/lesspipe.sh %s 2>&-'
 fi
 export PAGER=less
 
@@ -106,9 +106,9 @@ export PAGER=less
 # Tweak 'ls'
 #-------------------------------------------------------------
 if command_exists gls ; then
-	LS="$(type -p gls)"
+    LS="$(type -p gls)"
 else
-	LS="/bin/ls"
+    LS="/bin/ls"
 fi
 LS_OPTIONS="-Fh -T 0 $LS_OPTIONS"  # defined above
 LS="$LS $LS_OPTIONS"
@@ -121,7 +121,7 @@ export LS
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 #-------------------------------------------------------------
 if [[ -f ~/.bash_aliases ]] ; then
-	. ~/.bash_aliases
+    . ~/.bash_aliases
 fi
 
 
@@ -131,7 +131,7 @@ fi
 # outputting anything in those cases.
 #-------------------------------------------------------------
 if [[ $- != *i*  || ! -t 0 && ! -p  /dev/stdin ]] ; then
-	return  # Shell is non-interactive
+    return  # Shell is non-interactive
 fi
 
 
@@ -164,23 +164,23 @@ shopt -s no_empty_cmd_completion
 export FIGNORE=.svn
 
 if command_exists brew ; then
-	bp=$(brew --prefix)
+    bp=$(brew --prefix)
 
-	if [ -f $bp/etc/bash_completion ]; then
-		source $bp/etc/bash_completion
-	fi
+    if [ -f $bp/etc/bash_completion ]; then
+        source $bp/etc/bash_completion
+    fi
 
-	if [ -f $bp/Library/Contributions/brew_bash_completion.sh ] ; then
-		source $bp/Library/Contributions/brew_bash_completion.sh
-	fi
+    if [ -f $bp/Library/Contributions/brew_bash_completion.sh ] ; then
+        source $bp/Library/Contributions/brew_bash_completion.sh
+    fi
 
-	if [ -f $bp/etc/bash_completion.d/vagrant ]; then
-		source $bp/etc/bash_completion.d/vagrant
-	fi
+    if [ -f $bp/etc/bash_completion.d/vagrant ]; then
+        source $bp/etc/bash_completion.d/vagrant
+    fi
 fi
 
 if [ -f $HOME/.git-flow-completion/git-flow-completion.bash ]; then
-	source $HOME/.git-flow-completion/git-flow-completion.bash
+    source $HOME/.git-flow-completion/git-flow-completion.bash
 fi
 
 # Only show dirs when completing dir-related commands
@@ -202,12 +202,12 @@ stty stop ''
 
 # Generic colourizer
 if [[ -f $bp/etc/grc.bashrc ]] ; then
-	source $bp/etc/grc.bashrc
+    source $bp/etc/grc.bashrc
 fi
 
 # Go
 if [[ -f $bp/bin/go ]] ; then
-	export GOROOT=`brew --prefix go`
-	export GOPATH=~/.go
-	source `brew --prefix go`/etc/bash_completion.d/go-completion.bash
+    export GOROOT=`brew --prefix go`
+    export GOPATH=~/.go
+    source `brew --prefix go`/etc/bash_completion.d/go-completion.bash
 fi
