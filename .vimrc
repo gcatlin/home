@@ -475,7 +475,7 @@ nnoremap <Leader>? :PythonLocation<CR>
 "
 
 " Ag plugin
-nnoremap <Leader>a :vsplit<Esc>:Ag
+nnoremap <Leader>a :Ag<Space>
 "nnoremap <Leader>a :botright copen 10<Esc>:grep
 
 " Airline
