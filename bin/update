@@ -1,0 +1,14 @@
+#!/bin/bash
+
+echo "Updating Homebrew..."
+brew update
+brew upgrade
+brew cleanup
+
+echo "Updating pip..."
+pip install --upgrade distribute
+pip install --upgrade pip
+pip install -U `yolk -U | awk '{print $1}' | uniq`
+
+echo "Updating composer..."
+composer self-update
