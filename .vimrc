@@ -46,7 +46,7 @@ set scrolloff=2
 set shiftround
 set shiftwidth=4
 set showcmd
-set showmatch
+"set showmatch
 set smartcase
 set smartindent
 set smarttab
@@ -81,6 +81,7 @@ function! LoadBundles()
 
 	" vim-scripts repos
 	Bundle 'Align'
+	Bundle 'paredit.vim'
 
 	" GitHub repos
 	Bundle 'bling/vim-airline'
@@ -498,8 +499,8 @@ nnoremap <Leader>fs :CtrlPBufTag<CR>
 nnoremap <Leader>ft :CtrlPTag<CR>
 nnoremap <Leader>fu :CtrlPUndo<CR>
 
-" MatchParen (standard plugin)
-let loaded_matchparen = 1
+" Paredit
+let g:paredit_smartjump = 1
 
 " Powerline plugin
 let g:Powerline_symbols = 'fancy'
@@ -509,6 +510,7 @@ autocmd VimEnter * RainbowParenthesesToggle
 autocmd Syntax * RainbowParenthesesLoadRound
 autocmd Syntax * RainbowParenthesesLoadSquare
 autocmd Syntax * RainbowParenthesesLoadBraces
+highlight! link MatchParen StatusLine
 
 " Tagbar plugin
 let g:tagbar_iconchars = ['▾', '▸']
