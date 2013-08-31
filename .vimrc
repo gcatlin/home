@@ -92,6 +92,7 @@ function! LoadBundles()
 	Bundle 'gcatlin/go-vim'
 	Bundle 'guns/vim-clojure-static'
 	"Bundle 'Lokaltog/python-syntax'
+	"""Bundle 'Lokaltog/vim-powerline'
 	Bundle 'Lokaltog/vim-easymotion'
 	Bundle 'joonty/vdebug'
 	"Bundle 'kana/vim-textobj-function'
@@ -162,7 +163,7 @@ autocmd BufReadPost *
 			\ endif
 
 " Reload .vimrc when saved
-autocmd BufWritePost $MYVIMRC source $MYVIMRC
+autocmd BufWritePost $MYVIMRC source $MYVIMRC "| call Pl#Load()
 
 " Only show cursorline and colorcolumn in active window
 if exists('+cursorline')
@@ -478,6 +479,7 @@ nnoremap <Leader>a :vsplit<Esc>:Ag
 
 " Airline
 let g:airline_powerline_fonts = 1
+let g:airline_exclude_preview = 1
 
 " CtrlP plugin
 let g:ctrlp_cmd = 'CtrlP'
