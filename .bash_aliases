@@ -67,6 +67,14 @@ fi
 
 
 #-------------------------------------------------------------
+# The 'find' family
+#-------------------------------------------------------------
+function f()  { find . -iname '*'$*'*' ; }
+function fd() { find . -type d -iname '*'$*'*' ; }
+function ff() { find . -type f -iname '*'$*'*' ; }
+
+
+#-------------------------------------------------------------
 # The 'git' family
 #-------------------------------------------------------------
 if command_exists git ; then
@@ -110,14 +118,6 @@ if command_exists svn ; then
 	alias sc='svn checkout'
 	alias sm='svn commit'
 fi
-
-
-#-------------------------------------------------------------
-# Find a file with a pattern in name
-#-------------------------------------------------------------
-function f()  { find . -iname '*'$*'*' ; }
-function fd() { find . -type d -iname '*'$*'*' ; }
-function ff() { find . -type f -iname '*'$*'*' ; }
 
 
 #-------------------------------------------------------------
