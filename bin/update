@@ -8,7 +8,7 @@ brew cleanup
 echo "Updating pip..."
 pip install --upgrade distribute
 pip install --upgrade pip
-pip install -U `yolk -U | awk '{print $1}' | uniq`
+pip install -U `pip list | awk '{{print $1}}'`
 
 echo "Updating composer..."
 composer self-update
