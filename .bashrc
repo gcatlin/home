@@ -15,7 +15,7 @@ function command_exists () { hash "$1" 2>&- ; }
 #-------------------------------------------------------------
 # Set PATH
 #-------------------------------------------------------------
-PATH=.:~/bin:/usr/local/bin:/usr/local/share/python:/usr/local/share/npm/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin
+PATH=.:~/bin:/usr/local/bin:/usr/local/share/npm/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin
 #CDPATH=.:~:~/Code
 
 
