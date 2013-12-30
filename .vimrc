@@ -73,6 +73,7 @@ set wildmode=list:longest
 
 " Required!
 filetype off
+filetype plugin indent off
 
 " NOTE: comments after Bundle command are not allowed
 function! LoadBundles()
@@ -89,9 +90,9 @@ function! LoadBundles()
 	Bundle 'gagoar/StripWhiteSpaces'
 	Bundle 'gcatlin/modokai.vim'
 	"""Bundle 'gcatlin/Pretty-Vim-Python'
-	"""Bundle 'gcatlin/go-vim'
 	"""Bundle 'Lokaltog/vim-powerline'
 	Bundle 'Lokaltog/vim-easymotion'
+	Bundle 'jnwhiteh/vim-golang'
 	Bundle 'kien/ctrlp.vim'
 	Bundle 'kien/rainbow_parentheses.vim'
 	"""Bundle 'majutsushi/tagbar'
@@ -115,6 +116,7 @@ endfunction
 
 try
 	set runtimepath+=~/.vim/bundle/vundle/
+	set runtimepath+=$GOROOT/misc/vim
 	call vundle#rc()
 	call LoadBundles()
 catch /^Vim\%((\a\+)\)\=:E117/
