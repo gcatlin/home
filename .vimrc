@@ -65,65 +65,66 @@ set wildmode=list:longest
 " Vundle, the plug-in manager for Vim
 "
 " Install with
-"    mkdir -p ~/.vim/bundle && git clone http://github.com/gmarik/vundle.git \
-"    ~/.vim/bundle/vundle && vim -c ':BundleInstall' -c ':qa!'
+"    mkdir -p ~/.vim/bundle
+"    git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+"    vim +PluginInstall +qall
 " Update with:
-"    vim -c ':BundleInstall!' -c ':BundleClean' -c ':qa!'
+"    vim +PluginInstall! +PluginClean +qall
 
+" NOTE: comments after Plugin command are not allowed
+function! LoadPlugins()
+	call vundle#begin()
+	" Required! Lets Vundle manage Vundle
+	Plugin 'gmarik/Vundle.vim'
+
+	" vim-scripts repos
+	Plugin 'Align'
+	Plugin 'paredit.vim'
+	Plugin 'taglist.vim'
+
+	" GitHub repos
+	Plugin 'bling/vim-airline'
+	Plugin 'gagoar/StripWhiteSpaces'
+	Plugin 'gcatlin/modokai.vim'
+	"""Plugin 'gcatlin/Pretty-Vim-Python'
+	Plugin 'jnwhiteh/vim-golang'
+	Plugin 'kien/ctrlp.vim'
+	Plugin 'kien/rainbow_parentheses.vim'
+	"""Plugin 'Lokaltog/vim-powerline'
+	Plugin 'Lokaltog/vim-easymotion'
+	"""Plugin 'majutsushi/tagbar'
+	Plugin 'rking/ag.vim'
+	"""Plugin 'scrooloose/nerdcommenter'
+	"""Plugin 'scrooloose/nerdtree'
+	Plugin 'scrooloose/syntastic'
+	Plugin 'sjl/vitality.vim'
+	Plugin 'tpope/vim-abolish'
+	Plugin 'tpope/vim-commentary'
+	Plugin 'tpope/vim-eunuch'
+	Plugin 'tpope/vim-fireplace'
+	Plugin 'tpope/vim-fugitive'
+	Plugin 'tpope/vim-repeat'
+	Plugin 'tpope/vim-surround'
+	Plugin 'Valloric/YouCompleteMe'
+
+	" Other git repos
+	"Plugin 'git://git.wincent.com/command-t.git'
+	call vundle#end()
+endfunction
 
 " Required!
 filetype off
 filetype plugin indent off
 
-" NOTE: comments after Bundle command are not allowed
-function! LoadBundles()
-	" Required! Lets Vundle manage Vundle
-	Bundle 'gmarik/vundle'
-
-	" vim-scripts repos
-	Bundle 'Align'
-	Bundle 'paredit.vim'
-	Bundle 'taglist.vim'
-
-	" GitHub repos
-	Bundle 'bling/vim-airline'
-	Bundle 'gagoar/StripWhiteSpaces'
-	Bundle 'gcatlin/modokai.vim'
-	"""Bundle 'gcatlin/Pretty-Vim-Python'
-	Bundle 'jnwhiteh/vim-golang'
-	Bundle 'kien/ctrlp.vim'
-	Bundle 'kien/rainbow_parentheses.vim'
-	"""Bundle 'Lokaltog/vim-powerline'
-	Bundle 'Lokaltog/vim-easymotion'
-	"""Bundle 'majutsushi/tagbar'
-	Bundle 'rking/ag.vim'
-	"""Bundle 'scrooloose/nerdcommenter'
-	"""Bundle 'scrooloose/nerdtree'
-	Bundle 'scrooloose/syntastic'
-	Bundle 'sjl/vitality.vim'
-	Bundle 'tpope/vim-abolish'
-	Bundle 'tpope/vim-commentary'
-	Bundle 'tpope/vim-eunuch'
-	Bundle 'tpope/vim-fireplace'
-	Bundle 'tpope/vim-fugitive'
-	Bundle 'tpope/vim-repeat'
-	Bundle 'tpope/vim-surround'
-	Bundle 'Valloric/YouCompleteMe'
-
-	" Other git repos
-	"Bundle 'git://git.wincent.com/command-t.git'
-endfunction
-
 try
-	set runtimepath+=~/.vim/bundle/vundle/
 	set runtimepath+=$GOROOT/misc/vim
-	call vundle#rc()
-	call LoadBundles()
+	set runtimepath+=~/.vim/bundle/Vundle.vim
+	call LoadPlugins()
 catch /^Vim\%((\a\+)\)\=:E117/
-	echomsg "Failed to load vundle and/or bundles. Perhaps vundle isn't installed."
-	echomsg "To install vundle: "
-	echomsg "   git clone http://github.com/gmarik/vundle.git ~/.vim/bundle/vundle"
-	echomsg "   vim -c ':BundleInstall' -c ':qa!'"
+	echomsg "Failed to load Vundle. Perhaps Vundle isn't installed?"
+	echomsg "To install Vundle: "
+	echomsg "  git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim"
+	echomsg "  vim +PluginInstall +qall"
 endtry
 
 " Required!
@@ -519,9 +520,9 @@ nnoremap <Leader>tb :TagbarToggle<CR>
 let tlist_clojure_settings = 'clojure;f:function'
 
 " Vundle plugin
-nnoremap <Leader>vc :BundleClean<CR>
-nnoremap <Leader>vi :BundleInstall<CR>
-nnoremap <Leader>vl :BundleList<CR>
-nnoremap <Leader>vs :BundleSearch
-nnoremap <Leader>vu :BundleInstall!<CR>
+nnoremap <Leader>vc :PluginClean<CR>
+nnoremap <Leader>vi :PluginInstall<CR>
+nnoremap <Leader>vl :PluginList<CR>
+nnoremap <Leader>vs :PluginSearch
+nnoremap <Leader>vu :PluginInstall!<CR>
 
