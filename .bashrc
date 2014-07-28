@@ -198,7 +198,7 @@ export HOSTFILE=$HOME/.hosts    # Put list of remote hosts in ~/.hosts ...
 export EDITOR=vim
 
 # Un-hijack ^S
-stty stop ''
+stty stop undef
 
 # Generic colourizer
 if [[ -f $bp/etc/grc.bashrc ]] ; then
