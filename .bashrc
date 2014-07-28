@@ -62,12 +62,12 @@ else
     fi
 fi
 
-if [[ -f ~/code/powerline-bash/powerline-bash.py ]] ; then
-    function _update_ps1()
-    {
-        export PS1="$(~/code/powerline-bash/powerline-bash.py $?)"
+if [[ -f ~/Code/powerline-shell/powerline-shell.py ]] ; then
+    function _update_ps1() {
+        export PS1="$(~/Code/powerline-shell/powerline-shell.py $? 2> /dev/null)"
     }
-    export PROMPT_COMMAND="_update_ps1"
+
+    export PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
 fi
 
 #-------------------------------------------------------------
