@@ -109,7 +109,7 @@ function! LoadPlugins()
 	Plugin 'tpope/vim-projectionist'
 	Plugin 'tpope/vim-repeat'
 	Plugin 'tpope/vim-surround'
-	Plugin 'Valloric/YouCompleteMe'
+	" Plugin 'Valloric/YouCompleteMe'
 
 	" Other git repos
 	"Plugin 'git://git.wincent.com/command-t.git'
