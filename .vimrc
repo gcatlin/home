@@ -308,6 +308,20 @@ function! <SID>SynStack()
 endfunc
 nnoremap <C-M> :call <SID>SynStack()<CR>
 
+" https://superuser.com/questions/382060/shortcut-to-switch-tabs-in-macvim
+if has("gui_macvim")
+  " Switch to specific tab numbers with Command-number
+  noremap <D-1> :tabn 1<CR>
+  noremap <D-2> :tabn 2<CR>
+  noremap <D-3> :tabn 3<CR>
+  noremap <D-4> :tabn 4<CR>
+  noremap <D-5> :tabn 5<CR>
+  noremap <D-6> :tabn 6<CR>
+  noremap <D-7> :tabn 7<CR>
+  noremap <D-8> :tabn 8<CR>
+  noremap <D-9> :tablast<CR>
+endif
+
 " Swap windows
 " http://stackoverflow.com/questions/2586984/how-can-i-swap-positions-of-two-open-files-in-splits-in-vim
 function! MarkWindow()
