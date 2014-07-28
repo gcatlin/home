@@ -93,6 +93,7 @@ function! LoadPlugins()
 	"""Plugin 'Lokaltog/vim-powerline'
 	Plugin 'Lokaltog/vim-easymotion'
 	"""Plugin 'majutsushi/tagbar'
+	Plugin 'plasticboy/vim-markdown'
 	Plugin 'rking/ag.vim'
 	"""Plugin 'scrooloose/nerdcommenter'
 	"""Plugin 'scrooloose/nerdtree'
