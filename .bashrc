@@ -211,3 +211,6 @@ if [[ -f $bp/bin/go ]] ; then
     export PATH=$PATH:/usr/local/opt/go/libexec/bin
     source `brew --prefix go`/etc/bash_completion.d/go-completion.bash
 fi
+
+# OPAM configuration
+. /Users/geoff/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
