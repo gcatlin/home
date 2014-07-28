@@ -3,10 +3,17 @@
 function command_exists () { hash "$1" 2>&- ; }
 
 if command_exists brew; then
+    bp=$(brew --prefix)
+
     echo "Updating Homebrew..."
     brew update
     brew upgrade
     brew cleanup
+
+    bp=$(brew --prefix)
+    if [ -f $bp/bin/cask ]; then
+        brew cask cleanup
+    fi
 fi
 
 if command_exists pip; then
