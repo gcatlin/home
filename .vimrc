@@ -190,6 +190,8 @@ autocmd FileType python setlocal expandtab shiftwidth=4 softtabstop=4 tabstop=4 
 
 autocmd BufNewFile,BufRead *.go setfiletype go
 autocmd FileType go setlocal noexpandtab shiftwidth=4 softtabstop=4 tabstop=4
+autocmd FileType go autocmd BufWritePre <buffer> Fmt
+autocmd FileType go compiler go
 
 autocmd BufRead,BufNewFile *.edn set filetype=clojure
 
