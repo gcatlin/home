@@ -27,3 +27,6 @@ if [[ -f ~/Code/powerline-shell/powerline-shell.py ]] ; then
     echo "Updating powerline-shell..."
     cd ~/Code/powerline-shell; git pull; cd - > /dev/null
 fi
+
+echo "Updating vim..."
+vim +PluginInstall! +PluginClean +qall
