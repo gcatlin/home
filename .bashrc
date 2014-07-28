@@ -207,7 +207,7 @@ fi
 
 # Go
 if [[ -f $bp/bin/go ]] ; then
-    export GOROOT=`brew --prefix go`
     export GOPATH=~/.go
+    export PATH=$PATH:/usr/local/opt/go/libexec/bin
     source `brew --prefix go`/etc/bash_completion.d/go-completion.bash
 fi
