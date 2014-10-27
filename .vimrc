@@ -108,6 +108,7 @@ function! LoadPlugins()
 	Plugin 'tpope/vim-leiningen'
 	Plugin 'tpope/vim-projectionist'
 	Plugin 'tpope/vim-repeat'
+	Plugin 'tpope/vim-rsi'
 	Plugin 'tpope/vim-surround'
 	" Plugin 'Valloric/YouCompleteMe'
 
