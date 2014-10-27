@@ -503,7 +503,7 @@ let g:airline_exclude_preview = 1
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_map = '<C-P>'
 let g:ctrlp_custom_ignore = {
-			\ 'dir':  '\.git$\|\.hg$\|\.svn$',
+			\ 'dir':  '\v[\/](target|\.(git|hg|svn))$',
 			\ }
 let g:ctrlp_extensions = ['tag', 'buffertag', 'quickfix', 'dir',
 			\ 'undo', 'line', 'changes', 'mixed']
