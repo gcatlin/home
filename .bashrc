@@ -214,3 +214,6 @@ fi
 
 # OPAM configuration
 . /Users/geoff/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
+
+# KTM
+export APPLICATION_ENVIRONMENT=dev-local
