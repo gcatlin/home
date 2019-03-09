@@ -8,7 +8,7 @@ if command_exists brew; then
     echo "Updating Homebrew..."
     brew update
     brew upgrade
-    brew cleanup
+    brew cleanup -s
 
     bp=$(brew --prefix)
     if [ -f $bp/bin/cask ]; then
@@ -16,11 +16,57 @@ if command_exists brew; then
     fi
 fi
 
+if command_exists gcloud; then
+    echo "Updating gcloud..."
+    yes | gcloud components update
+fi
+
+if command_exists go; then
+    echo "Updating go tools..."
+    go get -u all
+    # go get -u \
+    #     golang.org/x/tools/cmd/{benchcmp,callgraph,cover,digraph,eg,fiximports} \
+    #     golang.org/x/tools/cmd/{godex,godoc,goimports,gomvpkg,gorename,gotype} \
+    #     golang.org/x/tools/cmd/{present,ssadump,stress,stringer} \
+    #     # golang.org/x/tools/cmd/{vet,vet/whitelist} \
+    #     # golang.org/x/mobile/cmd/gomobile \
+    #     github.com/golang/lint/golint \
+    #     github.com/ajstarks/svgo/tree/master/benchviz \
+    #     github.com/cespare/prettybench \
+    #     github.com/davecheney/gcvis \
+    #     github.com/derekparker/delve/cmd/dlv \
+    #     github.com/fzipp/pythia \
+    #     github.com/gopherjs/gopherjs \
+    #     github.com/jingweno/nut \
+    #     github.com/josharian/impl \
+    #     github.com/jstemmer/gotags \
+    #     github.com/kisielk/errcheck \
+    #     github.com/nsf/gocode \
+    #     github.com/opennota/check/cmd/{aligncheck,structcheck,varcheck} \
+    #     github.com/rogpeppe/godef \
+    #     github.com/skelterjohn/wgo \
+    #     github.com/tools/godep \
+    #     rsc.io/{benchstat,grepdiff,gt,pprof_mac_fix,sizeof} \
+    #     # golang.org/x/tools/cmd/{gobind,tipgodoc} \
+    #     # github.com/motemen/gore \
+    #     # rsc.io/grind \
+    #     \
+
+    # go get -u all
+    gometalinter --install --update
+fi
+
+# if command_exists npm; then
+#     echo "Updating npm..."
+#     npm update -g
+# fi
+
 if command_exists pip; then
     echo "Updating pip..."
-    pip install --upgrade distribute
-    pip install --upgrade pip
-    pip install -U `pip list | awk '{print $1}' | grep -v vboxapi` --allow-external PIL --allow-unverified PIL
+    pip install --user --upgrade distribute
+    pip install --user --upgrade pip
+    pip install --user --upgrade $(pip freeze | cut -d '=' -f 1)
+    # pip install -U `pip list --format=legacy | awk '{print $1}' | grep -v thor`
 fi
 
 if [[ -f ~/Code/powerline-shell/powerline-shell.py ]] ; then
@@ -28,5 +74,13 @@ if [[ -f ~/Code/powerline-shell/powerline-shell.py ]] ; then
     cd ~/Code/powerline-shell; git pull; cd - > /dev/null
 fi
 
-echo "Updating vim..."
-vim +PluginInstall! +PluginClean +qall
+if command_exists rustup; then
+    echo "Updating rustup..."
+    rustup self update
+    rustup update
+fi
+
+if command_exists vim; then
+    echo "Updating vim..."
+    vim +PluginInstall! +PluginClean +qall
+fi

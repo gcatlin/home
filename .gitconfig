@@ -1,36 +1,72 @@
 [user]
-	name = Geoff Catlin
-	email = gcatlin@gmail.com
+    name = Geoff Catlin
+    email = gcatlin@gmail.com
 [alias]
-	co = checkout
-	switch = !legit switch \"$@\"
-	branches = !legit branches
-	sprout = !legit sprout \"$@\"
-	unpublish = !legit unpublish \"$@\"
-	harvest = !legit harvest \"$@\"
-	sync = !legit sync \"$@\"
-	publish = !legit publish \"$@\"
-	graft = !legit graft \"$@\"
+    br = branch
+    bd = branch -D
+    cm = commit
+    co = checkout
+    cp = cherry-pick
+    pd = pull
+    pu = push
+    st = stash
+    branches = !legit branches
+    branches = branch -a
+    discard = checkout --
+    graft = !legit graft \"$@\"
+    graph = log --graph -10 --branches --remotes --tags  --format=format:'%Cgreen%h %Creset• %<(75,trunc)%s (%cN, %cr) %Cred%d' --date-order
+    harvest = !legit harvest \"$@\"
+    history = log -10 --format=format:'%Cgreen%h %Creset• %s (%cN, %ar)'
+    last = log -1 HEAD --format=format:"%Cred%H"
+    publish = !legit publish \"$@\"
+    remotes = remote -v
+    remove = rm
+    resave = commit --amend
+    save = commit -m
+    sprout = !legit sprout \"$@\"
+    stashes = stash list
+    summary = status -u -s
+    switch = !legit switch \"$@\"
+    sync = !legit sync \"$@\"
+    tags = tag
+    uncommit = reset --mixed HEAD~
+    unmerged = diff --name-only --diff-filter=U
+    unpublish = !legit unpublish \"$@\"
+    unstage = reset -q HEAD --
 [apply]
-	whitespace = nowarn
+    whitespace = nowarn
 [color]
-	branch = auto
-	diff = auto
-	status = auto
-	ui = auto
+    branch = auto
+    diff = auto
+    status = auto
+    ui = auto
 [core]
-	autocrlf = input
-	excludesfile = ~/.gitignore_global
-	pager = less
+    autocrlf = input
+    excludesfile = ~/.gitignore_global
+    ; pager = less
+    pager = "diff-so-fancy | less --tabs=4 -RFX"
 [format]
-	pretty = %C(yellow)%h%Creset %s %C(red)(%an, %cr)%Creset
+    pretty = %C(yellow)%h%Creset %s %C(red)(%an, %cr)%Creset
 [github]
-	user = gcatlin
-	token = c49f467170498ecf398ef977cf9b0951
+    user = gcatlin
+    token = c49f467170498ecf398ef977cf9b0951
 [push]
-	default = simple
+    default = simple
 [diff]
-	algorithm = patience
+    algorithm = patience
 [filter "media"]
-	clean = git-media-clean %f
-	smudge = git-media-smudge %f
+    required = true
+    clean = git media clean %f
+    smudge = git media smudge %f
+[filter "hawser"]
+    clean = git hawser clean %f
+    smudge = git hawser smudge %f
+    required = true
+[filter "lfs"]
+    clean = git lfs clean %f
+    smudge = git lfs smudge %f
+    required = true
+[credential]
+    helper = osxkeychain
+[pull]
+	rebase = true

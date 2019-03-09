@@ -84,10 +84,15 @@ if command_exists git ; then
 
 	alias g='git'
 	alias gap='git add -p'
-	alias gb='git branch'
+	alias gbr='git branch'
 	alias gd='git diff'
 	alias gdc='git diff --cached'
+	alias grh='git reset HEAD'
+	alias grs='git reset --soft HEAD~1'
 	alias gs='git status'
+	alias gsp='git stash -p'
+	alias gwd='git wdiff'
+	alias gwdc='git wdiff --cached'
 fi
 
 
@@ -103,6 +108,7 @@ fi
 # The 'mark' family
 #-------------------------------------------------------------
 export MARKPATH=$HOME/.marks
+function j() { cd -P "$MARKPATH/$1" 2>/dev/null || echo "No such mark: $1"; }
 function jump() { cd -P "$MARKPATH/$1" 2>/dev/null || echo "No such mark: $1"; }
 function mark { mkdir -p "$MARKPATH"; ln -s "$(pwd)" "$MARKPATH/$1"; }
 function unmark { rm -i "$MARKPATH/$1"; }
@@ -149,7 +155,6 @@ alias du='du -kh'
 alias mkdir='mkdir -p'
 
 alias h=history
-alias j='jobs -l'
 
 alias path='echo -e ${PATH//:/\\n}'
 alias cdpath='echo -e ${CDPATH//:/\\n}'

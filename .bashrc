@@ -15,7 +15,8 @@ function command_exists () { hash "$1" 2>&- ; }
 #-------------------------------------------------------------
 # Set PATH
 #-------------------------------------------------------------
-PATH=.:~/bin:/usr/local/bin:/usr/local/share/npm/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin
+PATH=.:~/bin:~/.local/bin:/usr/local/bin:/usr/local/share/npm/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin
+
 #CDPATH=.:~:~/Code
 
 
@@ -64,10 +65,12 @@ fi
 
 if [[ -f ~/Code/powerline-shell/powerline-shell.py ]] ; then
     function _update_ps1() {
-        export PS1="$(~/Code/powerline-shell/powerline-shell.py $? 2> /dev/null)"
+        PS1=$(powerline-shell $?)
     }
 
-    export PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
+    if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
+        PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
+    fi
 fi
 
 #-------------------------------------------------------------
@@ -163,23 +166,24 @@ shopt -s no_empty_cmd_completion
 # excluded from the list of matched filenames.
 export FIGNORE=.svn
 
-if command_exists brew ; then
+if command_exists brew; then
     bp=$(brew --prefix)
 
-    if [ -f $bp/etc/bash_completion ]; then
+    if [[ -f $bp/etc/bash_completion ]]; then
         source $bp/etc/bash_completion
     fi
 
-    if [ -f $bp/Library/Contributions/brew_bash_completion.sh ] ; then
-        source $bp/Library/Contributions/brew_bash_completion.sh
+    if [[ -f $bp/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc ]]; then
+        source $bp/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc
     fi
 
-    if [ -f $bp/etc/bash_completion.d/vagrant ]; then
+    if [[ -f $bp/etc/bash_completion.d/vagrant ]]; then
         source $bp/etc/bash_completion.d/vagrant
     fi
+
 fi
 
-if [ -f $HOME/.git-flow-completion/git-flow-completion.bash ]; then
+if [[ -f $HOME/.git-flow-completion/git-flow-completion.bash ]]; then
     source $HOME/.git-flow-completion/git-flow-completion.bash
 fi
 
@@ -200,20 +204,52 @@ export EDITOR=vim
 # Un-hijack ^S
 stty stop undef
 
+# Compilers
+export CC=/usr/bin/clang
+export CXX=/usr/bin/clang++
+export LIBRARY_PATH="$LIBRARY_PATH:/usr/local/lib"
+
 # Generic colourizer
-if [[ -f $bp/etc/grc.bashrc ]] ; then
+if [[ -f $bp/etc/grc.bashrc ]]; then
     source $bp/etc/grc.bashrc
 fi
 
 # Go
-if [[ -f $bp/bin/go ]] ; then
+if [[ -f $bp/bin/go ]]; then
     export GOPATH=~/.go
     export PATH=$PATH:~/.go/bin:/usr/local/opt/go/libexec/bin
-    source `brew --prefix go`/etc/bash_completion.d/go-completion.bash
 fi
 
 # OPAM configuration
-. /Users/geoff/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
+# . /Users/geoff/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
+
+# Rust
+if [[ -d $HOME/.cargo/bin ]]; then
+    export PATH=$PATH:~/.cargo/bin
+    # export RUST_SRC_PATH=~/Code/rust-lang/src
+fi
+
+# fzf
+#if [[ -f $HOME/.fzf.bash ]]; then
+#    source $HOME/.fzf.bash
+#fi
+
+# gcloud
+if [[ -f $bp/bin/gcloud ]]; then
+    source $bp/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.bash.inc
+    source $HOME/.kube/completion.bash.inc
+fi
+
+if [[ -d /Applications/Visual\ Studio\ Code.app ]]; then
+    export PATH=$PATH:/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin
+fi
+
+#export CARP_DIR=~/Code/carp
+
+DOTNET_CLI_TELEMETRY_OPTOUT=1
 
 # KTM
 export APPLICATION_ENVIRONMENT=dev-local
+export AWS_PROFILE=kte-demo
+
+export SDL_GAMECONTROLLERCONFIG='030000006d04000018c2000000010000,Logitech RumblePad 2 USB,a:b1,b:b2,back:b8,dpdown:h0.4,dpleft:h0.8,dpright:h0.2,dpup:h0.1,leftshoulder:b4,leftstick:b10,lefttrigger:b6,leftx:a0,lefty:a1~,rightshoulder:b5,rightstick:b11,righttrigger:b7,rightx:a2,righty:a3~,start:b9,x:b0,y:b3'

@@ -20,6 +20,7 @@ set autoindent
 set backspace=indent,eol,start
 set cindent
 set cmdwinheight=10
+set commentstring=//\ %s
 set completeopt=longest,menuone,preview
 set cursorline
 set directory=$HOME/.vim/tmp
@@ -84,21 +85,27 @@ function! LoadPlugins()
 
 	" GitHub repos
 	Plugin 'bling/vim-airline'
+	" Plugin 'ctjhoa/spacevim'
+	Plugin 'fatih/vim-go'
 	Plugin 'gagoar/StripWhiteSpaces'
 	Plugin 'gcatlin/modokai.vim'
 	"""Plugin 'gcatlin/Pretty-Vim-Python'
-	Plugin 'jnwhiteh/vim-golang'
+	Plugin 'guns/vim-clojure-static'
+	Plugin 'kchmck/vim-coffee-script'
 	Plugin 'kien/ctrlp.vim'
 	Plugin 'kien/rainbow_parentheses.vim'
-	"""Plugin 'Lokaltog/vim-powerline'
+	" Plugin 'Lokaltog/vim-powerline'
 	Plugin 'Lokaltog/vim-easymotion'
-	"""Plugin 'majutsushi/tagbar'
+	Plugin 'majutsushi/tagbar'
 	Plugin 'plasticboy/vim-markdown'
+	Plugin 'racer-rust/vim-racer'
 	Plugin 'rking/ag.vim'
-	"""Plugin 'scrooloose/nerdcommenter'
-	"""Plugin 'scrooloose/nerdtree'
+	Plugin 'rust-lang/rust.vim'
+	" Plugin 'scrooloose/nerdcommenter'
+	" Plugin 'scrooloose/nerdtree'
 	Plugin 'scrooloose/syntastic'
 	Plugin 'sjl/vitality.vim'
+	Plugin 'tikhomirov/vim-glsl'
 	Plugin 'tpope/vim-abolish'
 	Plugin 'tpope/vim-commentary'
 	Plugin 'tpope/vim-dispatch'
@@ -106,11 +113,13 @@ function! LoadPlugins()
 	Plugin 'tpope/vim-fireplace'
 	Plugin 'tpope/vim-fugitive'
 	Plugin 'tpope/vim-leiningen'
-	Plugin 'tpope/vim-projectionist'
+	" Plugin 'tpope/vim-projectionist'
 	Plugin 'tpope/vim-repeat'
 	Plugin 'tpope/vim-rsi'
+	" Plugin 'tpope/vim-salve'
 	Plugin 'tpope/vim-surround'
 	" Plugin 'Valloric/YouCompleteMe'
+	Plugin 'ziglang/zig.vim'
 
 	" Other git repos
 	"Plugin 'git://git.wincent.com/command-t.git'
@@ -122,7 +131,6 @@ filetype off
 filetype plugin indent off
 
 try
-	set runtimepath+=$GOROOT/misc/vim
 	set runtimepath+=~/.vim/bundle/Vundle.vim
 	call LoadPlugins()
 catch /^Vim\%((\a\+)\)\=:E117/
@@ -164,7 +172,7 @@ autocmd BufReadPost *
 			\ endif
 
 " Reload .vimrc when saved
-autocmd BufWritePost $MYVIMRC source $MYVIMRC "| call Pl#Load()
+autocmd BufWritePost $MYVIMRC source $MYVIMRC | call LoadPlugins()
 
 " Only show cursorline and colorcolumn in active window
 if exists('+cursorline')
@@ -189,10 +197,10 @@ autocmd FileType php setlocal expandtab shiftwidth=4 cindent cinwords=if,elseif,
 
 autocmd FileType python setlocal expandtab shiftwidth=4 softtabstop=4 tabstop=4 cindent cinwords=if,elif,else,for,while,try,except,finally,def,class
 
-autocmd BufNewFile,BufRead *.go setfiletype go
-autocmd FileType go setlocal noexpandtab shiftwidth=4 softtabstop=4 tabstop=4
-autocmd FileType go autocmd BufWritePre <buffer> Fmt
-autocmd FileType go compiler go
+" autocmd BufNewFile,BufRead *.go setfiletype go
+" autocmd FileType go setlocal noexpandtab shiftwidth=4 softtabstop=4 tabstop=4
+" autocmd FileType go autocmd BufWritePre <buffer> Fmt
+"autocmd FileType go compiler go
 
 autocmd BufRead,BufNewFile *.edn set filetype=clojure
 
@@ -201,12 +209,16 @@ autocmd BufRead,BufNewFile *.edn set filetype=clojure
 "
 
 " Set the mapLeader (default is "\")
-let mapleader=","
-let g:mapleader=","
+let mapleader="\<Space>"
+let g:mapleader="\<Space>"
+
+" Join line above below
+noremap <silent> <Leader>jk k:join<CR>l
+noremap <silent> <Leader>jj :join<CR>
 
 " Lazy escape
-inoremap jk <Esc>
-inoremap jj <Esc>
+"inoremap jk <Esc>
+"inoremap jj <Esc>
 
 " Oh, F1, how I hate thee
 nnoremap <F1> <Esc>
@@ -220,11 +232,17 @@ nnoremap <C-W><C-O> <Nop>
 " Sudo to write
 cnoremap w!! w !sudo tee % >/dev/null
 
+" Center cursor after finding next match
+nnoremap n nzz
+
 " Use real regex syntax when searching
 nnoremap / /\v
 nnoremap ? ?\v
 vnoremap / /\v
 vnoremap ? ?\v
+
+" Search for visual selection
+vnoremap // y/<C-R>"<CR>
 
 " Easy bracket matching
 "nnoremap <Tab> %
@@ -263,18 +281,23 @@ vnoremap <Leader>Y "*Y
 nnoremap <Leader>i :set list!<CR>
 
 " Edit .vimrc
-nnoremap <Leader>. :vsplit $MYVIMRC<CR>
+nnoremap <Leader>, :vsplit $MYVIMRC<CR>
 
 " Open file in vertically split window
 nnoremap <Leader>o :Sexplore!<CR>
 
 " Easy saving
-nnoremap <Leader>s :w!<CR>
+nnoremap <Leader>ww :w!<CR>
 
 " Strip trailing whitespace
-nnoremap <leader>S :%s/\s\+$//<CR>:nohlsearch<CR>
+nnoremap <Leader>S :%s/\s\+$//<CR>:nohlsearch<CR>
+
+" Save session (_s_ession _s_ave, _s_ession _l_load)
+nnoremap <Leader>ss :mksession! Session.vim<CR>
+nnoremap <Leader>sl :source Session.vim<CR>
 
 " Disable search highlighting
+" nnoremap <silent> <Esc> <Esc>:nohlsearch<CR>
 nnoremap <silent> <Leader>/ :nohlsearch<CR>
 
 " Easy omni-completion
@@ -322,6 +345,15 @@ if has("gui_macvim")
   noremap <D-8> :tabn 8<CR>
   noremap <D-9> :tablast<CR>
 endif
+
+" Switch to last-active tab
+if !exists('g:Lasttab')
+    let g:Lasttab = 1
+    let g:Lasttab_backup = 1
+endif
+autocmd! TabLeave * let g:Lasttab_backup = g:Lasttab | let g:Lasttab = tabpagenr()
+autocmd! TabClosed * let g:Lasttab = g:Lasttab_backup
+nmap <silent> <Leader><Tab> :exe "tabn " . g:Lasttab<cr>
 
 " Swap windows
 " http://stackoverflow.com/questions/2586984/how-can-i-swap-positions-of-two-open-files-in-splits-in-vim
@@ -499,11 +531,16 @@ nnoremap <Leader>a :Ag<Space>
 let g:airline_powerline_fonts = 1
 let g:airline_exclude_preview = 1
 
+" Commentary
+au FileType c setlocal commentstring=//\ %s
+au FileType cpp setlocal commentstring=//\ %s
+au FileType objc setlocal commentstring=//\ %s
+
 " CtrlP plugin
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_map = '<C-P>'
 let g:ctrlp_custom_ignore = {
-			\ 'dir':  '\v[\/](target|\.(git|hg|svn))$',
+			\ 'dir':  '\v[\/](target|\.(git|hg|svn)|node_modules)$',
 			\ }
 let g:ctrlp_extensions = ['tag', 'buffertag', 'quickfix', 'dir',
 			\ 'undo', 'line', 'changes', 'mixed']
@@ -520,6 +557,7 @@ nnoremap <Leader>ft :CtrlPTag<CR>
 nnoremap <Leader>fu :CtrlPUndo<CR>
 
 " Paredit
+let g:paredit_leader = ','
 let g:paredit_smartjump = 1
 
 " Powerline plugin
@@ -531,14 +569,78 @@ autocmd Syntax * RainbowParenthesesLoadRound
 autocmd Syntax * RainbowParenthesesLoadSquare
 autocmd Syntax * RainbowParenthesesLoadBraces
 highlight! link MatchParen StatusLine
+let loaded_matchparen = 1
+
+" Rust
+let g:rustfmt_autosave = 1
+
+" Syntastic
+let g:syntastic_c_compiler = 'clang'
+let g:syntastic_c_compiler_options = ' -std=c11'
+let g:syntastic_cpp_compiler = 'clang++'
+let g:syntastic_cpp_compiler_options = ' -std=c++14 -stdlib=libc++'
+let g:syntastic_go_checkers = ['gofmt', 'gotype', 'govet']
+let g:syntastic_objc_compiler = 'clang'
+let g:syntastic_objc_compiler_options = ' -fmodules'
 
 " Tagbar plugin
-let g:tagbar_iconchars = ['▾', '▸']
+let g:tagbar_iconchars = ['▸', '▾']
 let g:tagbar_autofocus = 1
 nnoremap <Leader>tb :TagbarToggle<CR>
+let g:tagbar_type_go = {
+    \ 'ctagstype' : 'go',
+    \ 'kinds'     : [
+        \ 'p:package',
+        \ 'i:imports:1',
+        \ 'c:constants',
+        \ 'v:variables',
+        \ 't:types',
+        \ 'n:interfaces',
+        \ 'w:fields',
+        \ 'e:embedded',
+        \ 'm:methods',
+        \ 'r:constructor',
+        \ 'f:functions'
+    \ ],
+    \ 'sro' : '.',
+    \ 'kind2scope' : {
+        \ 't' : 'ctype',
+        \ 'n' : 'ntype'
+    \ },
+    \ 'scope2kind' : {
+        \ 'ctype' : 't',
+        \ 'ntype' : 'n'
+    \ },
+    \ 'ctagsbin'  : 'gotags',
+    \ 'ctagsargs' : '-sort -silent'
+\ }
 
 " Taglist plugin
 let tlist_clojure_settings = 'clojure;f:function'
+
+" vim-go
+let g:go_dispatch_enabled = 1
+let g:go_fmt_command = "goimports"
+" let g:go_highlight_extra_types = 1
+" let g:go_highlight_functions = 1
+" let g:go_highlight_methods = 1
+" let g:go_highlight_structs = 1
+let g:go_highlight_operators = 1
+" let g:go_highlight_build_constraints = 1
+
+au FileType go nmap <Leader>gb <Plug>(go-build)
+au FileType go nmap <Leader>gc <Plug>(go-coverage)
+au FileType go nmap <Leader>gi <Plug>(go-install)
+au FileType go nmap <Leader>gr <Plug>(go-run)
+au FileType go nmap <Leader>gt <Plug>(go-test)
+
+au FileType go nmap <Leader>ge <Plug>(go-rename)
+au FileType go nmap <Leader>gm <Plug>(go-implements)
+au FileType go nmap <Leader>gn <Plug>(go-info)
+
+au FileType go nmap <Leader>gd <Plug>(go-doc)
+au FileType go nmap <Leader>gdb <Plug>(go-doc-browser)
+au FileType go nmap <Leader>gdv <Plug>(go-doc-vertical)
 
 " Vundle plugin
 nnoremap <Leader>vc :PluginClean<CR>
@@ -546,4 +648,8 @@ nnoremap <Leader>vi :PluginInstall<CR>
 nnoremap <Leader>vl :PluginList<CR>
 nnoremap <Leader>vs :PluginSearch
 nnoremap <Leader>vu :PluginInstall!<CR>
+
+" Zig
+let g:zig_fmt_autosave = 1
+" let g:zig_fmt_command = ['zig2', 'fmt', '--color', 'off']
 
