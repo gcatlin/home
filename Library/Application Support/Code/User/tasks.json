@@ -1,0 +1,76 @@
+// https://code.visualstudio.com/docs/editor/tasks
+// https://code.visualstudio.com/docs/editor/tasks#_custom-tasks
+// https://code.visualstudio.com/docs/editor/tasks-appendix (schema)
+// https://code.visualstudio.com/docs/editor/glob-patterns
+// https://code.visualstudio.com/docs/reference/variables-reference
+{
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "Go: Run File",
+        "detail": "Run the current Go file.",
+        "type": "shell",
+        "command": "go run ${file}",
+        "options": {
+          "cwd": "${fileDirname}",
+        },
+        "group": {
+          "kind": "build",
+          "isDefault": "**.go"
+
+        },
+        "problemMatcher": ["$go"],
+      },
+      {
+        "label": "Odin: Run File",
+        "detail": "Run the current Odin file.",
+        "type": "shell",
+        "command": "odin run ${file} -file -out:${fileDirname}/${fileBasenameNoExtension}",
+        "group": {
+          "kind": "build",
+          "isDefault": "**.odin"
+        },
+        "problemMatcher": [],
+      },
+      {
+        "label": "Odin: Run Directory",
+        "detail": "Run the current Odin directory.",
+        "type": "shell",
+        "command": "odin run ${fileDirname} -out:${fileDirname}/${fileBasenameNoExtension}",
+        "group": "build",
+        "problemMatcher": [],
+      },
+      {
+        "label": "Odin: Build File",
+        "detail": "Build the current Odin file.",
+        "type": "shell",
+        "command": "odin build ${file} -file -out:${fileDirname}/${fileBasenameNoExtension}",
+        "group": "build",
+        "problemMatcher": [],
+      },
+      {
+        "label": "Odin: Build Directory",
+        "detail": "Build the current Odin directory.",
+        "type": "shell",
+        "command": "odin build ${fileDirname} -out:${fileDirname}/${fileDirnameBasename}",
+        "group": "build",
+        "problemMatcher": [],
+      },
+      {
+        "label": "Odin: Build Workspace",
+        "detail": "Build the current Odin directory.",
+        "type": "shell",
+        "command": "odin build ${workspaceFolder} -out:${workspaceFolder}/${workspaceFolderBasename}",
+        "group": "build",
+        "problemMatcher": [],
+      },
+      {
+        "label": "Odin: Build Debug",
+        "detail": "Build the current Odin file with debug info.",
+        "type": "shell",
+        "command": "odin build ${file} -out:${fileDirname}/${fileBasenameNoExtension}.out -debug",
+        "group": "build",
+        "problemMatcher": [],
+      }
+    ]
+  }

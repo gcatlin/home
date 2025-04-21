@@ -1,0 +1,246 @@
+{
+    //
+    // VS Code Settings
+    // https://code.visualstudio.com/docs/getstarted/settings
+    //
+
+    //
+    // Match highlighting behavior
+    // https://stackoverflow.com/questions/39775406/how-to-turn-off-matching-highlighting-in-vs-code
+    //   editor.occurrencesHighlight
+    //   editor.selectionHighlight
+    //   editor.matchBrackets
+    //
+
+    //
+    // Extensions to consider:
+    //   https://marketplace.visualstudio.com/items?itemName=ctf0.auto-comment-next-line
+    //   https://marketplace.visualstudio.com/items?itemName=usernamehw.errorlens
+    //   https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens
+    //
+
+    "betterAlign.surroundSpace" : {
+        "colon"      : [0, 1], // [left padding, right padding]
+        "assignment" : [1, 1], // [left padding, right padding]
+        "arrow"      : [1, 1], // [left padding, right padding]
+        "comment"    : 1       // left padding before comment characters
+    },
+    "[c]": {
+        "files.trimTrailingWhitespace": true,
+        // "editor.formatOnSave": true
+    },
+    "debug.console.fontSize": 13,
+    "editor.cursorStyle": "line",
+    // "editor.cursorWidth": 6,
+    "editor.fontFamily": "SauceCodePro Nerd Font, Menlo, Monaco, 'Courier New', monospace",
+    "editor.fontSize": 13,
+    "editor.inlineSuggest.enabled": true,
+    "editor.occurrencesHighlight": "off",
+    "editor.renderWhitespace": "none",
+    "editor.rulers": [80,120],
+    "editor.scrollbar.vertical": "visible",
+    "editor.selectionHighlight": false,
+    // "editor.semanticHighlighting.enabled": true,
+    "files.associations": {
+        "iosfwd": "cpp"
+    },
+    "files.autoSave": "afterDelay",
+    "files.autoSaveDelay": 10000,
+    "git.openRepositoryInParentFolders": "never",
+    "github.copilot.enable": {
+        "*": true,
+        "plaintext": true,
+        "markdown": true,
+        "scminput": false
+    },
+    // "go.buildTags": "",
+    "go.formatTool": "gofumpt",
+    "go.lintTool": "golangci-lint",
+    "go.lintFlags": ["--fast"],
+    "go.survey.prompt": false,
+    "go.toolsManagement.autoUpdate": true,
+    "go.useLanguageServer": true,
+    "gopls": {
+        "formatting.gofumpt": true,
+        "ui.semanticTokens": true,
+    },
+    // "[go]": {
+    //     "editor.insertSpaces": false,
+    //     "editor.formatOnSave": true,
+    //     "editor.codeActionsOnSave": {
+    //         "source.organizeImports": true
+    //     }
+    // },
+    "notebook.output.textLineLimit": 50,
+    "notebook.lineNumbers": "on",
+    "[odin]": {
+        "editor.formatOnSave": true,
+    },
+    // "[python]": {
+    //     "diffEditor.ignoreTrimWhitespace": false,
+    //     "editor.formatOnType": true,
+    //     "editor.wordBasedSuggestions": "off"
+    // },
+    "search.followSymlinks": false,
+    "search.quickOpen.history.filterSortOrder": "recency",
+    "search.searchEditor.defaultNumberOfContextLines": 0,
+    "search.searchEditor.reusePriorSearchConfiguration": true,
+    "search.seedWithNearestWord": true,
+    "search.showLineNumbers": true,
+    "search.smartCase": true,
+    "search.sortOrder": "modified",
+    "telemetry.telemetryLevel": "off",
+    "terminal.external.osxExec": "iTerm.app",
+    "terminal.integrated.fontSize": 13,
+    "terminal.integrated.scrollback": 10000,
+    "trailing-spaces.backgroundColor": "rgba(255,0,0,0.10)",
+    "trailing-spaces.borderColor": "rgba(255,100,100,0.10)",
+    "trailing-spaces.trimOnSave": true,
+    // "UEIntellisenseFixes.enableFixes": true,
+    // "UEIntellisenseFixes.enableOptionalFixes": true,
+    "[typescript]": { "editor.formatOnSave": true },
+    "typescript.format.semicolons": "remove",
+    "workbench.colorCustomizations": {
+        // "editorRuler.foreground": "#404040",
+        "editorRuler.foreground": "#333",
+    },
+
+    // Bracket-pair colorization
+    // https://stackoverflow.com/questions/71675335/how-to-disable-colorized-brackets
+    // "editor.bracketPairColorization.enabled": false,
+    // "editor.guides.bracketPairsHorizontal": false,
+    // "editor.guides.highlightActiveBracketPair": false,
+    // "editor.guides.indentation": false,
+    // "editor.guides.highlightActiveIndentation": false,
+
+    //
+    // VSCodeVim
+    //
+    // https://github.com/VSCodeVim/Vim
+    // https://github.com/VSCodeVim/Vim/blob/master/package.json
+    //
+
+    "vim.argumentObjectOpeningDelimiters": [ "(", "{" ], // ":" ],
+    "vim.argumentObjectClosingDelimiters": [ ")", "}" ], // ":" ],
+    "vim.argumentObjectSeparators": [ ",", ], // ":" ],
+    // "vim.cursorStylePerMode.normal": "block-outline",
+    "vim.changeWordIncludesWhitespace": true,
+    // "vim.debug.loggingLevelForConsole": "debug", // requires restart to take effect
+    "vim.easymotion": true,
+    // "vim.handleKeys": { },
+    "vim.hlsearch": true,
+    "vim.highlightedyank.enable": true,
+    "vim.incsearch": true,
+    // "vim.leader": "<space>",
+    "vim.replaceWithRegister": true,
+    "vim.sneak": true,
+    "vim.sneakUseIgnorecaseAndSmartcase": true,
+    "vim.useCtrlKeys": true,
+    "vim.useSystemClipboard": true,
+    "vim.visualstar": true,
+    "vim.normalModeKeyBindingsNonRecursive": [
+        { "before": [ "<space>" ], "commands": [ "vspacecode.space" ] },
+        { "before": [ "<C-g>" ], "commands": [ "editor.action.addSelectionToNextFindMatch", "workbench.action.findInFiles" ], "when": "editorTextFocus" },
+        { "before": [ "<C-j>" ], "commands": [ "workbench.action.showAllEditorsByMostRecentlyUsed", "workbench.action.quickOpenSelectNext" ], "when": "editorTextFocus" },
+        { "before": [ "<C-k>" ], "commands": [ "fuzzySearch.activeTextEditorWithCurrentSelection" ], "when": "editorTextFocus" },
+        { "before": [ "<C-l>" ], "commands": [ "closeFindWidget", ":noh" ] },
+        { "before": [ "<C-m>" ], "commands": [ ":marks" ], "when": "editorTextFocus" },
+        { "before": [ "<C-p>" ], "commands": [ "workbench.action.quickOpenPreviousEditor" ], "when": "editorTextFocus" },
+        { "before": [ "<C-r>" ], "commands": [ "redo" ] }, // https://github.com/VSCodeVim/Vim/issues/8157#issuecomment-1426704638
+        { "before": [ "<C-w>", "s" ], "commands": [ "workbench.action.splitEditorOrthogonal" ] },
+        { "before": [ "<C-w>", "v" ], "commands": [ "workbench.action.splitEditor" ] },
+        { "before": [ "[", "l" ], "commands": [ "editor.action.marker.prev" ], "when": "editorTextFocus" },
+        { "before": [ "]", "l" ], "commands": [ "editor.action.marker.next" ], "when": "editorTextFocus" },
+        { "before": [ "[", "q" ], "commands": [ "search.action.focusPreviousSearchResult" ], "when": "hasSearchResult" },
+        { "before": [ "]", "q" ], "commands": [ "search.action.focusNextSearchResult" ], "when": "hasSearchResult" },
+        { "before": [ "=", "=" ], "commands": [ "editor.action.format" ], "when": "editorTextFocus" },
+        { "before": [ ":" ], "commands": [ "vim.showQuickpickCmdLine" ], "when": "editorTextFocus" },
+        // { "before": [ "," ], "commands": [ "vspacecode.space", { "command": "whichkey.triggerKey", "args": "m" } ] },
+        { "before": [ "^" ], "after": [ "0" ] },
+        { "before": [ "0" ], "after": [ "^" ] },
+        { "before": [ "c", "0" ], "after": [ "c", "^" ] },
+        { "before": [ "c", "0" ], "after": [ "c", "^" ] },
+        { "before": [ "c", "i", "e" ], "after": [ "c", "i", "w" ] },
+        { "before": [ "c", "r", "l" ], "after": [ "g", "u", "i", "w" ] },
+        { "before": [ "c", "r", "u" ], "after": [ "g", "U", "i", "w" ] },
+        { "before": [ "c", "r", "s" ], "after": [ "<esc>" ], "commands": [ "editor.action.transformToSnakecase" ] },
+        { "before": [ "c", "r", "t" ], "after": [ "<esc>" ], "commands": [ "editor.action.transformToTitlecase" ] },
+        { "before": [ "d", "^" ], "after": [ "d", "0" ] },
+        { "before": [ "d", "0" ], "after": [ "d", "^" ] },
+        { "before": [ "g", "." ], "commands": [ "editor.action.referenceSearch.trigger" ] },
+        { "before": [ "g", "D" ], "commands": [ "editor.action.goToTypeDefinition" ] },
+        { "before": [ "g", "r" ], "commands": [ "editor.action.rename" ] },
+        { "before": [ "g", "R" ], "commands": [ "editor.action.rename" ] },
+        { "before": [ "Q" ], "after": [ "@", "q" ] },
+        { "before": [ "u" ], "commands": [ "undo" ] }, // https://github.com/VSCodeVim/Vim/issues/8157#issuecomment-1426704638
+        { "before": [ "Y" ], "after": [ "y", "$" ] },
+        { "before": [ "y", "0" ], "after": [ "y", "^" ] },
+        { "before": [ "y", "^" ], "after": [ "y", "0" ] },
+        { "before": [ "z", "0" ], "after": [ "0" ] },
+    ],
+    "vim.insertModeKeyBindings": [
+        { "before": [ "<C-a>" ], "commands": [ "cursorHome" ], "when": "editorTextFocus && !parameterHintsVisible && !suggestWidgetVisible" },
+        { "before": [ "<C-d>" ], "commands": [ "deleteRight" ], "when": "editorTextFocus && !parameterHintsVisible && !suggestWidgetVisible" },
+        { "before": [ "<C-e>" ], "commands": [ "cursorEnd" ], "when": "editorTextFocus && !parameterHintsVisible && !suggestWidgetVisible" },
+        { "before": [ "<C-h>" ], "commands": [ "deleteLeft" ], "when": "editorTextFocus && !parameterHintsVisible && !suggestWidgetVisible" },
+        { "before": [ "<C-k>" ], "commands": [ "deleteAllRight" ], "when": "editorTextFocus && !parameterHintsVisible && !suggestWidgetVisible" },
+        { "before": [ "<C-n>" ], "commands": [ "cursorDown" ], "when": "editorTextFocus && !parameterHintsVisible && !suggestWidgetVisible" },
+        { "before": [ "<C-p>" ], "commands": [ "cursorUp" ], "when": "editorTextFocus && !parameterHintsVisible && !suggestWidgetVisible" },
+        { "before": [ "<C-u>" ], "commands": [ "deleteAllLeft" ], "when": "editorTextFocus && !parameterHintsVisible && !suggestWidgetVisible" },
+    ],
+    "vim.operatorPendingModeKeyBindingsNonRecursive": [
+        { "before": [ "a", "," ], "after": [ "a", "a" ] },
+        { "before": [ "i", "," ], "after": [ "i", "a" ] },
+    ],
+    "vim.visualModeKeyBindings": [
+        { "before": [ "<C-k>" ], "commands": [ "editor.action.addSelectionToNextFindMatch", "fuzzySearch.activeTextEditorWithCurrentSelection" ], "when": "editorTextFocus" },
+        { "before": [ ">" ], "commands": [ "editor.action.indentLines" ] },
+        { "before": [ "<" ], "commands": [ "editor.action.outdentLines" ] },
+        { "before": [ "=" ], "commands": [ "editor.action.format" ], "when": "editorTextFocus" },
+        { "before": [ "z" ], "after": [ "S" ] },
+        { "before": [ ":" ], "commands": [ "vim.showQuickpickCmdLine" ], "when": "editorTextFocus", "silent": true },
+        { "before": [ "a", "," ], "after": [ "a", "a" ] },
+        { "before": [ "i", "," ], "after": [ "i", "a" ] },
+        { "before": [ "g", "a" ], "commands": [ "vscode-better-align.align" ] },
+        { "before": [ "g", "s" ], "commands": [ "editor.action.sortLinesAscending" ] },
+        { "before": [ "g", "S" ], "commands": [ "editor.action.sortLinesDescending" ] },
+        { "before": [ "p", ], "after": [ "p", "g", "v", "y" ] }, // paste without overriding the current register
+    ],
+    "vim.visualModeKeyBindingsNonRecursive": [
+        { "before": [ "<space>" ], "commands": [ "vspacecode.space" ] },
+        { "before": [ "<C-l>" ], "after": [ "<esc>" ], "commands": [ "closeFindWidget", ":noh" ] },
+        // { "before": [ "," ], "commands": [ "vspacecode.space", { "command": "whichkey.triggerKey", "args": "m" } ] },
+    ],
+
+    //
+    // VSpaceCode, WhichKey
+    //
+    // https://github.com/VSpaceCode/VSpaceCode
+    // https://github.com/VSpaceCode/VSpaceCode/blob/master/package.json
+    // https://vspacecode.github.io/docs/menu-customization
+    //
+    "vspacecode.bindingOverrides": [
+        { "keys": "d.r", "name": "Run to cursor", "icon": "run", "type": "commands", "commands": [ "editor.debug.action.runToCursor" ] },
+        { "keys": "s.s", "name": "Fuzzy search with selection in current buffer", "icon": "selection", "type": "commands", "commands": [ "editor.action.addSelectionToNextFindMatch", "fuzzySearch.activeTextEditorWithCurrentSelection" ] },
+        { "keys": "s.S", "name": "Fuzzy search in current buffer", "icon": "file", "type": "command", "command": "fuzzySearch.activeTextEditorWithCurrentSelection" },
+
+        // https://github.com/VSCodeVim/Vim#vim-easymotion
+        { "keys": " ", "name": "EasyMotion (<leader> <leader>)", "icon": "rocket", "type": "command", "command": "vim.remap", "args": { "after": [ "leader", "leader" ] } },
+
+        // Ideas:
+        //  - :registers
+        //  - :marks
+        //  - yanks (including registers?)
+    ],
+    "whichkey.delay": 100,
+    "whichkey.sortOrder": "customNonNumberFirst",
+    "workbench.colorTheme": "Default Dark+",
+    "workbench.editor.empty.hint": "hidden",
+    "github.gitAuthentication": false,
+    "lldb.library": "/Applications/Xcode.app/Contents/SharedFrameworks/LLDB.framework/Versions/A/LLDB",
+    "lldb.launch.expressions": "native",
+    "github.copilot.editor.enableAutoCompletions": true,
+    "editor.accessibilitySupport": "off",
+    "lldb.suppressUpdateNotifications": true,
+    "cmake.showOptionsMovedNotification": false,
+}

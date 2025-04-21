@@ -1,0 +1,218 @@
+// Place your key bindings in this file to override the defaults
+//
+// Key Bindings
+// https://code.visualstudio.com/docs/getstarted/keybindings
+//
+// when clause contexts
+// https://code.visualstudio.com/api/references/when-clause-contexts
+//
+[
+    // Tabs
+    { "key": "cmd+1", "command": "workbench.action.openEditorAtIndex1" },
+    { "key": "cmd+2", "command": "workbench.action.openEditorAtIndex2" },
+    { "key": "cmd+3", "command": "workbench.action.openEditorAtIndex3" },
+    { "key": "cmd+4", "command": "workbench.action.openEditorAtIndex4" },
+    { "key": "cmd+5", "command": "workbench.action.openEditorAtIndex5" },
+    { "key": "cmd+6", "command": "workbench.action.openEditorAtIndex6" },
+    { "key": "cmd+7", "command": "workbench.action.openEditorAtIndex7" },
+    { "key": "cmd+8", "command": "workbench.action.openEditorAtIndex8" },
+    { "key": "cmd+9", "command": "workbench.action.lastEditorInGroup" },
+    { "key": "cmd+0", "command": "workbench.action.lastEditorInGroup" },
+
+    // Editor Groups
+    { "key": "ctrl+1", "command": "workbench.action.focusFirstEditorGroup" },
+    { "key": "ctrl+2", "command": "workbench.action.focusSecondEditorGroup" },
+    { "key": "ctrl+3", "command": "workbench.action.focusThirdEditorGroup" },
+    { "key": "ctrl+4", "command": "workbench.action.focusFourthEditorGroup" },
+    { "key": "ctrl+5", "command": "workbench.action.focusFifthEditorGroup" },
+    { "key": "ctrl+6", "command": "workbench.action.focusSixthEditorGroup" },
+    { "key": "ctrl+7", "command": "workbench.action.focusSeventhEditorGroup" },
+    { "key": "ctrl+8", "command": "workbench.action.focusEighthEditorGroup" },
+    { "key": "ctrl+9", "command": "workbench.action.focusLastEditorGroup" },
+    { "key": "ctrl+0", "command": "workbench.action.focusLastEditorGroup" },
+
+    // Terminal
+    { "key": "cmd+j", "command": "workbench.action.terminal.focus" },
+    { "key": "cmd+j", "command": "workbench.action.focusActiveEditorGroup", "when": "terminalFocus" },
+    { "key": "cmd+shift+j", "command": "workbench.action.togglePanel" },
+
+    // Ctrl-j (next)
+    { "key": "ctrl+n", "command": "selectNextSuggestion", "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus" },
+    // { "key": "ctrl+n", "command": "showNextParameterHint", "when": "editorFocus && parameterHintsMultipleSignatures && parameterHintsVisible" },
+    { "key": "ctrl+j", "command": "selectNextSuggestion", "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus" },
+    { "key": "ctrl+j", "command": "showNextParameterHint", "when": "editorFocus && parameterHintsMultipleSignatures && parameterHintsVisible" },
+    { "key": "ctrl+j", "command": "search.action.focusNextSearchResult", "when": "searchViewletVisible && activePanel == 'workbench.view.search'" },
+    // { "key": "ctrl+j", "command": "workbench.action.quickOpenSelectNext", "when": "inQuickOpen" },
+    // { "key": "ctrl+j", "command": "list.focusDown", "when": "listFocus && !inputFocus" },
+    // { "key": "ctrl+j", "command": "cursorDown", "when": "textInputFocus" },
+    // { "key": "ctrl+j", "command": "extension.vim_ctrl+j", "when": "editorTextFocus && vim.active && vim.use<C-j> && !inDebugRepl || vim.active && vim.use<C-j> && !inDebugRepl && vim.mode == 'CommandlineInProgress' || vim.active && vim.use<C-j> && !inDebugRepl && vim.mode == 'SearchInProgressMode'" },
+
+    // Ctrl-k (prev)
+    // { "key": "ctrl+p", "command": "selectPrevSuggestion", "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus" },
+    // { "key": "ctrl+p", "command": "showPrevParameterHint", "when": "editorFocus && parameterHintsMultipleSignatures && parameterHintsVisible" },
+    { "key": "ctrl+k", "command": "selectPrevSuggestion", "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus" },
+    { "key": "ctrl+k", "command": "showPrevParameterHint", "when": "editorFocus && parameterHintsMultipleSignatures && parameterHintsVisible" },
+    { "key": "ctrl+k", "command": "search.action.focusPreviousSearchResult", "when": "searchViewletVisible && activePanel == 'workbench.view.search'" },
+    // { "key": "ctrl+k", "command": "workbench.action.quickOpenSelectPrevious", "when": "inQuickOpen" },
+    // { "key": "ctrl+k", "command": "list.focusUp", "when": "listFocus && !inputFocus" },
+    // { "key": "ctrl+k", "command": "cursorUp", "when": "textInputFocus" },
+    // { "key": "ctrl+k", "command": "extension.vim_ctrl+k", "when": "editorTextFocus && vim.active && vim.use<C-k> && !inDebugRepl || vim.active && vim.use<C-k> && !inDebugRepl && vim.mode == 'CommandlineInProgress' || vim.active && vim.use<C-k> && !inDebugRepl && vim.mode == 'SearchInProgressMode'" },
+    // { "key": "ctrl+k", "command": "extension.vim_ctrl+k", "when": "editorTextFocus && vim.active && !inDebugRepl && !parameterHintsVisible && !suggestWidgetVisible" },
+
+    // List navigation
+    { "key": "ctrl+h", "command": "list.collapse", "when": "listFocus && !inputFocus" },
+    { "key": "ctrl+l", "command": "list.expand", "when": "listFocus && !inputFocus" },
+    { "key": "ctrl+j", "command": "list.focusDown", "when": "listFocus && !inputFocus" },
+    { "key": "ctrl+k", "command": "list.focusUp", "when": "listFocus && !inputFocus" },
+
+    // TODO support for Search history
+
+    // Quick Window Navigation
+    // {
+    //     "key": "ctrl+h",
+    //     "command": "workbench.action.navigateLeft",
+    //     "when": "!inQuickOpen && !suggestWidgetVisible && !parameterHintsVisible && !isInDiffEditor",
+    // },
+    // {
+    //     "key": "ctrl+l", // This breaks `:noh`
+    //     "command": "workbench.action.navigateRight",
+    //     "when": "!inQuickOpen && !suggestWidgetVisible && !parameterHintsVisible && !isInDiffEditor"
+    // },
+
+    // Rebind action menu for file-browser
+    { "key": "ctrl+a", "command": "-file-browser.actions", "when": "inFileBrowser" },
+    { "key": "ctrl+o", "command": "file-browser.actions", "when": "inFileBrowser" },
+
+    //
+    // VS Code fixes
+    //
+    { "key": "ctrl+w", "command": "-workbench.action.switchWindow" },
+
+    //
+    // VSCodeVim fixes
+    // https://github.com/VSCodeVim/Vim/blob/master/package.json
+    //
+    {
+        "key": "ctrl+p",
+        "command": "extension.vim_ctrl+p",
+        "when": "editorTextFocus && vim.active && vim.use<C-p> && !inDebugRepl || vim.active && vim.use<C-p> && !inDebugRepl && vim.mode == 'CommandlineInProgress' || vim.active && vim.use<C-p> && !inDebugRepl && vim.mode == 'SearchInProgressMode'"
+    },
+
+    //
+    // VSpaceCode
+    // https://github.com/VSpaceCode/VSpaceCode/blob/master/package.json
+    //
+
+   // Trigger vspacecode in empty editor group
+    { "key": "space", "command": "vspacecode.space", "when": "activeEditorGroupEmpty && focusedView == '' && !whichkeyActive && !inputFocus" },
+    // Trigger vspacecode when sidebar is in focus
+    { "key": "space", "command": "vspacecode.space", "when": "sideBarFocus && !inputFocus && !whichkeyActive" },
+
+    // Easy navigation in quick open/QuickPick
+    { "key": "ctrl+j", "command": "workbench.action.quickOpenSelectNext", "when": "inQuickOpen" },
+    { "key": "ctrl+k", "command": "workbench.action.quickOpenSelectPrevious", "when": "inQuickOpen" },
+
+    // Easy navigation in suggestion/intellisense
+    // Cannot be added to package.json because of conflict with vim's default bindings
+    { "key": "ctrl+j", "command": "selectNextSuggestion", "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus" },
+    { "key": "ctrl+k", "command": "selectPrevSuggestion", "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus" },
+    { "key": "ctrl+l", "command": "acceptSelectedSuggestion", "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus" },
+
+    // Easy navigation in parameter hint (i.e. traverse the hints when there's multiple overload for one method)
+    // Cannot be added to package.json because of conflict with vim's default bindings
+    { "key": "ctrl+j", "command": "showNextParameterHint", "when": "editorFocus && parameterHintsMultipleSignatures && parameterHintsVisible" },
+    { "key": "ctrl+k", "command": "showPrevParameterHint", "when": "editorFocus && parameterHintsMultipleSignatures && parameterHintsVisible" },
+
+    // Add ctrl+h/l to navigate in file browser
+    { "key": "ctrl+h", "command": "file-browser.stepOut", "when": "inFileBrowser" },
+	{
+		"key": "ctrl+l",
+		"command": "file-browser.stepIn",
+		"when": "inFileBrowser"
+	},
+	{
+		"key": "tab",
+		"command": "extension.vim_tab",
+		"when": "editorFocus && vim.active && !inDebugRepl && vim.mode != 'Insert' && editorLangId != 'magit'"
+	},
+	{
+		"key": "tab",
+		"command": "-extension.vim_tab",
+		"when": "editorFocus && vim.active && !inDebugRepl && vim.mode != 'Insert'"
+	},
+	{
+		"key": "x",
+		"command": "magit.discard-at-point",
+		"when": "editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/"
+	},
+	{
+		"key": "k",
+		"command": "-magit.discard-at-point"
+	},
+	{
+		"key": "-",
+		"command": "magit.reverse-at-point",
+		"when": "editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/"
+	},
+	{
+		"key": "v",
+		"command": "-magit.reverse-at-point"
+	},
+	{
+		"key": "shift+-",
+		"command": "magit.reverting",
+		"when": "editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/"
+	},
+	{
+		"key": "shift+v",
+		"command": "-magit.reverting"
+	},
+	{
+		"key": "shift+o",
+		"command": "magit.resetting",
+		"when": "editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/"
+	},
+	{
+		"key": "shift+x",
+		"command": "-magit.resetting"
+	},
+	{
+		"key": "x",
+		"command": "-magit.reset-mixed"
+	},
+	{
+		"key": "ctrl+u x",
+		"command": "-magit.reset-hard"
+	},
+	{
+		"key": "y",
+		"command": "-magit.show-refs"
+	},
+	{
+		"key": "y",
+		"command": "vspacecode.showMagitRefMenu",
+		"when": "editorTextFocus && editorLangId == 'magit' && vim.mode == 'Normal'"
+	},
+
+
+    // Keybindings required for edamagit
+    // https://github.com/kahole/edamagit#vim-support-vscodevim
+    // Cannot be added to package.json because keybinding replacements
+    // { "key": "tab", "command": "extension.vim_tab", "when": "editorFocus && vim.active && !inDebugRepl && vim.mode != 'Insert' && editorLangId != 'magit'" },
+    // { "key": "tab", "command": "-extension.vim_tab", "when": "editorFocus && vim.active && !inDebugRepl && vim.mode != 'Insert'" },
+    // { "key": "x", "command": "magit.discard-at-point", "when": "editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/" },
+    // { "key": "k", "command": "-magit.discard-at-point" },
+    // { "key": "-", "command": "magit.reverse-at-point", "when": "editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/" },
+    // { "key": "v", "command": "-magit.reverse-at-point" },
+    // { "key": "shift+-", "command": "magit.reverting", "when": "editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/" },
+    // { "key": "shift+v", "command": "-magit.reverting" },
+    // { "key": "shift+o", "command": "magit.resetting", "when": "editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/" },
+    // { "key": "shift+x", "command": "-magit.resetting" },
+    // { "key": "x", "command": "-magit.reset-mixed" },
+    // { "key": "ctrl+u x", "command": "-magit.reset-hard" },
+
+    // // Extra ref menu support for edamagit with the key "y"
+    // // Cannot be added to package.json because keybinding replacements
+    // { "key": "y", "command": "-magit.show-refs" },
+    // { "key": "y", "command": "vspacecode.showMagitRefMenu", "when": "editorTextFocus && editorLangId == 'magit' && vim.mode == 'Normal'" },
+]
